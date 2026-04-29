@@ -61,6 +61,8 @@ for (const item of sorted) {
     <button class="filter-chip" data-filter="uses">⚙️ Používáme</button>
     <button class="filter-chip" data-filter="customer-facing">👤 Customer-facing</button>
     <button class="filter-chip" data-filter="urgent">🚨 Urgentní</button>
+    <button class="filter-chip" data-filter="kanal:editions">🎉 Editions</button>
+    <button class="filter-chip" data-filter="kanal:product-news">📰 Product news</button>
   </div>
 
   {sorted.length === 0 ? (
@@ -76,6 +78,7 @@ for (const item of sorted) {
               data-uses={item.data.pouzivame_v_integratoru === 'ano' ? '1' : '0'}
               data-customer-facing={item.data.customer_facing ? '1' : '0'}
               data-urgent={['kriticka', 'vysoka'].includes(item.data.nalehavost) ? '1' : '0'}
+              data-kanal={item.data.zdroj_kanal}
             >
               <a href={`/Shopify_news_magexo/zmena/${item.id.replace(/\.md$/, '')}/`}>
                 <div class="item-head">
@@ -92,6 +95,12 @@ for (const item of sorted) {
                   )}
                   {item.data.customer_facing && (
                     <span class="tag">👤 customer-facing</span>
+                  )}
+                  {item.data.zdroj_kanal === 'editions' && (
+                    <span class="tag" title="Shopify Editions Winter '26">🎉 Editions</span>
+                  )}
+                  {item.data.zdroj_kanal === 'product-news' && (
+                    <span class="tag">📰 News</span>
                   )}
                 </div>
               </a>
@@ -129,6 +138,7 @@ for (const item of sorted) {
           if (filter === 'uses') show = li.dataset.uses === '1';
           else if (filter === 'customer-facing') show = li.dataset.customerFacing === '1';
           else if (filter === 'urgent') show = li.dataset.urgent === '1';
+          else if (filter.startsWith('kanal:')) show = li.dataset.kanal === filter.split(':')[1];
           else if (filter !== 'all') show = (li.dataset.kategorie || '').split(',').includes(filter);
           li.style.display = show ? '' : 'none';
         });

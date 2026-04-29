@@ -35,7 +35,11 @@ const hasTimeline =
     <p class="meta">
       <span class="date">{fmtDate(entry.data.date)}</span>
       {' · '}
-      <a href={entry.data.zdroj} target="_blank" rel="noopener">originál na shopify.dev ↗</a>
+      <a href={entry.data.zdroj} target="_blank" rel="noopener">
+        {entry.data.zdroj_kanal === 'editions' ? 'Shopify Editions ↗' :
+         entry.data.zdroj_kanal === 'product-news' ? 'shopify.com/news ↗' :
+         'shopify.dev/changelog ↗'}
+      </a>
       {entry.data.zdroj_dokumentace && (
         <>
           {' · '}
