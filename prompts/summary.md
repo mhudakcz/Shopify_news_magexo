@@ -48,5 +48,5 @@ tagy: [checkout-extension, metafield]
 - `slug` — z URL novinky, ASCII, bez diakritiky, kebab-case, max 80 znaků
 - `date` — formát `YYYY-MM-DD` (ne ISO timestamp)
 - `kategorie` — pole, alespoň jedna hodnota
-- `tldr` — max 140 znaků, jedna věta, **pro PM/PO srozumitelná bez žargonu**
+- `tldr` — max ~220 znaků, **1-2 věty**, pro PM/PO srozumitelná bez žargonu (klidně 2 věty pokud bez nich vypadne důležitý kontext)
 - Body — sekce dle `prompts/analyze.md`, prázdné sekce vynech
