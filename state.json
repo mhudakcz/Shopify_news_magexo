@@ -1,0 +1,9 @@
+{
+  "sources": {
+    "shopify_dev_changelog": {
+      "url": "https://shopify.dev/changelog/feed.xml",
+      "last_run": null,
+      "last_item_pubdate": null
+    }
+  }
+}

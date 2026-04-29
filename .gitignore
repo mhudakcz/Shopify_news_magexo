@@ -1,0 +1,21 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+
+# Astro
+site/dist/
+site/.astro/
+site/.vercel/
+
+# Pagefind
+site/public/pagefind/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*

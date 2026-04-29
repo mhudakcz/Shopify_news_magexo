@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } = Astro.props;
+---
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/Shopify_news_magexo/pagefind/pagefind-ui.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/Shopify_news_magexo/"><strong>Shopify novinky</strong> — český souhrn</a>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <small>Generováno automaticky · <a href="https://github.com/mhudakcz/Shopify_news_magexo">zdroj</a></small>
+    </footer>
+    <style is:global>
+      :root {
+        --fg: #111;
+        --bg: #fafafa;
+        --muted: #666;
+        --accent: #5b3def;
+        --tag-bg: #eee;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        color: var(--fg);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+      header { margin-bottom: 2rem; }
+      header a { color: var(--fg); text-decoration: none; }
+      footer { margin-top: 4rem; color: var(--muted); }
+      a { color: var(--accent); }
+      h1 { font-size: 1.8rem; margin-top: 0; }
+      h2 { font-size: 1.3rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+      .tag {
+        display: inline-block;
+        background: var(--tag-bg);
+        padding: 0.1rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        margin-right: 0.3rem;
+        color: var(--muted);
+      }
+      .date { color: var(--muted); font-variant-numeric: tabular-nums; }
+      .item-list { list-style: none; padding: 0; }
+      .item-list li { margin-bottom: 1.5rem; }
+      .item-list a { text-decoration: none; color: var(--fg); }
+      .item-list a:hover strong { color: var(--accent); }
+      .tldr { color: var(--muted); margin: 0.3rem 0; }
+    </style>
+  </body>
+</html>

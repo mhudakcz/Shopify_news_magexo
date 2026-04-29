@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const all = await getCollection('summaries');
+const sorted = all.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+function isoWeek(d: Date): string {
+  const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil(((+t - +yearStart) / 86400000 + 1) / 7);
+  return `${t.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+}
+
+const grouped = new Map<string, typeof sorted>();
+for (const item of sorted) {
+  const key = isoWeek(new Date(item.data.date));
+  if (!grouped.has(key)) grouped.set(key, []);
+  grouped.get(key)!.push(item);
+}
+---
+<Layout title="Shopify novinky — český souhrn">
+  <h1>Shopify novinky</h1>
+  <p>Český souhrn novinek z <a href="https://shopify.dev/changelog">shopify.dev/changelog</a>. Generuje se v úterý a ve čtvrtek.</p>
+
+  <div id="search" data-pagefind-ui></div>
+
+  {sorted.length === 0 ? (
+    <p><em>Zatím žádné souhrny. Spusť <code>/run-news</code> v Claude Code.</em></p>
+  ) : (
+    [...grouped.entries()].map(([week, items]) => (
+      <section>
+        <h2>Týden {week} <span class="date">({items.length})</span></h2>
+        <ul class="item-list">
+          {items.map((item) => (
+            <li>
+              <a href={`/Shopify_news_magexo/zmena/${item.id.replace(/\.md$/, '')}/`}>
+                <span class="date">{new Date(item.data.date).toLocaleDateString('cs-CZ')}</span>
+                {' · '}
+                <strong>{item.data.title}</strong>
+                <p class="tldr">{item.data.tldr}</p>
+                {item.data.kategorie.map((k) => <span class="tag">{k}</span>)}
+                {item.data.api_oblast && <span class="tag">{item.data.api_oblast}</span>}
+                {item.data.pouzivame_v_integratoru === 'ano' && (
+                  <span class="tag" style="background:#d4edda;color:#155724">používáme</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  )}
+
+  <script>
+    import { PagefindUI } from '@pagefind/default-ui';
+    new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      showImages: false,
+      translations: {
+        placeholder: 'Hledat v novinkách…',
+        zero_results: 'Pro „[SEARCH_TERM]“ nic nenalezeno.',
+      },
+    });
+  </script>
+</Layout>

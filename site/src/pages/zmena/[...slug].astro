@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('summaries');
+  return all.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Layout title={entry.data.title}>
+  <article data-pagefind-body>
+    <p>
+      <a href="/Shopify_news_magexo/">← zpět na přehled</a>
+    </p>
+    <h1>{entry.data.title}</h1>
+    <p class="date">
+      {new Date(entry.data.date).toLocaleDateString('cs-CZ')}
+      {' · '}
+      <a href={entry.data.zdroj} target="_blank" rel="noopener">originál na shopify.dev ↗</a>
+    </p>
+    <p>
+      {entry.data.kategorie.map((k) => <span class="tag">{k}</span>)}
+      {entry.data.api_oblast && <span class="tag">{entry.data.api_oblast}</span>}
+      {entry.data.pouzivame_v_integratoru === 'ano' && (
+        <span class="tag" style="background:#d4edda;color:#155724">používáme v Integrátoru</span>
+      )}
+      {entry.data.pouzivame_v_integratoru === 'ne' && (
+        <span class="tag">nepoužíváme</span>
+      )}
+      {entry.data.pouzivame_v_integratoru === 'mozna' && (
+        <span class="tag" style="background:#fff3cd;color:#856404">prověřit</span>
+      )}
+    </p>
+
+    <blockquote><strong>TL;DR:</strong> {entry.data.tldr}</blockquote>
+
+    <Content />
+
+    {entry.data.dukaz_integratoru && (
+      <details>
+        <summary>Detail Integrathor checku</summary>
+        <p>{entry.data.dukaz_integratoru}</p>
+      </details>
+    )}
+  </article>
+</Layout>
