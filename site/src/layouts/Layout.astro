@@ -13,10 +13,27 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="stylesheet" href="/Shopify_news_magexo/pagefind/pagefind-ui.css" />
+    <script is:inline>
+      // Set theme before paint to avoid FOUC
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <header>
-      <a href="/Shopify_news_magexo/"><strong>Shopify novinky</strong> — český souhrn</a>
+      <a href="/Shopify_news_magexo/" class="brand"><strong>Shopify novinky</strong> — český souhrn</a>
+      <button id="theme-toggle" type="button" aria-label="Přepnout světlý/tmavý režim" title="Světlý/tmavý režim">
+        <span class="icon-light">🌙</span>
+        <span class="icon-dark">☀️</span>
+      </button>
     </header>
     <main>
       <slot />
@@ -24,12 +41,23 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
     <footer>
       <small>Generováno automaticky · <a href="https://github.com/mhudakcz/Shopify_news_magexo">zdroj</a></small>
     </footer>
+    <script>
+      const btn = document.getElementById('theme-toggle');
+      btn?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch {}
+      });
+    </script>
     <style is:global>
-      :root {
-        --fg: #111;
+      :root,
+      [data-theme="light"] {
         --bg: #fafafa;
+        --fg: #111;
         --muted: #666;
         --border: #e0e0e0;
+        --card-bg: #ffffff;
         --accent: #5b3def;
         --tag-bg: #eef;
         --tag-fg: #444;
@@ -39,6 +67,31 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         --crit-bg: #fef2f2;
         --ok: #059669;
         --ok-bg: #ecfdf5;
+        --quote-bg: #ffffff;
+
+        --pagefind-ui-primary: var(--accent);
+        --pagefind-ui-text: var(--fg);
+        --pagefind-ui-background: var(--card-bg);
+        --pagefind-ui-border: var(--border);
+        --pagefind-ui-tag: var(--tag-bg);
+        --pagefind-ui-border-radius: 6px;
+      }
+      [data-theme="dark"] {
+        --bg: #0d0e12;
+        --fg: #e8e9eb;
+        --muted: #9ca3af;
+        --border: #2a2d35;
+        --card-bg: #161821;
+        --accent: #9b85ff;
+        --tag-bg: #1f222b;
+        --tag-fg: #c1c4cc;
+        --warn: #fbbf24;
+        --warn-bg: #2a1d0f;
+        --crit: #f87171;
+        --crit-bg: #2a1414;
+        --ok: #34d399;
+        --ok-bg: #0d2218;
+        --quote-bg: #161821;
       }
       * { box-sizing: border-box; }
       body {
@@ -49,15 +102,43 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         color: var(--fg);
         background: var(--bg);
         line-height: 1.6;
+        transition: background 0.15s, color 0.15s;
       }
-      header { margin-bottom: 1.5rem; }
-      header a { color: var(--fg); text-decoration: none; font-size: 0.95rem; }
+      header {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      header .brand { color: var(--fg); text-decoration: none; font-size: 0.95rem; }
       footer { margin-top: 4rem; color: var(--muted); }
       a { color: var(--accent); }
       h1 { font-size: 1.9rem; margin-top: 0; }
       h2 { font-size: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; margin-top: 2rem; }
       h3 { font-size: 1.05rem; margin-top: 1.5rem; }
       p.subtitle { color: var(--muted); margin-top: -0.5rem; }
+
+      /* Theme toggle button */
+      #theme-toggle {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      #theme-toggle:hover { border-color: var(--accent); }
+      #theme-toggle .icon-dark { display: none; }
+      [data-theme="dark"] #theme-toggle .icon-light { display: none; }
+      [data-theme="dark"] #theme-toggle .icon-dark { display: inline; }
 
       /* Stats panel */
       .stats {
@@ -66,41 +147,27 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         gap: 0.5rem;
         margin: 1.5rem 0;
         padding: 1rem;
-        background: white;
+        background: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 6px;
       }
-      .stats > div {
-        text-align: center;
-        padding: 0.3rem;
-      }
-      .stats strong {
-        display: block;
-        font-size: 1.6rem;
-        line-height: 1.2;
-      }
-      .stats span {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
+      .stats > div { text-align: center; padding: 0.3rem; }
+      .stats strong { display: block; font-size: 1.6rem; line-height: 1.2; }
+      .stats span { font-size: 0.78rem; color: var(--muted); }
       .stats .warn strong { color: var(--crit); }
       .stats .ok strong { color: var(--ok); }
 
       /* Filter chips */
-      .filter-bar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin: 1rem 0 1.5rem;
-      }
+      .filter-bar { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 1.5rem; }
       .filter-chip {
-        background: white;
+        background: var(--card-bg);
         border: 1px solid var(--border);
         padding: 0.3rem 0.8rem;
         border-radius: 999px;
         font-size: 0.85rem;
         cursor: pointer;
         color: var(--fg);
+        transition: border-color 0.15s, background 0.15s;
       }
       .filter-chip:hover { border-color: var(--accent); }
       .filter-chip.active {
@@ -114,20 +181,15 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
       .item-list li {
         margin-bottom: 1rem;
         padding: 1rem;
-        background: white;
+        background: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 6px;
-        transition: border-color 0.15s;
+        transition: border-color 0.15s, background 0.15s;
       }
       .item-list li:hover { border-color: var(--accent); }
       .item-list a { text-decoration: none; color: var(--fg); display: block; }
       .item-list a:hover strong { color: var(--accent); }
-      .item-head {
-        display: flex;
-        gap: 0.6rem;
-        align-items: baseline;
-        flex-wrap: wrap;
-      }
+      .item-head { display: flex; gap: 0.6rem; align-items: baseline; flex-wrap: wrap; }
       .item-head strong { font-size: 1.05rem; }
       .tldr { color: var(--muted); margin: 0.4rem 0; font-size: 0.95rem; }
       .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.4rem; }
@@ -172,7 +234,7 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         border-left: 3px solid var(--accent);
         padding: 0.5rem 1rem;
         margin: 1.2rem 0;
-        background: white;
+        background: var(--quote-bg);
         font-size: 1rem;
         color: var(--fg);
       }
@@ -192,16 +254,22 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
       /* Tables in markdown body */
       table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
       th, td { border: 1px solid var(--border); padding: 0.4rem 0.7rem; text-align: left; }
-      th { background: white; }
+      th { background: var(--card-bg); }
 
-      /* Pagefind tweaks */
-      :root {
-        --pagefind-ui-primary: var(--accent);
-        --pagefind-ui-text: var(--fg);
-        --pagefind-ui-background: white;
-        --pagefind-ui-border: var(--border);
-        --pagefind-ui-border-radius: 6px;
+      code {
+        background: var(--tag-bg);
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        font-size: 0.9em;
       }
+      pre {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        padding: 0.8rem;
+        border-radius: 6px;
+        overflow-x: auto;
+      }
+      pre code { background: transparent; padding: 0; }
     </style>
   </body>
 </html>
