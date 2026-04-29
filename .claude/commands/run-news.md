@@ -69,6 +69,10 @@ Sestav zprávu (Slack mrkdwn):
 🔧 Integrátor: {pouzivame_v_integratoru} · 🎯 Akce: {odhad podle nalehavost a používání}
 🔗 https://mhudakcz.github.io/Shopify_news_magexo/zmena/{slug}/
 
+POZOR: `{slug}` = frontmatter `slug` field (BEZ data v URL).
+Astro 5 glob loader používá frontmatter `slug` jako entry ID, ne filename.
+Filename `summaries/2026-04-27-pos-115-rounding.md` → URL `/zmena/pos-115-rounding/`.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌐 Web archiv & search: https://mhudakcz.github.io/Shopify_news_magexo/
 ```
