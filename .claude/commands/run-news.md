@@ -18,7 +18,7 @@ Použij `WebFetch` na `https://shopify.dev/changelog/feed.xml` s promptem:
 Vezmi jen položky s `pubDate` novějším než `last_item_pubdate`.
 
 **Pokud žádné nejsou:**
-- Pošli `slack_send_message` na channel `U07R9V594B1`:
+- Pošli `slack_send_message` na channel `C07JP5X0BNJ`:
   ```
   📭 *Shopify news — {datum dnes}*
   Tento týden nic nového hodného pozornosti.
@@ -95,7 +95,7 @@ Filename `summaries/2026-04-27-pos-115-rounding.md` → URL `/zmena/pos-115-roun
 - (stredni, ne) → "monitor"
 - (nizka, *) → "žádná"
 
-Pošli přes `slack_send_message` na channel `U07R9V594B1`.
+Pošli přes `slack_send_message` na channel `C07JP5X0BNJ`.
 
 ## Krok 7 — Update state
 Aktualizuj `state.json`:

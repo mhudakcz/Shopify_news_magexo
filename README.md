@@ -67,4 +67,10 @@ Vývojáři + projekťáci + project owneři. Semi-technická čeština: termín
 
 ## Slack target
 
-Zatím DM na `U07R9V594B1` (Michal Hudák). Po odladění přesměrujeme na sdílený privátní kanál.
+Veřejný kanál `#shopify_changelog` (ID `C07JP5X0BNJ`) v Magexo workspace.
+
+## Provoz
+
+**Production:** automatický cron Út+Čt v 9:00 přes Claude Routine. Spec instrukcí v `.claude/commands/run-news.md`.
+
+**Manuální fallback:** otevři Claude Code v adresáři repa, spusť `/run-news`. Bez argumentu naostro, s `--dry-run` jen vypíše bez zápisu/Slacku/commitu.
