@@ -6,41 +6,101 @@ export async function getStaticPaths() {
   const all = await getCollection('summaries');
   return all.map((entry) => ({
     params: { slug: entry.id.replace(/\.md$/, '') },
-    props: { entry },
+    props: { entry, all },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, all } = Astro.props;
 const { Content } = await render(entry);
+
+const related = (entry.data.souvisejici || [])
+  .map((slug) => all.find((a) => a.data.slug === slug || a.id.replace(/\.md$/, '').endsWith(slug)))
+  .filter((x): x is NonNullable<typeof x> => Boolean(x));
+
+function fmtDate(d: Date | null | undefined): string | null {
+  if (!d) return null;
+  return new Date(d).toLocaleDateString('cs-CZ');
+}
+
+const hasTimeline =
+  entry.data.ucinnost_od || entry.data.deprecation_do || entry.data.migrace_doporucena_do;
 ---
 <Layout title={entry.data.title}>
   <article data-pagefind-body>
-    <p>
-      <a href="/Shopify_news_magexo/">← zpět na přehled</a>
-    </p>
+    <p><a href="/Shopify_news_magexo/">← zpět na přehled</a></p>
+
     <h1>{entry.data.title}</h1>
-    <p class="date">
-      {new Date(entry.data.date).toLocaleDateString('cs-CZ')}
+    {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
+
+    <p class="meta">
+      <span class="date">{fmtDate(entry.data.date)}</span>
       {' · '}
       <a href={entry.data.zdroj} target="_blank" rel="noopener">originál na shopify.dev ↗</a>
-    </p>
-    <p>
-      {entry.data.kategorie.map((k) => <span class="tag">{k}</span>)}
-      {entry.data.api_oblast && <span class="tag">{entry.data.api_oblast}</span>}
-      {entry.data.pouzivame_v_integratoru === 'ano' && (
-        <span class="tag" style="background:#d4edda;color:#155724">používáme v Integrátoru</span>
+      {entry.data.zdroj_dokumentace && (
+        <>
+          {' · '}
+          <a href={entry.data.zdroj_dokumentace} target="_blank" rel="noopener">dokumentace ↗</a>
+        </>
       )}
-      {entry.data.pouzivame_v_integratoru === 'ne' && (
-        <span class="tag">nepoužíváme</span>
+    </p>
+
+    <div class="badges">
+      <span class={`urgency urgency-${entry.data.nalehavost}`}>{entry.data.nalehavost}</span>
+      {entry.data.kategorie.map((k) => <span class={`tag tag-${k}`} data-pagefind-filter={`kategorie:${k}`}>{k}</span>)}
+      <span class="tag tag-api" data-pagefind-filter={`api_oblast:${entry.data.api_oblast}`}>{entry.data.api_oblast}</span>
+      {entry.data.api_verze.length > 0 && (
+        <span class="tag">API {entry.data.api_verze.join(', ')}</span>
+      )}
+      {entry.data.customer_facing && <span class="tag">👤 customer-facing</span>}
+      {entry.data.pouzivame_v_integratoru === 'ano' && (
+        <span class="tag tag-uses" data-pagefind-filter="pouzivame:ano">⚙️ používáme v Integrátoru</span>
       )}
       {entry.data.pouzivame_v_integratoru === 'mozna' && (
-        <span class="tag" style="background:#fff3cd;color:#856404">prověřit</span>
+        <span class="tag tag-warn">⚠️ prověřit v Integrátoru</span>
       )}
-    </p>
+      {entry.data.tagy.map((t) => <span class="tag" data-pagefind-filter={`tag:${t}`}>{t}</span>)}
+    </div>
 
-    <blockquote><strong>TL;DR:</strong> {entry.data.tldr}</blockquote>
+    <blockquote class="tldr"><strong>TL;DR:</strong> {entry.data.tldr}</blockquote>
+
+    {hasTimeline && (
+      <aside class="timeline-box">
+        <h3>Klíčová data</h3>
+        <ul>
+          {entry.data.ucinnost_od && (
+            <li><strong>{fmtDate(entry.data.ucinnost_od)}</strong> — začíná platit</li>
+          )}
+          {entry.data.deprecation_do && (
+            <li><strong>{fmtDate(entry.data.deprecation_do)}</strong> — končí podpora staré varianty</li>
+          )}
+          {entry.data.migrace_doporucena_do && (
+            <li><strong>{fmtDate(entry.data.migrace_doporucena_do)}</strong> — doporučený deadline migrace</li>
+          )}
+        </ul>
+      </aside>
+    )}
 
     <Content />
+
+    {entry.data.dotcene_klienty.length > 0 && (
+      <section class="affected">
+        <h3>Dotčení klienti</h3>
+        <ul>{entry.data.dotcene_klienty.map((k) => <li>{k}</li>)}</ul>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="related">
+        <h3>Související u nás</h3>
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={`/Shopify_news_magexo/zmena/${r.id.replace(/\.md$/, '')}/`}>{r.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     {entry.data.dukaz_integratoru && (
       <details>
