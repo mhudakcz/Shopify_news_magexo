@@ -294,28 +294,16 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         font-size: 1rem;
         color: var(--fg);
       }
-      .source-cta {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 0.8rem 1rem;
-        margin: 1.2rem 0;
-        background: var(--card-bg);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        text-decoration: none;
-        color: var(--fg);
-        transition: border-color 0.15s, transform 0.15s;
+      .source-footer {
+        margin-top: 2.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--muted);
       }
-      .source-cta:hover {
-        border-color: var(--accent);
-        transform: translateX(2px);
-      }
-      .source-cta-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
-      .source-cta-text { display: flex; flex-direction: column; gap: 0.1rem; }
-      .source-cta-text strong { color: var(--accent); font-size: 0.95rem; font-weight: 600; }
-      .source-cta-text small { color: var(--muted); font-size: 0.8rem; }
-      .source-cta-bottom { margin-top: 2.5rem; }
+      .source-footer a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--border); }
+      .source-footer a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      .source-footer-channel { color: var(--muted); font-size: 0.85rem; }
       .timeline-box {
         background: var(--warn-bg);
         border-left: 3px solid var(--warn);
