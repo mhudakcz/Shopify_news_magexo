@@ -65,6 +65,18 @@ const hasTimeline =
       {entry.data.tagy.map((t) => <span class="tag" data-pagefind-filter={`tag:${t}`}>{t}</span>)}
     </div>
 
+    <a class="source-cta" href={entry.data.zdroj} target="_blank" rel="noopener">
+      <span class="source-cta-icon">🔗</span>
+      <span class="source-cta-text">
+        <strong>Originální zpráva →</strong>
+        <small>{
+          entry.data.zdroj_kanal === 'editions' ? "shopify.com / Editions Winter '26" :
+          entry.data.zdroj_kanal === 'product-news' ? 'shopify.com / news' :
+          'shopify.dev / changelog'
+        }</small>
+      </span>
+    </a>
+
     <blockquote class="tldr"><strong>TL;DR:</strong> {entry.data.tldr}</blockquote>
 
     {hasTimeline && (
