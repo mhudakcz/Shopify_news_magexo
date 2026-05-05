@@ -32,12 +32,20 @@ const hasTimeline =
     <h1>{entry.data.title}</h1>
     {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
 
+    {entry.data.obrazek && (
+      <figure class="article-hero">
+        <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
+      </figure>
+    )}
+
     <p class="meta">
       <span class="date">{fmtDate(entry.data.date)}</span>
       {' · '}
       <a href={entry.data.zdroj} target="_blank" rel="noopener">
         {entry.data.zdroj_kanal === 'editions' ? 'Shopify Editions ↗' :
          entry.data.zdroj_kanal === 'product-news' ? 'shopify.com/news ↗' :
+         entry.data.zdroj_kanal === 'merchant-changelog' ? 'changelog.shopify.com ↗' :
+         entry.data.zdroj_kanal === 'blog' ? 'shopify.com/cz/blog ↗' :
          'shopify.dev/changelog ↗'}
       </a>
       {entry.data.zdroj_dokumentace && (
@@ -111,6 +119,8 @@ const hasTimeline =
       <span class="source-footer-channel">— {
         entry.data.zdroj_kanal === 'editions' ? "shopify.com / Editions Winter '26" :
         entry.data.zdroj_kanal === 'product-news' ? 'shopify.com / news' :
+        entry.data.zdroj_kanal === 'merchant-changelog' ? 'changelog.shopify.com' :
+        entry.data.zdroj_kanal === 'blog' ? 'shopify.com / cz / blog' :
         'shopify.dev / changelog'
       }</span>
     </p>

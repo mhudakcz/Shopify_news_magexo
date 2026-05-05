@@ -34,7 +34,8 @@ const summaries = defineCollection({
     // meta
     tldr: z.string(),
     tagy: z.array(z.string()).default([]),
-    zdroj_kanal: z.enum(['changelog', 'editions', 'product-news']).default('changelog'),
+    zdroj_kanal: z.enum(['dev-changelog', 'merchant-changelog', 'editions', 'product-news', 'blog']).default('dev-changelog'),
+    obrazek: z.string().url().nullable().optional(),
   }),
 });
 

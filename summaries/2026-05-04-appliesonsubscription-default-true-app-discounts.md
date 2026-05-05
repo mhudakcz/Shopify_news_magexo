@@ -4,7 +4,7 @@ title: "Default value appliesOnSubscription změněno na true u app discount inp
 title_en: "Default value of appliesOnSubscription changed to true for app discount inputs"
 slug: appliesonsubscription-default-true-app-discounts
 zdroj: https://shopify.dev/changelog/default-value-of-appliesonsubscription-changed-to-true-for-app-discount-inputs
-zdroj_kanal: changelog
+zdroj_kanal: dev-changelog
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api]

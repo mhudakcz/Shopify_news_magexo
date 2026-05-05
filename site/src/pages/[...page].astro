@@ -48,6 +48,8 @@ for (const item of page.data) {
 }
 
 function itemIcon(item: any): string {
+  if (item.data.zdroj_kanal === 'blog') return '📝';
+  if (item.data.zdroj_kanal === 'merchant-changelog') return '🛍️';
   if (item.data.nalehavost === 'kriticka') return '🚨';
   const cat = item.data.kategorie[0];
   if (cat === 'breaking-change') return '🔥';
@@ -61,6 +63,7 @@ function itemIcon(item: any): string {
 }
 
 function itemIconClass(item: any): string {
+  if (item.data.zdroj_kanal === 'blog' && item.data.obrazek) return 'icon-blog';
   const cat = item.data.kategorie[0];
   if (cat === 'breaking-change' || item.data.nalehavost === 'kriticka') return 'icon-crit';
   if (cat === 'deprecation') return 'icon-warn';
@@ -94,6 +97,8 @@ function itemIconClass(item: any): string {
     <button class="filter-chip" data-filter="urgent">🚨 Urgentní</button>
     <button class="filter-chip" data-filter="kanal:editions">🎉 Editions</button>
     <button class="filter-chip" data-filter="kanal:product-news">📰 Product news</button>
+    <button class="filter-chip" data-filter="kanal:merchant-changelog">🛍️ Merchant</button>
+    <button class="filter-chip" data-filter="kanal:blog">📝 Blog</button>
   </div>
   <p class="filter-note"><small>Filtry pracují v rámci aktuální stránky.</small></p>
 
@@ -113,7 +118,13 @@ function itemIconClass(item: any): string {
               data-kanal={item.data.zdroj_kanal}
             >
               <a href={`/Shopify_news_magexo/zmena/${item.id.replace(/\.md$/, '')}/`}>
-                <span class={`item-icon ${itemIconClass(item)}`}>{itemIcon(item)}</span>
+                <span class={`item-icon ${itemIconClass(item)}`}>
+                  {item.data.zdroj_kanal === 'blog' && item.data.obrazek ? (
+                    <img src={item.data.obrazek} alt="" loading="lazy" />
+                  ) : (
+                    itemIcon(item)
+                  )}
+                </span>
                 <div class="item-content">
                   <div class="item-head">
                     <span class={`urgency urgency-${item.data.nalehavost}`}>{item.data.nalehavost}</span>
@@ -135,6 +146,12 @@ function itemIconClass(item: any): string {
                     )}
                     {item.data.zdroj_kanal === 'product-news' && (
                       <span class="tag">📰 News</span>
+                    )}
+                    {item.data.zdroj_kanal === 'merchant-changelog' && (
+                      <span class="tag" title="changelog.shopify.com">🛍️ Merchant</span>
+                    )}
+                    {item.data.zdroj_kanal === 'blog' && (
+                      <span class="tag">📝 Blog</span>
                     )}
                   </div>
                 </div>

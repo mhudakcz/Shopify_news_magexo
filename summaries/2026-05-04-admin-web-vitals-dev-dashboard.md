@@ -4,7 +4,7 @@ title: "Admin Web Vitals monitoring přesunut do Dev Dashboard"
 title_en: "Monitor admin web vitals in the Dev Dashboard"
 slug: admin-web-vitals-dev-dashboard
 zdroj: https://shopify.dev/changelog/monitor-admin-web-vitals-in-the-dev-dashboard
-zdroj_kanal: changelog
+zdroj_kanal: dev-changelog
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

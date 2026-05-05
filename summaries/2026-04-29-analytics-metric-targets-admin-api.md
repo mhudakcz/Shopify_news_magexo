@@ -4,7 +4,7 @@ title: "Analytics metric targets v Admin GraphQL API"
 title_en: "Analytics metric targets now available in the GraphQL Admin API"
 slug: analytics-metric-targets-admin-api
 zdroj: https://shopify.dev/changelog/analytics-metric-targets-now-available-in-the-graphql-admin-api
-zdroj_kanal: changelog
+zdroj_kanal: dev-changelog
 shrnuto_dne: 2026-04-30
 
 kategorie: [nova-api, nova-prilezitost]

@@ -4,7 +4,7 @@ title: "actor pole na subscription contract a billing attempt mutacích"
 title_en: "Add actor field to subscription contract and billing attempt mutations"
 slug: actor-field-subscription-billing
 zdroj: https://shopify.dev/changelog/add-actor-field-to-subscription-contract-and-billing-attempt-mutations
-zdroj_kanal: changelog
+zdroj_kanal: dev-changelog
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api]
