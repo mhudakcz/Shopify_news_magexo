@@ -9,15 +9,15 @@
     "shopify_merchant_changelog": {
       "url": "https://changelog.shopify.com/feed",
       "kanal": "merchant-changelog",
-      "last_run": null,
-      "last_item_pubdate": null
+      "last_run": "2026-05-05T07:30:00Z",
+      "last_item_pubdate": "2026-05-04T16:00:00Z"
     },
     "shopify_cz_blog": {
       "url": "https://www.shopify.com/cz/blog/latest",
       "kanal": "blog",
       "scrape": true,
-      "last_run": null,
-      "last_item_pubdate": null
+      "last_run": "2026-05-05T08:00:00Z",
+      "last_item_pubdate": "2026-04-28T00:00:00Z"
     }
   }
 }
