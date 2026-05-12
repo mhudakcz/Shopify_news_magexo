@@ -17,6 +17,13 @@ const related = (entry.data.souvisejici || [])
   .map((slug) => all.find((a) => a.data.slug === slug || a.id.replace(/\.md$/, '').endsWith(slug)))
   .filter((x): x is NonNullable<typeof x> => Boolean(x));
 
+const sortedByDate = [...all].sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+const currentIdx = sortedByDate.findIndex((e) => e.id === entry.id);
+const newer = currentIdx > 0 ? sortedByDate[currentIdx - 1] : null;
+const older = currentIdx >= 0 && currentIdx < sortedByDate.length - 1 ? sortedByDate[currentIdx + 1] : null;
+
 function fmtDate(d: Date | null | undefined): string | null {
   if (!d) return null;
   return new Date(d).toLocaleDateString('cs-CZ');
@@ -124,6 +131,25 @@ const hasTimeline =
         'shopify.dev / changelog'
       }</span>
     </p>
+
+    {(newer || older) && (
+      <nav class="article-nav" aria-label="Navigace mezi články">
+        {older ? (
+          <a href={`/Shopify_news_magexo/zmena/${older.id.replace(/\.md$/, '')}/`} class="article-nav-link prev">
+            <span class="dir">← Starší</span>
+            <span class="title">{older.data.title}</span>
+            <span class="date">{new Date(older.data.date).toLocaleDateString('cs-CZ')}</span>
+          </a>
+        ) : <span class="article-nav-spacer" />}
+        {newer ? (
+          <a href={`/Shopify_news_magexo/zmena/${newer.id.replace(/\.md$/, '')}/`} class="article-nav-link next">
+            <span class="dir">Novější →</span>
+            <span class="title">{newer.data.title}</span>
+            <span class="date">{new Date(newer.data.date).toLocaleDateString('cs-CZ')}</span>
+          </a>
+        ) : <span class="article-nav-spacer" />}
+      </nav>
+    )}
 
     {entry.data.dukaz_integratoru && (
       <details>

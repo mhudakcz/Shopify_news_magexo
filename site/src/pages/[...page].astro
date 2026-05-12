@@ -72,35 +72,46 @@ function itemIconClass(item: any): string {
 }
 ---
 <Layout title={`Shopify novinky${page.currentPage > 1 ? ` — strana ${page.currentPage}` : ''}`}>
-  <h1>Shopify novinky</h1>
-  <p class="subtitle">Český souhrn z <a href="https://shopify.dev/changelog">shopify.dev/changelog</a> a <a href="https://www.shopify.com/editions/winter2026">Shopify Editions</a>. Generuje se v úterý a ve čtvrtek.</p>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Shopify novinky</h1>
+      <p class="subtitle">Český souhrn ze <strong>4 zdrojů</strong> — dev changelog, merchant changelog, Editions, CZ blog. Generuje se v úterý a ve čtvrtek.</p>
 
-  {page.currentPage === 1 && (
-    <div class="stats">
-      <div><strong>{stats.thisWeek}</strong><span>tento týden</span></div>
-      <div><strong>{stats.thisMonth}</strong><span>tento měsíc</span></div>
-      <div><strong>{stats.total}</strong><span>celkem</span></div>
-      <div class="warn"><strong>{stats.breaking}</strong><span>breaking changes</span></div>
-      <div class="ok"><strong>{stats.uses}</strong><span>používáme</span></div>
+      {page.currentPage === 1 && (
+        <div class="stats">
+          <div><strong>{stats.thisWeek}</strong><span>tento týden</span></div>
+          <div><strong>{stats.thisMonth}</strong><span>tento měsíc</span></div>
+          <div><strong>{stats.total}</strong><span>celkem</span></div>
+          <div class="warn"><strong>{stats.breaking}</strong><span>breaking</span></div>
+          <div class="ok"><strong>{stats.uses}</strong><span>používáme</span></div>
+        </div>
+      )}
     </div>
-  )}
+  </section>
 
   <div id="search" data-pagefind-ui></div>
 
-  <div class="filter-bar">
-    <button class="filter-chip active" data-filter="all">Vše</button>
-    <button class="filter-chip" data-filter="breaking-change">🔥 Breaking</button>
-    <button class="filter-chip" data-filter="nova-prilezitost">✨ Příležitost</button>
-    <button class="filter-chip" data-filter="deprecation">⏰ Deprecation</button>
-    <button class="filter-chip" data-filter="uses">⚙️ Používáme</button>
-    <button class="filter-chip" data-filter="customer-facing">👤 Customer-facing</button>
-    <button class="filter-chip" data-filter="urgent">🚨 Urgentní</button>
-    <button class="filter-chip" data-filter="kanal:editions">🎉 Editions</button>
-    <button class="filter-chip" data-filter="kanal:product-news">📰 Product news</button>
-    <button class="filter-chip" data-filter="kanal:merchant-changelog">🛍️ Merchant</button>
-    <button class="filter-chip" data-filter="kanal:blog">📝 Blog</button>
+  <div class="filter-section">
+    <div class="filter-bar">
+      <span class="filter-label">Kategorie</span>
+      <button class="filter-chip active" data-filter="all">Vše</button>
+      <button class="filter-chip" data-filter="breaking-change">🔥 Breaking</button>
+      <button class="filter-chip" data-filter="nova-prilezitost">✨ Příležitost</button>
+      <button class="filter-chip" data-filter="deprecation">⏰ Deprecation</button>
+      <button class="filter-chip" data-filter="uses">⚙️ Používáme</button>
+      <button class="filter-chip" data-filter="customer-facing">👤 Customer-facing</button>
+      <button class="filter-chip" data-filter="urgent">🚨 Urgentní</button>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Zdroj</span>
+      <button class="filter-chip" data-filter="kanal:dev-changelog">🆕 Dev</button>
+      <button class="filter-chip" data-filter="kanal:merchant-changelog">🛍️ Merchant</button>
+      <button class="filter-chip" data-filter="kanal:editions">🎉 Editions</button>
+      <button class="filter-chip" data-filter="kanal:product-news">📰 News</button>
+      <button class="filter-chip" data-filter="kanal:blog">📝 Blog</button>
+    </div>
   </div>
-  <p class="filter-note"><small>Filtry pracují v rámci aktuální stránky.</small></p>
+  <p class="filter-note"><small>Filtry pracují v rámci aktuální stránky. Pro vyhledávání napříč archivem použij search nahoře.</small></p>
 
   {page.data.length === 0 ? (
     <p><em>Zatím žádné souhrny. Spusť <code>/run-news</code> v Claude Code.</em></p>
