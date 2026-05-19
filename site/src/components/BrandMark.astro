@@ -1,0 +1,48 @@
+---
+interface Props {
+  small?: boolean;
+  href?: string;
+}
+const { small = false, href = '/Shopify_news_magexo/' } = Astro.props;
+const sz = small ? 26 : 30;
+const fsLogo = small ? 14 : 16;
+const fsText = small ? 13 : 15;
+---
+<a class="brand" href={href}>
+  <span class="brand-logo" style={`width:${sz}px;height:${sz}px;font-size:${fsLogo}px`}>S</span>
+  <span class="brand-text" style={`font-size:${fsText}px`}>
+    Shopify novinky <span class="brand-meta">· cz</span>
+  </span>
+</a>
+
+<style>
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg-1);
+    font-family: var(--font-sans);
+  }
+  .brand:hover { text-decoration: none; }
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--indigo-600);
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-family: var(--font-sans);
+  }
+  .brand-text {
+    font-weight: 700;
+    letter-spacing: var(--tracking-snug);
+    white-space: nowrap;
+  }
+  .brand-meta {
+    color: var(--fg-3);
+    font-weight: 500;
+  }
+</style>

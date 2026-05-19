@@ -1,0 +1,89 @@
+---
+interface Props {
+  placeholder?: string;
+  large?: boolean;
+}
+const { placeholder = 'Hledat v novinkách…', large = false } = Astro.props;
+---
+<div class={`search-input ${large ? 'is-large' : ''}`}>
+  <svg width={large ? 18 : 16} height={large ? 18 : 16} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </svg>
+  <input id="search-trigger" placeholder={placeholder} type="text" autocomplete="off" />
+  <kbd>⌘ K</kbd>
+</div>
+<div id="search" data-pagefind-ui></div>
+
+<style>
+  .search-input {
+    display: flex;
+    align-items: center;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-1);
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 40px;
+    transition: all 0.15s;
+    width: 100%;
+    color: var(--fg-4);
+  }
+  .search-input.is-large { height: 52px; border-radius: 12px; padding: 0 16px; }
+  .search-input:focus-within {
+    border-color: var(--indigo-600);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  }
+  .search-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 10px;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--fg-1);
+  }
+  .search-input.is-large input { font-size: 15px; margin-left: 12px; }
+  .search-input kbd {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg-3);
+    background: var(--bg-3);
+    border: 1px solid var(--border-1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+  }
+  #search { margin-top: 8px; }
+  #search:empty { display: none; }
+</style>
+
+<script>
+  // Connect input → Pagefind UI
+  import { PagefindUI } from '@pagefind/default-ui';
+  const ui = new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    resetStyles: true,
+    translations: {
+      placeholder: 'Hledat v novinkách…',
+      zero_results: 'Pro „[SEARCH_TERM]" nic nenalezeno.',
+    },
+  });
+
+  const trigger = document.getElementById('search-trigger') as HTMLInputElement | null;
+  trigger?.addEventListener('input', (e) => {
+    const v = (e.target as HTMLInputElement).value;
+    ui.triggerSearch(v);
+  });
+
+  // CMD+K shortcut to focus
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      trigger?.focus();
+    }
+  });
+</script>

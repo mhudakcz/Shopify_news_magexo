@@ -1,0 +1,38 @@
+---
+import { SOURCE_LABEL } from '../lib/article';
+
+interface Props {
+  src: 'dev-changelog' | 'merchant-changelog' | 'editions' | 'product-news' | 'blog';
+}
+const { src } = Astro.props;
+const label = SOURCE_LABEL[src] || src;
+---
+<span class={`source-pill src-${src}`}>
+  <span class="dot"></span>
+  {label}
+</span>
+
+<style>
+  .source-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+  }
+  .source-pill .dot { width: 5px; height: 5px; border-radius: 3px; }
+
+  .src-dev-changelog { color: var(--src-dev); }
+  .src-dev-changelog .dot { background: var(--src-dev); }
+  .src-merchant-changelog { color: var(--src-merchant); }
+  .src-merchant-changelog .dot { background: var(--src-merchant); }
+  .src-editions { color: var(--src-editions); }
+  .src-editions .dot { background: var(--src-editions); }
+  .src-product-news { color: var(--src-news); }
+  .src-product-news .dot { background: var(--src-news); }
+  .src-blog { color: var(--src-blog); }
+  .src-blog .dot { background: var(--src-blog); }
+</style>

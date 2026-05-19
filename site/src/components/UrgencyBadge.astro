@@ -1,0 +1,41 @@
+---
+import { URG_LABEL } from '../lib/article';
+
+interface Props {
+  level: 'kriticka' | 'vysoka' | 'stredni' | 'nizka';
+  size?: 'sm' | 'lg';
+}
+const { level, size = 'sm' } = Astro.props;
+const label = URG_LABEL[level] || level;
+---
+<span class={`urgency urgency-${level} urgency-${size}`}>
+  <span class="dot"></span>
+  {label}
+</span>
+
+<style>
+  .urgency {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    font-family: var(--font-sans);
+    border: 1px solid;
+  }
+  .urgency-sm { padding: 3px 8px; font-size: 11px; }
+  .urgency-lg { padding: 6px 10px; font-size: 12px; }
+  .dot { width: 6px; height: 6px; border-radius: 3px; flex-shrink: 0; }
+
+  .urgency-kriticka { background: var(--urg-critical-bg); color: var(--urg-critical-fg); border-color: var(--urg-critical-border); }
+  .urgency-kriticka .dot { background: var(--red-500); }
+  .urgency-vysoka { background: var(--urg-high-bg); color: var(--urg-high-fg); border-color: var(--urg-high-border); }
+  .urgency-vysoka .dot { background: var(--orange); }
+  .urgency-stredni { background: var(--urg-med-bg); color: var(--urg-med-fg); border-color: var(--urg-med-border); }
+  .urgency-stredni .dot { background: var(--fg-3); }
+  .urgency-nizka { background: var(--urg-low-bg); color: var(--urg-low-fg); border-color: var(--urg-low-border); }
+  .urgency-nizka .dot { background: var(--fg-4); }
+</style>

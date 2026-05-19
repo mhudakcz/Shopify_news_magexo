@@ -1,0 +1,32 @@
+---
+interface Props {
+  cat: 'breaking' | 'opportunity' | 'deprecation' | 'uses' | 'customer' | 'urgent' | 'blog' | 'news';
+  emoji: string;
+  size?: number;
+}
+const { cat, emoji, size = 52 } = Astro.props;
+const radius = Math.round(size * 0.27);
+const fontSize = Math.round(size * 0.5);
+---
+<div
+  class={`cat-icon cat-${cat}`}
+  style={`width:${size}px;height:${size}px;border-radius:${radius}px;font-size:${fontSize}px`}
+>{emoji}</div>
+
+<style>
+  .cat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .cat-breaking { background: var(--cat-breaking-bg); color: var(--cat-breaking-fg); }
+  .cat-opportunity { background: var(--cat-opportunity-bg); color: var(--cat-opportunity-fg); }
+  .cat-deprecation { background: var(--cat-deprecation-bg); color: var(--cat-deprecation-fg); }
+  .cat-uses { background: var(--cat-uses-bg); color: var(--cat-uses-fg); }
+  .cat-customer { background: var(--cat-customer-bg); color: var(--cat-customer-fg); }
+  .cat-urgent { background: var(--cat-urgent-bg); color: var(--cat-urgent-fg); }
+  .cat-blog { background: var(--cat-blog-bg); color: var(--cat-blog-fg); }
+  .cat-news { background: var(--cat-news-bg); color: var(--cat-news-fg); }
+</style>

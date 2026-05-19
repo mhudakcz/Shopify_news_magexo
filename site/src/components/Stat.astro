@@ -1,0 +1,37 @@
+---
+interface Props {
+  value: string | number;
+  label: string;
+  accent?: boolean;
+  warn?: boolean;
+  big?: boolean;
+}
+const { value, label, accent = false, warn = false, big = false } = Astro.props;
+const fs = big ? 28 : 22;
+const valCls = accent ? 'stat-accent' : warn ? 'stat-warn' : '';
+---
+<div class="stat">
+  <div class={`stat-value ${valCls}`} style={`font-size:${fs}px`}>{value}</div>
+  <div class="stat-label">{label}</div>
+</div>
+
+<style>
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-value {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--fg-1);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .stat-accent { color: var(--indigo-600); }
+  .stat-warn { color: var(--orange); }
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--fg-3);
+    font-weight: 600;
+  }
+</style>

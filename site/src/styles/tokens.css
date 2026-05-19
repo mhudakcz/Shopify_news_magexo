@@ -1,0 +1,230 @@
+/* Shopify News — Magexo hybrid design tokens
+   Ported from design_handoff_shopify_news/source_design/kit.css
+   Light theme = default; dark overrides via [data-theme="dark"] on <html>. */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  /* —— Type families —— */
+  --font-sans: "Montserrat", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Montserrat", -apple-system, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* —— Type scale —— */
+  --fs-eyebrow: 11px;
+  --fs-caption: 12px;
+  --fs-small: 13px;
+  --fs-body: 14px;
+  --fs-lead: 16px;
+  --fs-h4: 18px;
+  --fs-h3: 22px;
+  --fs-h2: 28px;
+  --fs-h1: 40px;
+  --fs-display: 64px;
+  --fs-display-xl: 88px;
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  --tracking-snug: -0.02em;
+  --tracking-tight: -0.03em;
+  --tracking-display: -0.04em;
+  --tracking-caps: 0.08em;
+
+  /* —— Spacing —— */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 72px;
+  --space-11: 96px;
+  --space-12: 128px;
+
+  /* —— Radii —— */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* —— Brand palette (constant across themes) —— */
+  --indigo-50:  #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5; /* primary accent */
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #312e81;
+
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-bg: #d1fae5;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+  --amber-bg: #fef3c7;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --red-bg: #fee2e2;
+  --orange: #ff6700; /* MageXo critical accent — used sparingly */
+  --teal-500: #0ea5a5;
+  --pink-500: #ec4899;
+
+  /* —— Light theme surfaces & ink —— */
+  --bg-1: #ffffff;
+  --bg-2: #fafafa;
+  --bg-3: #f4f4f5;
+  --bg-4: #e7e5e4;
+  --bg-elev: #ffffff;
+  --bg-dark-section: #0c0a09;
+
+  --fg-1: #0c0a09;
+  --fg-2: #44403c;
+  --fg-3: #78716c;
+  --fg-4: #a8a29e;
+  --fg-inv: #fafaf9;
+  --fg-brand: var(--indigo-600);
+
+  --border-1: #e7e5e4;
+  --border-2: #d6d3d1;
+  --border-3: #a8a29e;
+  --border-brand: var(--indigo-600);
+
+  --shadow-xs: 0 1px 2px rgba(12, 10, 9, .04);
+  --shadow-sm: 0 1px 2px rgba(12, 10, 9, .04), 0 1px 3px rgba(12, 10, 9, .06);
+  --shadow-md: 0 4px 6px -2px rgba(12, 10, 9, .05), 0 12px 16px -4px rgba(12, 10, 9, .08);
+  --shadow-lg: 0 8px 10px -4px rgba(12, 10, 9, .06), 0 24px 36px -8px rgba(12, 10, 9, .12);
+  --shadow-glow: 0 0 0 4px rgba(79, 70, 229, .12), 0 8px 24px rgba(79, 70, 229, .25);
+
+  /* Urgency surfaces (light) */
+  --urg-critical-bg: #fef2f2;
+  --urg-critical-fg: #991b1b;
+  --urg-critical-border: #fecaca;
+  --urg-high-bg: #fff7ed;
+  --urg-high-fg: #9a3412;
+  --urg-high-border: #fed7aa;
+  --urg-med-bg: #f4f4f5;
+  --urg-med-fg: #44403c;
+  --urg-med-border: #e7e5e4;
+  --urg-low-bg: transparent;
+  --urg-low-fg: #78716c;
+  --urg-low-border: #d6d3d1;
+
+  /* Category surfaces (light) — 52×52 card icon */
+  --cat-breaking-bg: #fee2e2;
+  --cat-breaking-fg: #b91c1c;
+  --cat-opportunity-bg: #d1fae5;
+  --cat-opportunity-fg: #047857;
+  --cat-deprecation-bg: #fef3c7;
+  --cat-deprecation-fg: #b45309;
+  --cat-uses-bg: #e0e7ff;
+  --cat-uses-fg: #4338ca;
+  --cat-customer-bg: #ede9fe;
+  --cat-customer-fg: #6d28d9;
+  --cat-urgent-bg: #fee2e2;
+  --cat-urgent-fg: #b91c1c;
+  --cat-blog-bg: #f3f4f6;
+  --cat-blog-fg: #374151;
+  --cat-news-bg: #dbeafe;
+  --cat-news-fg: #1d4ed8;
+
+  /* Source pill (light) */
+  --src-dev: #4f46e5;
+  --src-merchant: #059669;
+  --src-editions: #c026d3;
+  --src-news: #0369a1;
+  --src-blog: #b45309;
+}
+
+[data-theme="dark"] {
+  --bg-1: #0a0a0a;
+  --bg-2: #111111;
+  --bg-3: #18181b;
+  --bg-4: #27272a;
+  --bg-elev: #141414;
+  --bg-dark-section: #000000;
+
+  --fg-1: #fafaf9;
+  --fg-2: #d6d3d1;
+  --fg-3: #a8a29e;
+  --fg-4: #78716c;
+  --fg-inv: #0c0a09;
+  --fg-brand: #a5b4fc;
+
+  --border-1: #27272a;
+  --border-2: #3f3f46;
+  --border-3: #52525b;
+  --border-brand: var(--indigo-500);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, .4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4), 0 1px 3px rgba(0, 0, 0, .5);
+  --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, .35), 0 12px 16px -4px rgba(0, 0, 0, .45);
+  --shadow-lg: 0 8px 10px -4px rgba(0, 0, 0, .4), 0 24px 36px -8px rgba(0, 0, 0, .55);
+  --shadow-glow: 0 0 0 4px rgba(129, 140, 248, .18), 0 8px 24px rgba(79, 70, 229, .4);
+
+  --urg-critical-bg: rgba(239, 68, 68, .14);
+  --urg-critical-fg: #fca5a5;
+  --urg-critical-border: rgba(239, 68, 68, .35);
+  --urg-high-bg: rgba(255, 103, 0, .14);
+  --urg-high-fg: #fdba74;
+  --urg-high-border: rgba(255, 103, 0, .35);
+  --urg-med-bg: #27272a;
+  --urg-med-fg: #d6d3d1;
+  --urg-med-border: #3f3f46;
+  --urg-low-bg: transparent;
+  --urg-low-fg: #a8a29e;
+  --urg-low-border: #3f3f46;
+
+  --cat-breaking-bg: rgba(239, 68, 68, .18);
+  --cat-breaking-fg: #fca5a5;
+  --cat-opportunity-bg: rgba(16, 185, 129, .18);
+  --cat-opportunity-fg: #6ee7b7;
+  --cat-deprecation-bg: rgba(245, 158, 11, .18);
+  --cat-deprecation-fg: #fcd34d;
+  --cat-uses-bg: rgba(79, 70, 229, .22);
+  --cat-uses-fg: #c7d2fe;
+  --cat-customer-bg: rgba(139, 92, 246, .22);
+  --cat-customer-fg: #ddd6fe;
+  --cat-urgent-bg: rgba(239, 68, 68, .22);
+  --cat-urgent-fg: #fca5a5;
+  --cat-blog-bg: #27272a;
+  --cat-blog-fg: #d6d3d1;
+  --cat-news-bg: rgba(59, 130, 246, .18);
+  --cat-news-fg: #93c5fd;
+
+  --src-dev: #a5b4fc;
+  --src-merchant: #6ee7b7;
+  --src-editions: #f0abfc;
+  --src-news: #7dd3fc;
+  --src-blog: #fcd34d;
+}
+
+/* Utility: gradient hero text */
+.grad-text {
+  background: linear-gradient(110deg, var(--indigo-600) 0%, var(--violet-600) 45%, #db2777 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="dark"] .grad-text {
+  background: linear-gradient(110deg, #818cf8 0%, #c4b5fd 45%, #f9a8d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tabnum { font-variant-numeric: tabular-nums; }
+.dot-divider::before { content: "·"; margin: 0 8px; color: var(--fg-4); }

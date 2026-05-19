@@ -1,0 +1,44 @@
+---
+interface Props {
+  label: string;
+  count?: number;
+  icon?: string;
+  filter: string;
+  active?: boolean;
+}
+const { label, count, icon, filter, active = false } = Astro.props;
+---
+<button class={`chip ${active ? 'chip-active' : ''}`} data-filter={filter} type="button">
+  {icon && <span class="icon">{icon}</span>}
+  <span>{label}</span>
+  {count != null && <span class="count">{count}</span>}
+</button>
+
+<style>
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border-1);
+    background: var(--bg-elev);
+    color: var(--fg-2);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.12s ease;
+    line-height: 1;
+  }
+  .chip:hover { border-color: var(--border-2); background: var(--bg-3); }
+  .chip-active {
+    background: var(--indigo-600) !important;
+    color: #fff !important;
+    border-color: var(--indigo-600) !important;
+  }
+  .chip-active .count { color: rgba(255, 255, 255, 0.7) !important; }
+  .icon { font-size: 14px; line-height: 1; }
+  .count { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--fg-4); margin-left: 2px; }
+</style>
