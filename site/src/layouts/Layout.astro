@@ -83,6 +83,9 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
         --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
         --hero-grad: linear-gradient(180deg, #f5f3ff 0%, transparent 100%);
+        --grad-1: #4f46e5;
+        --grad-2: #9333ea;
+        --grad-3: #ec4899;
 
         --pagefind-ui-primary: var(--accent);
         --pagefind-ui-text: var(--fg);
@@ -119,6 +122,9 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
         --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
         --hero-grad: linear-gradient(180deg, #1e1b4b15 0%, transparent 100%);
+        --grad-1: #818cf8;
+        --grad-2: #c084fc;
+        --grad-3: #f9a8d4;
       }
       * { box-sizing: border-box; }
       html { font-feature-settings: "cv11", "ss01", "ss03"; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -163,18 +169,26 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
       a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
       a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
       h1 {
-        font-size: 2.25rem;
-        font-weight: 700;
-        line-height: 1.15;
-        letter-spacing: -0.025em;
+        font-size: clamp(2rem, 4.5vw, 2.65rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.035em;
         margin-top: 0;
-        margin-bottom: 0.5rem;
-        color: var(--fg-strong);
+        margin-bottom: 0.6rem;
+        background: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 3.25rem);
+        letter-spacing: -0.045em;
       }
       h2 {
-        font-size: 1.15rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
         color: var(--fg-strong);
         margin: 2.5rem 0 1rem;
         padding-bottom: 0.5rem;
@@ -184,12 +198,36 @@ const { title, description = 'Český souhrn Shopify novinek pro tým Magexo' } 
         justify-content: space-between;
       }
       h2 .date { font-weight: 400; font-size: 0.85rem; }
+      /* Article body h2 — without border, with accent bar */
+      article h2 {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-top: 2.25rem;
+        margin-bottom: 0.85rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        display: block;
+      }
+      article h2::before {
+        content: '';
+        display: block;
+        width: 32px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--grad-1) 0%, var(--grad-2) 100%);
+        border-radius: 2px;
+        margin-bottom: 0.65rem;
+      }
       h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: -0.015em;
         color: var(--fg-strong);
         margin-top: 1.5rem;
+      }
+      article h3 {
+        color: var(--accent-text);
+        font-size: 1rem;
       }
       p.subtitle {
         color: var(--muted);
