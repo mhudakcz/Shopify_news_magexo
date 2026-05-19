@@ -19,3 +19,5 @@ site/public/pagefind/
 # Logs
 *.log
 npm-debug.log*
+DESIGN_BRIEF.md
+.claude/launch.json
