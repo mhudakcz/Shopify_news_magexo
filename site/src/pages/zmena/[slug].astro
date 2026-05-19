@@ -223,18 +223,18 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
 
       {(newer || older) && (
         <nav class="article-nav" aria-label="Navigace mezi články">
-          {older ? (
-            <a href={`/Shopify_news_magexo/zmena/${older.id.replace(/\.md$/, '')}/`} class="nav-card prev">
-              <span class="dir">← Starší</span>
-              <span class="nc-title">{older.data.title}</span>
-              <span class="nc-date mono">{fmtDateCz(older.data.date)}</span>
-            </a>
-          ) : <span class="nav-card-empty" />}
           {newer ? (
-            <a href={`/Shopify_news_magexo/zmena/${newer.id.replace(/\.md$/, '')}/`} class="nav-card next">
-              <span class="dir">Novější →</span>
+            <a href={`/Shopify_news_magexo/zmena/${newer.id.replace(/\.md$/, '')}/`} class="nav-card prev">
+              <span class="dir">← Novější</span>
               <span class="nc-title">{newer.data.title}</span>
               <span class="nc-date mono">{fmtDateCz(newer.data.date)}</span>
+            </a>
+          ) : <span class="nav-card-empty" />}
+          {older ? (
+            <a href={`/Shopify_news_magexo/zmena/${older.id.replace(/\.md$/, '')}/`} class="nav-card next">
+              <span class="dir">Starší →</span>
+              <span class="nc-title">{older.data.title}</span>
+              <span class="nc-date mono">{fmtDateCz(older.data.date)}</span>
             </a>
           ) : <span class="nav-card-empty" />}
         </nav>
