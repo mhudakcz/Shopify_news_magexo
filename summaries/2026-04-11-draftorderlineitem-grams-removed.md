@@ -31,13 +31,13 @@ V API verze **2026-07** je deprecated pole `grams` na typu `DraftOrderLineItem` 
 
 ## Dopad pro nás
 **Pro vývojáře:**
-Před upgradem na API 2026-07 prověřit všechny GraphQL queries v `shopify-client/admin/draftOrders` (typicky `getDraftOrderDetail`, `getDraftOrderInvoicePreview`) — pokud selektují `lineItems { grams }`, je nutné nahradit za `lineItems { weight { value unit } }`. Nezapomenout také na všechny utility/transformace, které pracují s vahou v gramech.
+Před upgradem na API 2026-07 prověřit všechny GraphQL queries v naší integraci (typicky `getDraftOrderDetail`, `getDraftOrderInvoicePreview`) — pokud selektují `lineItems { grams }`, je nutné nahradit za `lineItems { weight { value unit } }`. Nezapomenout také na všechny utility/transformace, které pracují s vahou v gramech.
 
 **Pro PM / PO:**
 Klienti používající Draft Orders přes naši integraci (B2B, custom orders, manuální fakturace) musí být součástí migration plánu na 2026-07. Bez migrace nepůjdou volat naše draft order endpointy.
 
 ## Použití v Integrátoru
-**Ano** — `shopify-client/admin/draftOrders` má 9 metod. Před upgradem grep `grams` v draft order queries a nahradit.
+**Ano** — máme 9 metod. Před upgradem grep `grams` v draft order queries a nahradit.
 
 ## Rizika a edge cases
 - Pokud máme integrační logiku s ERP/účetním systémem, který očekává váhu v gramech, je nutné konvertovat z `weight { value, unit }` na gramy v aplikační vrstvě

@@ -30,7 +30,7 @@ Pole `pre_tax_price` na order line items v **REST Admin API** je **odstraněno**
 
 ## Dopad pro nás
 **Pro vývojáře:**
-Naše integrace stojí primárně na GraphQL Admin API (`shopify-client/admin/orders` má 23+ metod). Ale pokud někde voláme REST endpoint typu `GET /admin/api/2024-X/orders/{id}.json` a parsujeme `pre_tax_price`, je nutné migrovat. Doporučuji grep `pre_tax_price` napříč repem.
+Naše integrace stojí primárně na GraphQL Admin API (máme 23+ metod). Ale pokud někde voláme REST endpoint typu `GET /admin/api/2024-X/orders/{id}.json` a parsujeme `pre_tax_price`, je nutné migrovat. Doporučuji grep `pre_tax_price` napříč repem.
 
 **Pro PM / PO:**
 Pokud klient čte tax-related data z naší integrace, je dobré ověřit konzistenci po migraci.

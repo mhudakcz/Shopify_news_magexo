@@ -15,7 +15,7 @@ customer_facing: false
 ucinnost_od: 2026-04-01
 
 pouzivame_v_integratoru: ano
-dukaz_integratoru: "Používáme createMetaobjectDefinition v shopify-client/admin/metaobjects. Pole fieldDefinitions je nyní volitelné — lze vytvořit definici a pole přidávat postupně."
+dukaz_integratoru: "Používáme createMetaobjectDefinition v naší integraci. Pole fieldDefinitions je nyní volitelné — lze vytvořit definici a pole přidávat postupně."
 dotcene_klienty: []
 
 tldr: "Od dubna 2026 je fieldDefinitions argument volitelný v metaobjectDefinitionCreate."
@@ -33,4 +33,4 @@ Mutace `metaobjectDefinitionCreate` má od **dubna 2026** argument `fieldDefinit
 Naše `createMetaobjectDefinition` calls mohou být volně bez `fieldDefinitions`. Konkrétně užitečné, pokud máme dvoustupňový setup: nejdřív vytvořit definici (pro získání ID/handle), pak doplnit fields.
 
 ## Použití v Integrátoru
-**Ano** — `createMetaobjectDefinition` je v `shopify-client/admin/metaobjects`. Backwards compatible change.
+**Ano** — `createMetaobjectDefinition` je v naší integraci. Backwards compatible change.

@@ -37,4 +37,4 @@ Pokud naše integrace ukládá custom data do metaobjects pomocí `$app:` namesp
 Tichá technická změna — uživatel/merchant uvidí během installace méně requested permissions u nově nasazených apps.
 
 ## Použití v Integrátoru
-**Ano** — `shopify-client/admin/metaobjects` má 12 metod. Pokud používáme `$app:*` namespace pro vlastní data structures (typicky settings, custom mapping), můžeme po upgradu na 2026-04 cleanup OAuth scopes.
+**Ano** — máme 12 metod. Pokud používáme `$app:*` namespace pro vlastní data structures (typicky settings, custom mapping), můžeme po upgradu na 2026-04 cleanup OAuth scopes.

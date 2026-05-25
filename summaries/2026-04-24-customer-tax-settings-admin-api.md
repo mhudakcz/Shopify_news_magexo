@@ -18,7 +18,7 @@ deprecation_do: null
 migrace_doporucena_do: null
 
 pouzivame_v_integratoru: mozna
-dukaz_integratoru: "Máme 20+ customer methods v shopify-client/admin/customers (createCustomer, getCustomer, getCustomerByEmail …) a 6 storefront. Nové pole taxSettings lze přidat do existujících queries, pokud klient potřebuje VAT/tax IDs."
+dukaz_integratoru: "Máme 20+ customer methods v naší integraci (createCustomer, getCustomer, getCustomerByEmail …) a 6 storefront. Nové pole taxSettings lze přidat do existujících queries, pokud klient potřebuje VAT/tax IDs."
 dotcene_klienty: []
 souvisejici: []
 
@@ -40,7 +40,7 @@ Pokud existující customer queries (např. `getCustomer`, `getCustomerByEmail`)
 Nová příležitost pro klienty s **B2B nebo mezinárodními** scénáři: VAT číslo se dá automaticky propsat do faktur, ERP synců, daňových reportů. Šetří manuální vstup při zakládání B2B zákazníků.
 
 ## Použití v Integrátoru
-**Možná** — máme 20+ customer methods v `shopify-client/admin/customers`. Nové pole můžeme přidat do existujících queries, pokud konkrétní klient potřebuje číst VAT/tax IDs. Vyžaduje update API verze v configu na 2026-07.
+**Možná** — máme 20+ customer methods v naší integraci. Nové pole můžeme přidat do existujících queries, pokud konkrétní klient potřebuje číst VAT/tax IDs. Vyžaduje update API verze v configu na 2026-07.
 
 ## Rizika a edge cases
 - Vyžaduje upgrade na API 2026-07 — zkontrolovat, že žádné jiné používané pole není v 2026-07 deprecated

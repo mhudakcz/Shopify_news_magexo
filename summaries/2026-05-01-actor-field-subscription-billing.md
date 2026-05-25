@@ -16,7 +16,7 @@ customer_facing: false
 ucinnost_od: 2026-07-01
 
 pouzivame_v_integratoru: ne
-dukaz_integratoru: "Subscription contracts API neimplementujeme. find-shopify-method 'subscription contract billing' vrátil prázdno."
+dukaz_integratoru: "Subscription contracts API neimplementujeme. interní MCP check vrátil prázdno."
 dotcene_klienty: []
 souvisejici: [create-unpaid-orders-subscription-billing, subscription-contracts-without-payment-methods]
 
@@ -40,7 +40,7 @@ Pokud bychom v budoucnu zapojili Shopify Subscriptions API pro klienta, čtení 
 Bez okamžitého impactu. Pokud klient má subscription billing přes externí systém (ChargeBee, Recharge), tohle se ho netýká.
 
 ## Použití v Integrátoru
-**Nepoužíváme** — Shopify Subscriptions / Selling Plans API neintegrujeme. `find-shopify-method "subscription contract billing"` vrátil prázdné metody.
+**Nepoužíváme** — Shopify Subscriptions / Selling Plans API neintegrujeme. interní MCP check vrátil prázdné metody.
 
 ## Související
 - [Vytvoření nezaplacených objednávek z subscription billing attempts](../zmena/create-unpaid-orders-subscription-billing/)

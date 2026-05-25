@@ -15,7 +15,7 @@ customer_facing: false
 ucinnost_od: 2026-07-01
 
 pouzivame_v_integratoru: ano
-dukaz_integratoru: "Máme 12 metaobject methods v shopify-client/admin/metaobjects včetně createMetaobjectDefinition, updateMetaobjectDefinition. Pokud někde nastavujeme MetaobjectAdminAccess explicitně na PRIVATE/PUBLIC_READ, je nutné migrovat na nové hodnoty."
+dukaz_integratoru: "Máme 12 metaobject methods v naší integraci včetně createMetaobjectDefinition, updateMetaobjectDefinition. Pokud někde nastavujeme MetaobjectAdminAccess explicitně na PRIVATE/PUBLIC_READ, je nutné migrovat na nové hodnoty."
 dotcene_klienty: []
 souvisejici: []
 
@@ -37,7 +37,7 @@ Prověřit `createMetaobjectDefinition` a `updateMetaobjectDefinition` calls —
 Pokud klient používá metaobjects pro custom data structures, je nutné při migraci na 2026-07 prověřit přístupová pravidla. Žádný přímý dopad pro koncového uživatele, ale špatná migrace může způsobit "access denied" chyby.
 
 ## Použití v Integrátoru
-**Ano** — máme 12 metaobject methods včetně `createMetaobjectDefinition`, `updateMetaobjectDefinition` v `shopify-client/admin/metaobjects`. Je třeba projít kód a ověřit explicitní použití hodnot `PRIVATE`/`PUBLIC_READ` před upgradem na 2026-07.
+**Ano** — máme 12 metaobject methods včetně `createMetaobjectDefinition`, `updateMetaobjectDefinition` v naší integraci. Je třeba projít kód a ověřit explicitní použití hodnot `PRIVATE`/`PUBLIC_READ` před upgradem na 2026-07.
 
 ## Rizika a edge cases
 - Existující metaobject definitions s deprecated enum hodnotami mohou přestat fungovat po upgradu API verze

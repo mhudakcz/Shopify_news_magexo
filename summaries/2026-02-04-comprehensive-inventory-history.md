@@ -14,7 +14,7 @@ nalehavost: nizka
 customer_facing: false
 
 pouzivame_v_integratoru: mozna
-dukaz_integratoru: "Máme inventory methods (4 v shopify-client/admin/inventories). Pokud klient chce auditní historii inventory změn delší než 180 dnů, nově lze."
+dukaz_integratoru: "Máme inventory methods (4 v naší integraci). Pokud klient chce auditní historii inventory změn delší než 180 dnů, nově lze."
 dotcene_klienty: []
 souvisejici: []
 

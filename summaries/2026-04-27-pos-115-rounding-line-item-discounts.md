@@ -18,7 +18,7 @@ deprecation_do: null
 migrace_doporucena_do: null
 
 pouzivame_v_integratoru: mozna
-dukaz_integratoru: "find-shopify-method 'discount' našel orderEditAddLineItemDiscount v shopify-client/admin/orders. Nepoužíváme přímo POS extensions, ale slevy přidané z Adminu na POS objednávky projdou novým výpočtem."
+dukaz_integratoru: "interní MCP check našel orderEditAddLineItemDiscount v naší integraci. Nepoužíváme přímo POS extensions, ale slevy přidané z Adminu na POS objednávky projdou novým výpočtem."
 dotcene_klienty: []
 souvisejici: []
 
@@ -41,7 +41,7 @@ Týká se hlavně POS aplikace. Pokud používáme `orderEditAddLineItemDiscount
 Klienti používající POS uvidí mírně odlišné částky na účtenkách — typicky rozdíl v haléřích. Nemělo by to spustit eskalaci, ale stojí za zmínit v change-logu.
 
 ## Použití v Integrátoru
-**Možná dotčeno** — máme `orderEditAddLineItemDiscount` v `shopify-client/admin/orders`. Nepoužíváme přímo POS extensions, ale jakákoli sleva přidaná z Adminu na POS objednávku projde novým výpočtem.
+**Možná dotčeno** — máme `orderEditAddLineItemDiscount` v naší integraci. Nepoužíváme přímo POS extensions, ale jakákoli sleva přidaná z Adminu na POS objednávku projde novým výpočtem.
 
 ## Rizika a edge cases
 - Rounding drift v reportech sčítajících slevy přes velké množství objednávek

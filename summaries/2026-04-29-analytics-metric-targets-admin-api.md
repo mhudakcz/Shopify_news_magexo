@@ -14,7 +14,7 @@ nalehavost: stredni
 customer_facing: false
 
 pouzivame_v_integratoru: ne
-dukaz_integratoru: "find-shopify-method 'analytics' a 'target' vrátily 0 metod v shopify-client. Aktuálně nepracujeme s analytics metric targets."
+dukaz_integratoru: "interní MCP check a 'target' vrátily 0 metod v shopify-client. Aktuálně nepracujeme s analytics metric targets."
 dotcene_klienty: []
 souvisejici: []
 
@@ -34,7 +34,7 @@ GraphQL Admin API zavádí **čtyři nové operations** pro správu *metric targ
 
 ## Dopad pro nás
 **Pro vývojáře:**
-Aktuálně analytics endpointy v `shopify-client` neexistují (`find-shopify-method "analytics"` a `"target"` vrátily prázdno). Pokud klient chce externě spravovat cíle (typicky z vlastního BI, ERP nebo dashboardu), můžeme přidat tenký wrapper kolem těchto čtyř operations.
+Aktuálně analytics endpointy v `shopify-client` neexistují (interní MCP check a `"target"` vrátily prázdno). Pokud klient chce externě spravovat cíle (typicky z vlastního BI, ERP nebo dashboardu), můžeme přidat tenký wrapper kolem těchto čtyř operations.
 
 **Pro PM / PO:**
 Nice-to-have rozšíření pro klienty s reportingem orientovaným na cíle. Použitelné jako add-on k „Magexo dashboard" — sync cílů z klientského BI do Shopify Adminu, kde je vidí celý merchant tým bez nutnosti otevírat samostatné nástroje.

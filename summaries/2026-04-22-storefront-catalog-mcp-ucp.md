@@ -18,7 +18,7 @@ deprecation_do: 2026-06-15
 migrace_doporucena_do: 2026-05-31
 
 pouzivame_v_integratoru: ne
-dukaz_integratoru: "find-shopify-method 'catalog' vrátil B2B price-list metody (createCatalog, getCompanyLocationsWithCatalogs, updateCatalogContext) — to je B2B catalog API, ne Storefront Catalog MCP server."
+dukaz_integratoru: "interní MCP check vrátil B2B price-list metody (createCatalog, getCompanyLocationsWithCatalogs, updateCatalogContext) — to je B2B catalog API, ne Storefront Catalog MCP server."
 dotcene_klienty: []
 souvisejici: []
 
@@ -41,7 +41,7 @@ Pokud bychom měli klienta, kterého integrujeme s Storefront Catalog MCP (typic
 Žádná akce. Pokud klient zmíní Shopify AI integrace nad katalogem (chatbot, asistent), prověřit, jaký konkrétní MCP/protokol používá.
 
 ## Použití v Integrátoru
-**Nepoužíváme** — `find-shopify-method "catalog"` vrátil B2B price-list metody (`createCatalog`, `getCompanyLocationsWithCatalogs`), nikoliv Storefront Catalog MCP server. Jiný koncept.
+**Nepoužíváme** — interní MCP check vrátil B2B price-list metody (`createCatalog`, `getCompanyLocationsWithCatalogs`), nikoliv Storefront Catalog MCP server. Jiný koncept.
 
 ## Rizika a edge cases
 - Pokud někdy v budoucnu napojíme klientského AI asistenta na Shopify katalog, musí použít UCP — staré schéma už nebude k dispozici po 15. 6. 2026

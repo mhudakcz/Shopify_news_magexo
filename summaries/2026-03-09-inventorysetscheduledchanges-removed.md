@@ -36,7 +36,7 @@ Pokud někde používáme `inventorySetScheduledChanges`, je třeba refactor: na
 Pokud klient měl "scheduled inventory updates" feature postavenou na této mutaci, je třeba migrace. Žádný end-customer impact.
 
 ## Použití v Integrátoru
-**Možná** — naše core inventory methods (4 v `shopify-client/admin/inventories`) tuto mutaci nepoužívají, ale doporučuji grep před upgradem na 2026-07.
+**Možná** — naše core inventory methods (4 v naší integraci) tuto mutaci nepoužívají, ale doporučuji grep před upgradem na 2026-07.
 
 ## Rizika a edge cases
 - Bez náhrady — nutné aplikační workaround (background job)

@@ -15,7 +15,7 @@ customer_facing: false
 ucinnost_od: 2026-04-01
 
 pouzivame_v_integratoru: ano
-dukaz_integratoru: "Máme updateProduct, upsertProduct v shopify-client/admin/products (30+ product methods total). Identifier argument umožňuje update bez explicit ID lookup."
+dukaz_integratoru: "Máme updateProduct, upsertProduct v naší integraci (30+ product methods total). Identifier argument umožňuje update bez explicit ID lookup."
 dotcene_klienty: []
 
 tldr: "Mutace productUpdate od 2026-04 přijímá identifier (id, handle, customId) — méně round-tripů."
@@ -36,7 +36,7 @@ Mutace `productUpdate` v API **2026-04** přijímá nový argument `identifier` 
 Performance benefit při sync s ERP — rychlejší údržba katalogu.
 
 ## Použití v Integrátoru
-**Ano** — máme `updateProduct`, `upsertProduct`, `getProductByIdentifier` v `shopify-client/admin/products`. Po upgrade na 2026-04 lze refaktorovat naše bulk sync flow.
+**Ano** — máme `updateProduct`, `upsertProduct`, `getProductByIdentifier` v naší integraci. Po upgrade na 2026-04 lze refaktorovat naše bulk sync flow.
 
 ## Rizika a edge cases
 - `customId` musí být nakonfigurován v admin panelu klienta (Custom ID metafield)

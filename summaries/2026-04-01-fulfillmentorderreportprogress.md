@@ -37,7 +37,7 @@ Pokud naše integrace propojuje klienta s 3PL/WMS systémem (např. odesílání
 Nice-to-have pro klienty s WMS integrací — lepší tracking visibility, čistší audit trail.
 
 ## Použití v Integrátoru
-**Možná** — máme `createFulfillment`, `createFulfillmentEvent` v `shopify-client/admin/orders`. Pokud nějaký klient potřebuje granulární progress reporting (např. „picking", „packed", „shipped"), tato mutace je čistší než custom event flow.
+**Možná** — máme `createFulfillment`, `createFulfillmentEvent` v naší integraci. Pokud nějaký klient potřebuje granulární progress reporting (např. „picking", „packed", „shipped"), tato mutace je čistší než custom event flow.
 
 ## Rizika a edge cases
 - Pouze pro registered fulfillment service apps

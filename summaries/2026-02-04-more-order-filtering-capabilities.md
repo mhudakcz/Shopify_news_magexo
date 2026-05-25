@@ -30,7 +30,7 @@ Shopify Admin a Order API rozšiřují filter options při dotazování objedná
 
 ## Dopad pro nás
 **Pro vývojáře:**
-Naše order queries mohou nově filtrovat server-side místo načíst all + filtrovat client-side. Šetří API calls a paměť při sync velkých objemů. Konkrétně `getAllOrders`, `getOrdersWithoutTag`, custom queries v `shopify-client/admin/orders` lze rozšířit.
+Naše order queries mohou nově filtrovat server-side místo načíst all + filtrovat client-side. Šetří API calls a paměť při sync velkých objemů. Konkrétně `getAllOrders`, `getOrdersWithoutTag`, custom queries v naší integraci lze rozšířit.
 
 **Pro PM / PO:**
 Lepší reporting pro klienty — např. „dej mi všechny orders nad 10K EUR z poslední čtvrtletí" je teď jeden query.

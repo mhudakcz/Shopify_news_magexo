@@ -33,4 +33,4 @@ Shopify v changelogu explicitně uvádí: **„No action required as this change
 - **2026-07-01** — API 2026-07 začíná platit, default hodnota změněna
 
 ## Použití v Integrátoru
-**Nepoužíváme** — v `shopify-client/admin/shop` máme klasické discount methods (`createDiscountCodeBasic`, `getAllDiscountCodes`, `deleteDiscountCode`, `getDiscountCode`). App-managed discounts (přes Shopify Functions) v naší codebase nemáme. `find-shopify-method "app discount"` vrátil prázdno.
+**Nepoužíváme** — v mámeme klasické discount methods (`createDiscountCodeBasic`, `getAllDiscountCodes`, `deleteDiscountCode`, `getDiscountCode`). App-managed discounts (přes Shopify Functions) v naší codebase nemáme. interní MCP check vrátil prázdno.
