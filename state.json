@@ -3,20 +3,20 @@
     "shopify_dev_changelog": {
       "url": "https://shopify.dev/changelog/feed.xml",
       "kanal": "dev-changelog",
-      "last_run": "2026-06-04T12:10:00Z",
-      "last_item_pubdate": "2026-05-30T16:00:00Z"
+      "last_run": "2026-06-04T12:30:00Z",
+      "last_item_pubdate": "2026-06-02T16:00:00Z"
     },
     "shopify_merchant_changelog": {
       "url": "https://changelog.shopify.com/feed",
       "kanal": "merchant-changelog",
-      "last_run": "2026-06-04T12:10:00Z",
+      "last_run": "2026-06-04T12:30:00Z",
       "last_item_pubdate": "2026-05-30T16:00:00Z"
     },
     "shopify_cz_blog": {
       "url": "https://www.shopify.com/cz/blog/latest",
       "kanal": "blog",
       "scrape": true,
-      "last_run": "2026-06-04T12:10:00Z",
+      "last_run": "2026-06-04T12:30:00Z",
       "last_item_pubdate": "2026-05-23T00:00:00Z"
     }
   }
