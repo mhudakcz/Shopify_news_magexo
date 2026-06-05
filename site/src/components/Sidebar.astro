@@ -1,0 +1,171 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  counts?: any;
+  variant?: 'listing' | 'detail';
+  totalCount?: number;
+}
+const { counts, variant = 'listing' } = Astro.props;
+const isListing = variant === 'listing';
+---
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <a href="/Shopify_news_magexo/" class="brand">
+      <span class="brand-logo">S</span>
+      <span class="brand-text">
+        <strong>Shopify novinky</strong>
+        <small>· cz</small>
+      </span>
+    </a>
+    <ThemeToggle small />
+  </div>
+
+  {isListing && counts && (
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Sekce</div>
+        <ul>
+          <li><button class="nav-item active" data-filter="all"><span class="ic">🏠</span><span class="lab">Vše</span><span class="ct">{counts.all}</span></button></li>
+          <li><button class="nav-item" data-filter="breaking-change"><span class="ic">🔥</span><span class="lab">Breaking</span><span class="ct">{counts['breaking-change']}</span></button></li>
+          <li><button class="nav-item" data-filter="nova-prilezitost"><span class="ic">✨</span><span class="lab">Příležitost</span><span class="ct">{counts['nova-prilezitost']}</span></button></li>
+          <li><button class="nav-item" data-filter="deprecation"><span class="ic">⏰</span><span class="lab">Deprecation</span><span class="ct">{counts.deprecation}</span></button></li>
+          <li><button class="nav-item" data-filter="uses"><span class="ic">⚙️</span><span class="lab">Používáme</span><span class="ct">{counts.uses}</span></button></li>
+          <li><button class="nav-item" data-filter="customer-facing"><span class="ic">👤</span><span class="lab">Customer-facing</span><span class="ct">{counts.customer}</span></button></li>
+          <li><button class="nav-item" data-filter="urgent"><span class="ic">🚨</span><span class="lab">Urgentní</span><span class="ct">{counts.urgent}</span></button></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Zdroje</div>
+        <ul>
+          <li><button class="nav-item" data-filter="kanal:dev-changelog"><span class="ic">🆕</span><span class="lab">Dev changelog</span><span class="ct">{counts.dev}</span></button></li>
+          <li><button class="nav-item" data-filter="kanal:merchant-changelog"><span class="ic">🛍️</span><span class="lab">Merchant</span><span class="ct">{counts.merchant}</span></button></li>
+          <li><button class="nav-item" data-filter="kanal:editions"><span class="ic">🎉</span><span class="lab">Editions</span><span class="ct">{counts.editions}</span></button></li>
+          <li><button class="nav-item" data-filter="kanal:blog"><span class="ic">📝</span><span class="lab">Blog</span><span class="ct">{counts.blog}</span></button></li>
+          <li><button class="nav-item" data-filter="kanal:product-news"><span class="ic">📰</span><span class="lab">News</span><span class="ct">{counts.news ?? 1}</span></button></li>
+        </ul>
+      </div>
+    </nav>
+  )}
+
+  <div class="sidebar-footer">
+    <a href="https://github.com/mhudakcz/Shopify_news_magexo" target="_blank" rel="noopener" class="footer-link">
+      📦 Repo ↗
+    </a>
+    <small>Generováno 2× týdně</small>
+  </div>
+</aside>
+
+<style>
+  .sidebar {
+    background: var(--bg-2);
+    border-right: 1px solid var(--border-1);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    align-self: start;
+  }
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 16px;
+    border-bottom: 1px solid var(--border-1);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg-1);
+  }
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+    background: var(--indigo-600);
+    color: white;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.04em;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-text strong { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; }
+  .brand-text small { color: var(--fg-3); font-size: 11px; }
+
+  .sidebar-nav { display: flex; flex-direction: column; gap: 24px; flex: 1; }
+  .sidebar-section ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 8px 8px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-left: 2px solid transparent;
+    padding: 7px 8px;
+    border-radius: 0 6px 6px 0;
+    color: var(--fg-2);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .nav-item:hover { background: var(--bg-3); color: var(--fg-1); }
+  .nav-item.active {
+    background: var(--indigo-50);
+    color: var(--indigo-700);
+    border-left-color: var(--indigo-600);
+    font-weight: 600;
+  }
+  :global([data-theme="dark"]) .nav-item.active {
+    background: rgba(79, 70, 229, 0.18);
+    color: var(--indigo-300);
+  }
+  .nav-item .ic { margin-right: 10px; font-size: 14px; line-height: 1; }
+  .nav-item .lab { flex: 1; }
+  .nav-item .ct {
+    font-size: 11px;
+    color: var(--fg-4);
+    font-variant-numeric: tabular-nums;
+  }
+  .nav-item.active .ct { color: var(--indigo-700); }
+  :global([data-theme="dark"]) .nav-item.active .ct { color: var(--indigo-300); }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border-1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .footer-link {
+    color: var(--fg-2);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 4px 0;
+  }
+  .footer-link:hover { color: var(--indigo-600); }
+  .sidebar-footer small { color: var(--fg-4); font-size: 11px; }
+
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+  }
+</style>

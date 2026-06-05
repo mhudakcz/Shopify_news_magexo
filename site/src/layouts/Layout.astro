@@ -9,12 +9,14 @@ interface Props {
   description?: string;
   variant?: 'listing' | 'detail';
   totalCount?: number;
+  noHeader?: boolean;
 }
 const {
   title,
   description = 'Český souhrn Shopify novinek pro tým Magexo',
   variant = 'listing',
   totalCount,
+  noHeader = false,
 } = Astro.props;
 const isDetail = variant === 'detail';
 ---
@@ -41,29 +43,33 @@ const isDetail = variant === 'detail';
     </script>
   </head>
   <body>
-    <header class={`site-header ${isDetail ? 'is-detail' : ''}`}>
-      <BrandMark small={isDetail} />
-      <nav>
-        <a href="/Shopify_news_magexo/" class="nav-link">Přehled</a>
-        <a href="/Shopify_news_magexo/" class="nav-link">Archiv</a>
-        {totalCount != null && (
-          <>
-            <span class="divider" aria-hidden="true"></span>
-            <span class="count">{totalCount} článků</span>
-          </>
-        )}
-        <ThemeToggle small />
-      </nav>
-    </header>
+    {!noHeader && (
+      <header class={`site-header ${isDetail ? 'is-detail' : ''}`}>
+        <BrandMark small={isDetail} />
+        <nav>
+          <a href="/Shopify_news_magexo/" class="nav-link">Přehled</a>
+          <a href="/Shopify_news_magexo/" class="nav-link">Archiv</a>
+          {totalCount != null && (
+            <>
+              <span class="divider" aria-hidden="true"></span>
+              <span class="count">{totalCount} článků</span>
+            </>
+          )}
+          <ThemeToggle small />
+        </nav>
+      </header>
+    )}
     <main>
       <slot />
     </main>
-    <footer class="site-footer">
-      <span>Interní agregátor Magexo · zdroje: shopify.dev, changelog.shopify.com, shopify.com/editions, shopify.com/blog</span>
-      <span>
-        <a href="https://github.com/mhudakcz/Shopify_news_magexo" target="_blank" rel="noopener">repo</a>
-      </span>
-    </footer>
+    {!noHeader && (
+      <footer class="site-footer">
+        <span>Interní agregátor Magexo · zdroje: shopify.dev, changelog.shopify.com, shopify.com/editions, shopify.com/blog</span>
+        <span>
+          <a href="https://github.com/mhudakcz/Shopify_news_magexo" target="_blank" rel="noopener">repo</a>
+        </span>
+      </footer>
+    )}
 
     <style is:global>
       .site-header {

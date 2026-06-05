@@ -1,25 +1,27 @@
 ---
 import UrgencyBadge from './UrgencyBadge.astro';
-import CategoryIcon from './CategoryIcon.astro';
-import Tag from './Tag.astro';
 import SourcePill from './SourcePill.astro';
-import UsesFlag from './UsesFlag.astro';
+import Tag from './Tag.astro';
 import { deriveCat, fmtDateCz } from '../lib/article';
 
 interface Props {
   entry: any;
-  dense?: boolean;
 }
-const { entry, dense = false } = Astro.props;
+const { entry } = Astro.props;
 const { cat, emoji } = deriveCat(entry.data);
-const iconSize = dense ? 44 : 52;
-const apiVer = entry.data.api_verze?.[0];
 const href = `/Shopify_news_magexo/zmena/${entry.id.replace(/\.md$/, '')}/`;
+const hasImage = !!entry.data.obrazek;
 
-const tagy = (entry.data.tagy || []).slice(0, 3);
+const sourceMeta = entry.data.zdroj_kanal === 'blog' ? { label: 'Shopify CZ Blog', flag: 'CZ' }
+  : entry.data.zdroj_kanal === 'editions' ? { label: 'Shopify Editions', flag: 'GB' }
+  : entry.data.zdroj_kanal === 'product-news' ? { label: 'Shopify News', flag: 'GB' }
+  : entry.data.zdroj_kanal === 'merchant-changelog' ? { label: 'Merchant Changelog', flag: 'GB' }
+  : { label: 'Dev Changelog', flag: 'GB' };
+
+const tagy = (entry.data.tagy || []).slice(0, 2);
 ---
 <a
-  class={`article-card ${dense ? 'is-dense' : ''}`}
+  class="card"
   href={href}
   data-kategorie={(entry.data.kategorie || []).join(',')}
   data-uses={entry.data.pouzivame_v_integratoru === 'ano' ? '1' : '0'}
@@ -28,90 +30,169 @@ const tagy = (entry.data.tagy || []).slice(0, 3);
   data-kanal={entry.data.zdroj_kanal}
   data-cat={cat}
 >
-  <CategoryIcon cat={cat} emoji={emoji} size={iconSize} />
-  <div class="content">
-    <div class="meta">
-      <UrgencyBadge level={entry.data.nalehavost} />
-      <span class="date">{fmtDateCz(entry.data.date)}</span>
-      <span class="bullet">·</span>
-      <SourcePill src={entry.data.zdroj_kanal} />
-      {apiVer && (
-        <>
-          <span class="bullet">·</span>
-          <span class="api-ver">API {apiVer}</span>
-        </>
-      )}
-    </div>
-    <h3 class="title">{entry.data.title}</h3>
-    <p class="tldr">{entry.data.tldr}</p>
-    <div class="tags">
-      <Tag label={entry.data.api_oblast} kind="mono" />
-      {tagy.map((t: string) => <Tag label={t} />)}
-      {entry.data.pouzivame_v_integratoru !== 'ne' && (
-        <UsesFlag value={entry.data.pouzivame_v_integratoru} />
-      )}
-    </div>
+  <div class={`card-hero ${hasImage ? 'has-image' : 'no-image'} hero-${cat}`}>
+    {hasImage ? (
+      <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
+    ) : (
+      <span class="hero-emoji">{emoji}</span>
+    )}
   </div>
-  <div class="chevron" aria-hidden="true">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
+
+  <div class="card-body">
+    <div class="card-source">
+      <SourcePill src={entry.data.zdroj_kanal} />
+      <span class="flag">{sourceMeta.flag}</span>
+      <svg class="ext" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17L17 7M7 7h10v10"/>
+      </svg>
+    </div>
+
+    <h3 class="card-title">{entry.data.title}</h3>
+
+    <p class="card-tldr">{entry.data.tldr}</p>
+
+    <div class="card-footer">
+      <div class="card-meta">
+        <span class="card-date">{fmtDateCz(entry.data.date)}</span>
+        <UrgencyBadge level={entry.data.nalehavost} />
+      </div>
+      <div class="card-tags">
+        <Tag label={entry.data.api_oblast} kind="mono" />
+        {tagy.map((t: string) => <Tag label={t} />)}
+      </div>
+    </div>
   </div>
 </a>
 
 <style>
-  .article-card {
-    display: grid;
-    grid-template-columns: 52px 1fr auto;
-    gap: 18px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--border-1);
-    cursor: pointer;
-    align-items: start;
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-1);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--bg-elev);
     text-decoration: none;
     color: var(--fg-1);
-    transition: background 0.15s;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.18s ease;
   }
-  .article-card:hover { text-decoration: none; }
-  .article-card:hover .title { color: var(--indigo-700); }
-  :global([data-theme="dark"]) .article-card:hover .title { color: var(--indigo-300); }
-  .article-card.is-dense { grid-template-columns: 44px 1fr auto; gap: 14px; padding: 16px 0; }
+  .card:hover {
+    border-color: var(--border-2);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  .card:hover .card-title { color: var(--indigo-700); }
+  :global([data-theme="dark"]) .card:hover .card-title { color: var(--indigo-300); }
 
-  .content { min-width: 0; }
-  .meta {
+  /* Hero */
+  .card-hero {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
+    justify-content: center;
   }
-  .date { font-size: 12px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
-  .bullet { font-size: 12px; color: var(--fg-4); }
-  .api-ver { font-size: 11px; color: var(--fg-3); font-family: var(--font-mono); }
+  .card-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .title {
-    margin: 2px 0 6px;
-    font-size: 20px;
-    font-family: var(--font-display);
+  .card-hero.no-image .hero-emoji {
+    font-size: 64px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+  }
+
+  /* Category gradient backgrounds for no-image cards */
+  .hero-breaking { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); }
+  .hero-opportunity { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); }
+  .hero-deprecation { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+  .hero-uses { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); }
+  .hero-customer { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); }
+  .hero-urgent { background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%); }
+  .hero-blog { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); }
+  .hero-news { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+
+  :global([data-theme="dark"]) .hero-breaking { background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(239, 68, 68, 0.06) 100%); }
+  :global([data-theme="dark"]) .hero-opportunity { background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(16, 185, 129, 0.06) 100%); }
+  :global([data-theme="dark"]) .hero-deprecation { background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(245, 158, 11, 0.06) 100%); }
+  :global([data-theme="dark"]) .hero-uses { background: linear-gradient(135deg, rgba(79, 70, 229, 0.22) 0%, rgba(79, 70, 229, 0.08) 100%); }
+  :global([data-theme="dark"]) .hero-customer { background: linear-gradient(135deg, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0.08) 100%); }
+  :global([data-theme="dark"]) .hero-urgent { background: linear-gradient(135deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 100%); }
+  :global([data-theme="dark"]) .hero-blog { background: linear-gradient(135deg, #27272a 0%, #18181b 100%); }
+  :global([data-theme="dark"]) .hero-news { background: linear-gradient(135deg, rgba(59, 130, 246, 0.16) 0%, rgba(59, 130, 246, 0.06) 100%); }
+
+  /* Body */
+  .card-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .card-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-source .flag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--fg-4);
+    border: 1px solid var(--border-2);
+    border-radius: 3px;
+    padding: 1px 4px;
+    line-height: 1.3;
+  }
+  .card-source .ext { margin-left: auto; color: var(--fg-4); }
+
+  .card-title {
+    margin: 0;
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    line-height: 1.3;
     color: var(--fg-1);
     text-wrap: balance;
     transition: color 0.15s;
-  }
-  .is-dense .title { font-size: 18px; }
-  .tldr {
-    margin: 0 0 10px;
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--fg-2);
-    text-wrap: pretty;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-  .chevron { align-self: center; color: var(--fg-4); padding-top: 4px; }
+
+  .card-tldr {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--fg-2);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-1);
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .card-date { font-size: 11px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+  .card-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
 </style>
