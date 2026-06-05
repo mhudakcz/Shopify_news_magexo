@@ -1,0 +1,290 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import UrgencyBadge from './UrgencyBadge.astro';
+import Tag from './Tag.astro';
+import { SOURCE_LABEL, fmtDateCz } from '../lib/article';
+
+interface Props {
+  entry: any;
+  counts?: any;
+}
+const { entry, counts } = Astro.props;
+const homeBase = '/Shopify_news_magexo/';
+const filterLink = (f: string) => `${homeBase}?filter=${encodeURIComponent(f)}`;
+
+let statusBlock: { label: string; cutoff?: string; daysLeft?: number } | null = null;
+const now = new Date();
+if (entry.data.deprecation_do) {
+  const cut = new Date(entry.data.deprecation_do);
+  const days = Math.ceil((+cut - +now) / 86400000);
+  statusBlock = { label: 'DEPRECATING', cutoff: fmtDateCz(cut), daysLeft: days };
+} else if (entry.data.ucinnost_od && new Date(entry.data.ucinnost_od) > now) {
+  const eff = new Date(entry.data.ucinnost_od);
+  const days = Math.ceil((+eff - +now) / 86400000);
+  if (entry.data.kategorie.includes('breaking-change')) {
+    statusBlock = { label: 'BREAKING', cutoff: fmtDateCz(eff), daysLeft: days };
+  } else if (entry.data.kategorie.includes('nova-api')) {
+    statusBlock = { label: 'NEW API', cutoff: fmtDateCz(eff), daysLeft: days };
+  } else {
+    statusBlock = { label: 'OPPORTUNITY', cutoff: fmtDateCz(eff), daysLeft: days };
+  }
+}
+---
+<aside class="d-sidebar">
+  <div class="d-sidebar-brand">
+    <a href="/Shopify_news_magexo/" class="brand">
+      <span class="brand-logo">S</span>
+      <span class="brand-text">
+        <strong>Shopify novinky</strong>
+        <small>· cz</small>
+      </span>
+    </a>
+    <ThemeToggle small />
+  </div>
+
+  <a class="d-back" href="/Shopify_news_magexo/">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Zpět na přehled
+  </a>
+
+  {statusBlock && (
+    <div class={`d-status status-${statusBlock.label.toLowerCase().replace(' ', '-')}`}>
+      <div class="status-label">{statusBlock.label}</div>
+      <div class="status-cutoff">Cutoff: <span class="mono">{statusBlock.cutoff}</span></div>
+      {statusBlock.daysLeft != null && statusBlock.daysLeft > 0 && (
+        <div class="status-countdown">{statusBlock.daysLeft} dní · {Math.floor(statusBlock.daysLeft / 7)} týdnů</div>
+      )}
+    </div>
+  )}
+
+  <div class="d-section">
+    <div class="d-label">Urgency</div>
+    <UrgencyBadge level={entry.data.nalehavost} size="lg" />
+  </div>
+
+  <div class="d-section">
+    <div class="d-label">Meta</div>
+    <dl class="d-meta">
+      <dt>Date</dt><dd class="mono">{entry.data.date.toISOString().slice(0, 10)}</dd>
+      <dt>Source</dt><dd>{SOURCE_LABEL[entry.data.zdroj_kanal] || entry.data.zdroj_kanal}</dd>
+      {entry.data.api_verze && entry.data.api_verze.length > 0 && (
+        <>
+          <dt>API verze</dt><dd class="mono">{entry.data.api_verze.join(', ')}</dd>
+        </>
+      )}
+      <dt>Area</dt><dd class="mono">{entry.data.api_oblast}</dd>
+      {entry.data.customer_facing && (
+        <><dt>Cust-facing</dt><dd>ano</dd></>
+      )}
+      <dt>Integrátor</dt>
+      <dd>
+        {entry.data.pouzivame_v_integratoru === 'ano' && <span class="ok">ano</span>}
+        {entry.data.pouzivame_v_integratoru === 'mozna' && <span class="warn">možná</span>}
+        {entry.data.pouzivame_v_integratoru === 'ne' && <span>ne</span>}
+      </dd>
+      {entry.data.dotcene_klienty && entry.data.dotcene_klienty.length > 0 && (
+        <>
+          <dt>Klienti</dt>
+          <dd>{entry.data.dotcene_klienty.join(', ')}</dd>
+        </>
+      )}
+    </dl>
+  </div>
+
+  {entry.data.tagy && entry.data.tagy.length > 0 && (
+    <div class="d-section">
+      <div class="d-label">Tagy</div>
+      <div class="d-tags">
+        {entry.data.tagy.map((t: string) => <Tag label={t} />)}
+      </div>
+    </div>
+  )}
+
+  <div class="d-section d-toc-wrap">
+    <div class="d-label">Na této stránce</div>
+    <nav class="d-toc" id="toc"></nav>
+  </div>
+
+  {counts && (
+    <>
+      <div class="d-section d-filters">
+        <div class="d-label">Sekce</div>
+        <ul>
+          <li><a class="d-nav-link" href={homeBase}><span class="ic">🏠</span><span class="lab">Vše</span><span class="ct">{counts.all}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('breaking-change')}><span class="ic">🔥</span><span class="lab">Breaking</span><span class="ct">{counts['breaking-change']}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('nova-prilezitost')}><span class="ic">✨</span><span class="lab">Příležitost</span><span class="ct">{counts['nova-prilezitost']}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('deprecation')}><span class="ic">⏰</span><span class="lab">Deprecation</span><span class="ct">{counts.deprecation}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('uses')}><span class="ic">⚙️</span><span class="lab">Používáme</span><span class="ct">{counts.uses}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('customer-facing')}><span class="ic">👤</span><span class="lab">Customer-facing</span><span class="ct">{counts.customer}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('urgent')}><span class="ic">🚨</span><span class="lab">Urgentní</span><span class="ct">{counts.urgent}</span></a></li>
+        </ul>
+      </div>
+
+      <div class="d-section d-filters">
+        <div class="d-label">Zdroje</div>
+        <ul>
+          <li><a class="d-nav-link" href={filterLink('kanal:dev-changelog')}><span class="ic">🆕</span><span class="lab">Dev changelog</span><span class="ct">{counts.dev}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('kanal:merchant-changelog')}><span class="ic">🛍️</span><span class="lab">Merchant</span><span class="ct">{counts.merchant}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('kanal:editions')}><span class="ic">🎉</span><span class="lab">Editions</span><span class="ct">{counts.editions}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('kanal:blog')}><span class="ic">📝</span><span class="lab">Blog</span><span class="ct">{counts.blog}</span></a></li>
+          <li><a class="d-nav-link" href={filterLink('kanal:product-news')}><span class="ic">📰</span><span class="lab">News</span><span class="ct">{counts.news ?? 1}</span></a></li>
+        </ul>
+      </div>
+    </>
+  )}
+</aside>
+
+<style>
+  .d-sidebar {
+    background: var(--bg-2);
+    border-right: 1px solid var(--border-1);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  .d-sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 16px;
+    border-bottom: 1px solid var(--border-1);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg-1);
+  }
+  .brand-logo {
+    width: 28px;
+    height: 28px;
+    background: var(--indigo-600);
+    color: white;
+    border-radius: 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: -0.04em;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-text strong { font-size: 13px; font-weight: 700; letter-spacing: -0.02em; }
+  .brand-text small { color: var(--fg-3); font-size: 10px; }
+
+  .d-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--indigo-600);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 4px;
+  }
+  .d-back:hover { color: var(--indigo-700); text-decoration: none; }
+  :global([data-theme="dark"]) .d-back { color: var(--indigo-300); }
+
+  .d-status {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--urg-high-border);
+    background: var(--urg-high-bg);
+    color: var(--urg-high-fg);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .d-status.status-deprecating, .d-status.status-breaking {
+    border-color: var(--urg-critical-border);
+    background: var(--urg-critical-bg);
+    color: var(--urg-critical-fg);
+  }
+  .status-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .status-cutoff { font-size: 12px; margin-bottom: 4px; }
+  .status-countdown { font-size: 11px; opacity: 0.8; }
+
+  .d-section { display: flex; flex-direction: column; gap: 8px; padding: 0 4px; }
+  .d-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .d-meta {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 6px 10px;
+    margin: 0;
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }
+  .d-meta dt { color: var(--fg-3); font-weight: 500; }
+  .d-meta dd { margin: 0; color: var(--fg-1); }
+  .d-meta dd.mono, .mono { font-family: var(--font-mono); }
+  .d-meta dd .ok { color: var(--emerald-600); font-weight: 600; }
+  :global([data-theme="dark"]) .d-meta dd .ok { color: var(--emerald-500); }
+  .d-meta dd .warn { color: var(--orange); font-weight: 600; }
+  .d-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  /* TOC */
+  .d-toc-wrap { margin-top: 4px; padding-bottom: 24px; }
+  .d-toc { display: flex; flex-direction: column; gap: 2px; }
+  .d-toc :global(a.toc-link) {
+    padding: 4px 8px;
+    border-left: 2px solid var(--border-1);
+    color: var(--fg-3);
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .d-toc :global(a.toc-link:hover) { color: var(--fg-1); text-decoration: none; }
+  .d-toc :global(a.toc-link.toc-sub) { padding-left: 20px; font-size: 11px; }
+  .d-toc :global(a.toc-link.active) {
+    color: var(--indigo-700);
+    border-left-color: var(--indigo-600);
+    background: var(--indigo-50);
+  }
+  :global([data-theme="dark"]) .d-toc :global(a.toc-link.active) {
+    color: var(--indigo-200);
+    background: rgba(79, 70, 229, 0.14);
+  }
+
+  /* Filter sections (links to listing with filter active) */
+  .d-filters ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .d-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-left: 2px solid transparent;
+    border-radius: 0 6px 6px 0;
+    color: var(--fg-2);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .d-nav-link:hover {
+    background: var(--bg-3);
+    color: var(--fg-1);
+    text-decoration: none;
+    border-left-color: var(--indigo-300);
+  }
+  .d-nav-link .ic { margin-right: 8px; font-size: 13px; line-height: 1; }
+  .d-nav-link .lab { flex: 1; }
+  .d-nav-link .ct { font-size: 10px; color: var(--fg-4); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 900px) {
+    .d-sidebar { display: none; }
+  }
+</style>

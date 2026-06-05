@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import DetailSidebar from '../../components/DetailSidebar.astro';
 import UrgencyBadge from '../../components/UrgencyBadge.astro';
 import CategoryIcon from '../../components/CategoryIcon.astro';
 import SourcePill from '../../components/SourcePill.astro';
@@ -9,13 +10,27 @@ import { deriveCat, fmtDateCz, SOURCE_LABEL } from '../../lib/article';
 
 export async function getStaticPaths() {
   const all = await getCollection('summaries');
+  const counts = {
+    all: all.length,
+    'breaking-change': all.filter((i: any) => i.data.kategorie.includes('breaking-change')).length,
+    'nova-prilezitost': all.filter((i: any) => i.data.kategorie.some((k: string) => k === 'nova-prilezitost' || k === 'nova-api')).length,
+    deprecation: all.filter((i: any) => i.data.kategorie.includes('deprecation')).length,
+    uses: all.filter((i: any) => i.data.pouzivame_v_integratoru === 'ano').length,
+    customer: all.filter((i: any) => i.data.customer_facing).length,
+    urgent: all.filter((i: any) => ['kriticka', 'vysoka'].includes(i.data.nalehavost)).length,
+    dev: all.filter((i: any) => i.data.zdroj_kanal === 'dev-changelog').length,
+    merchant: all.filter((i: any) => i.data.zdroj_kanal === 'merchant-changelog').length,
+    editions: all.filter((i: any) => i.data.zdroj_kanal === 'editions').length,
+    blog: all.filter((i: any) => i.data.zdroj_kanal === 'blog').length,
+    news: all.filter((i: any) => i.data.zdroj_kanal === 'product-news').length,
+  };
   return all.map((entry) => ({
     params: { slug: entry.id.replace(/\.md$/, '') },
-    props: { entry, all },
+    props: { entry, all, counts },
   }));
 }
 
-const { entry, all } = Astro.props;
+const { entry, all, counts } = Astro.props;
 const { Content } = await render(entry);
 const { cat, emoji } = deriveCat(entry.data);
 
@@ -59,192 +74,141 @@ if (entry.data.deprecation_do) {
 
 const yearMonth = `${entry.data.date.getFullYear()}-${String(entry.data.date.getMonth() + 1).padStart(2, '0')}`;
 const breadcrumbSlug = entry.id.replace(/\.md$/, '');
+const hasImage = !!entry.data.obrazek;
 ---
-<Layout title={entry.data.title} variant="detail">
-  <div class="breadcrumb">
-    <div class="bc-inner">
-      <span class="bc-path">news / {yearMonth} / <span class="bc-slug">{breadcrumbSlug}</span></span>
-      <span class="bc-meta">id: <span class="bc-mono">{breadcrumbSlug}.md</span></span>
-    </div>
-  </div>
+<Layout title={entry.data.title} variant="detail" noHeader={true}>
+  <div class="app-grid">
+    <DetailSidebar entry={entry} counts={counts} />
 
-  <div class="detail-grid">
-
-    <aside class="meta-col">
-      <div class="meta-section">
-        <div class="eyebrow">Urgency</div>
-        <UrgencyBadge level={entry.data.nalehavost} size="lg" />
-      </div>
-
-      {statusBlock && (
-        <div class={`status-block status-${statusBlock.label.toLowerCase().replace(' ', '-')}`}>
-          <div class="status-label">{statusBlock.label}</div>
-          <div class="status-cutoff">Cutoff: <span class="mono">{statusBlock.cutoff}</span></div>
-          {statusBlock.daysLeft != null && statusBlock.daysLeft > 0 && (
-            <div class="status-countdown">{statusBlock.daysLeft} dní · {Math.floor(statusBlock.daysLeft / 7)} týdnů</div>
-          )}
+    <main class="detail-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-inner">
+          <a href="/Shopify_news_magexo/" class="bc-home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+            Shopify novinky
+          </a>
+          <span class="bc-sep">›</span>
+          <span class="bc-current">{entry.data.title}</span>
         </div>
-      )}
+      </nav>
 
-      <div class="meta-section">
-        <div class="eyebrow">Meta</div>
-        <dl class="meta-list">
-          <dt>Date</dt><dd class="mono">{entry.data.date.toISOString().slice(0, 10)}</dd>
-          <dt>Source</dt><dd>{SOURCE_LABEL[entry.data.zdroj_kanal] || entry.data.zdroj_kanal}</dd>
+      <article class="article">
+        <div class="article-eyebrow">
+          <CategoryIcon cat={cat} emoji={emoji} size={32} />
+          <SourcePill src={entry.data.zdroj_kanal} />
+          <span class="flag">{entry.data.title_en ? 'GB' : 'CZ'}</span>
+          <span class="bullet">·</span>
+          <span class="date mono">{entry.data.date.toISOString().slice(0, 10)}</span>
           {entry.data.api_verze && entry.data.api_verze.length > 0 && (
             <>
-              <dt>API verze</dt><dd class="mono">{entry.data.api_verze.join(', ')}</dd>
+              <span class="bullet">·</span>
+              <span class="api-ver mono">API {entry.data.api_verze[0]}</span>
             </>
           )}
-          <dt>Area</dt><dd class="mono">{entry.data.api_oblast}</dd>
-          {entry.data.customer_facing && (
-            <><dt>Customer-facing</dt><dd>ano</dd></>
-          )}
-          <dt>Integrátor</dt>
-          <dd>
-            {entry.data.pouzivame_v_integratoru === 'ano' && <span class="ok">ano</span>}
-            {entry.data.pouzivame_v_integratoru === 'mozna' && <span class="warn">možná</span>}
-            {entry.data.pouzivame_v_integratoru === 'ne' && <span>ne</span>}
-          </dd>
-          {entry.data.dotcene_klienty && entry.data.dotcene_klienty.length > 0 && (
-            <>
-              <dt>Klienti</dt>
-              <dd>{entry.data.dotcene_klienty.join(', ')}</dd>
-            </>
-          )}
-        </dl>
-      </div>
-
-      {entry.data.tagy && entry.data.tagy.length > 0 && (
-        <div class="meta-section">
-          <div class="eyebrow">Tags</div>
-          <div class="tag-wrap">
-            {entry.data.tagy.map((t: string) => <Tag label={t} />)}
-          </div>
         </div>
-      )}
 
-      <div class="meta-section">
-        <a class="back-link" href="/Shopify_news_magexo/">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Zpět na přehled
-        </a>
-      </div>
-    </aside>
+        <h1 class="grad-text article-title">{entry.data.title}</h1>
+        {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
 
-    <main class="content-col">
-      <div class="content-eyebrow">
-        <CategoryIcon cat={cat} emoji={emoji} size={32} />
-        <span class="ce-date mono">{entry.data.date.toISOString().slice(0, 10)}</span>
-        <span class="ce-sep">·</span>
-        <SourcePill src={entry.data.zdroj_kanal} />
-        {entry.data.api_verze && entry.data.api_verze.length > 0 && (
-          <>
-            <span class="ce-sep">·</span>
-            <span class="ce-api mono">API {entry.data.api_verze[0]}</span>
-          </>
+        {hasImage && (
+          <figure class="article-hero">
+            <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
+          </figure>
         )}
-      </div>
 
-      <h1 class="grad-text">{entry.data.title}</h1>
-      {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
+        <div class="tldr">
+          <div class="tldr-eyebrow mono">$ TL;DR</div>
+          <p>{entry.data.tldr}</p>
+        </div>
 
-      {entry.data.obrazek && (
-        <figure class="article-hero">
-          <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
-        </figure>
-      )}
+        {hasTimeline && (
+          <aside class="timeline">
+            <div class="timeline-eyebrow"><span>⏰</span> Časová osa</div>
+            <ul>
+              {entry.data.ucinnost_od && (
+                <li>
+                  <span class="dot dot-current"></span>
+                  <span class="td-date mono">{fmtDateCz(entry.data.ucinnost_od)}</span>
+                  <span class="td-label">začíná platit</span>
+                </li>
+              )}
+              {entry.data.deprecation_do && (
+                <li>
+                  <span class="dot dot-future"></span>
+                  <span class="td-date mono">{fmtDateCz(entry.data.deprecation_do)}</span>
+                  <span class="td-label">končí podpora staré varianty</span>
+                </li>
+              )}
+              {entry.data.migrace_doporucena_do && (
+                <li>
+                  <span class="dot dot-future"></span>
+                  <span class="td-date mono">{fmtDateCz(entry.data.migrace_doporucena_do)}</span>
+                  <span class="td-label">doporučený deadline migrace</span>
+                </li>
+              )}
+            </ul>
+          </aside>
+        )}
 
-      <div class="tldr">
-        <div class="tldr-eyebrow mono">$ TL;DR</div>
-        <p>{entry.data.tldr}</p>
-      </div>
+        <div class="prose" id="article-body">
+          <Content />
+        </div>
 
-      {hasTimeline && (
-        <aside class="timeline">
-          <div class="timeline-eyebrow"><span>⏰</span> Časová osa</div>
-          <ul>
-            {entry.data.ucinnost_od && (
-              <li>
-                <span class="dot dot-current"></span>
-                <span class="td-date mono">{fmtDateCz(entry.data.ucinnost_od)}</span>
-                <span class="td-label">začíná platit</span>
-              </li>
-            )}
-            {entry.data.deprecation_do && (
-              <li>
-                <span class="dot dot-future"></span>
-                <span class="td-date mono">{fmtDateCz(entry.data.deprecation_do)}</span>
-                <span class="td-label">končí podpora staré varianty</span>
-              </li>
-            )}
-            {entry.data.migrace_doporucena_do && (
-              <li>
-                <span class="dot dot-future"></span>
-                <span class="td-date mono">{fmtDateCz(entry.data.migrace_doporucena_do)}</span>
-                <span class="td-label">doporučený deadline migrace</span>
-              </li>
-            )}
-          </ul>
-        </aside>
-      )}
+        {entry.data.dukaz_integratoru && (
+          <details class="integrator-detail" open>
+            <summary>Integrátor — detail checku</summary>
+            <p>{entry.data.dukaz_integratoru}</p>
+          </details>
+        )}
 
-      <article class="prose" id="article-body">
-        <Content />
+        {entry.data.dotcene_klienty && entry.data.dotcene_klienty.length > 0 && (
+          <section class="affected">
+            <h3>Dotčení klienti</h3>
+            <ul>{entry.data.dotcene_klienty.map((k: string) => <li>{k}</li>)}</ul>
+          </section>
+        )}
+
+        {related.length > 0 && (
+          <section class="related-section">
+            <h3>Související u nás</h3>
+            <ul class="related-list">
+              {related.map((r: any) => (
+                <li>
+                  <a href={`/Shopify_news_magexo/zmena/${r.id.replace(/\.md$/, '')}/`}>{r.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <div class="source-footer">
+          <span class="sf-icon">🔗</span>
+          <a href={entry.data.zdroj} target="_blank" rel="noopener" class="sf-link">
+            Originální zpráva
+          </a>
+          <span class="sf-channel mono">— {sourceHost}</span>
+        </div>
+
+        {(newer || older) && (
+          <nav class="article-nav" aria-label="Navigace mezi články">
+            {newer ? (
+              <a href={`/Shopify_news_magexo/zmena/${newer.id.replace(/\.md$/, '')}/`} class="nav-card prev">
+                <span class="dir">← Novější</span>
+                <span class="nc-title">{newer.data.title}</span>
+                <span class="nc-date mono">{fmtDateCz(newer.data.date)}</span>
+              </a>
+            ) : <span class="nav-card-empty" />}
+            {older ? (
+              <a href={`/Shopify_news_magexo/zmena/${older.id.replace(/\.md$/, '')}/`} class="nav-card next">
+                <span class="dir">Starší →</span>
+                <span class="nc-title">{older.data.title}</span>
+                <span class="nc-date mono">{fmtDateCz(older.data.date)}</span>
+              </a>
+            ) : <span class="nav-card-empty" />}
+          </nav>
+        )}
       </article>
-
-      {entry.data.dukaz_integratoru && (
-        <details class="integrator-detail" open>
-          <summary>Integrátor — detail checku</summary>
-          <p>{entry.data.dukaz_integratoru}</p>
-        </details>
-      )}
-
-      {related.length > 0 && (
-        <section class="related-section">
-          <div class="eyebrow">Související u nás</div>
-          <ul class="related-list">
-            {related.map((r: any) => (
-              <li>
-                <a href={`/Shopify_news_magexo/zmena/${r.id.replace(/\.md$/, '')}/`}>{r.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <div class="source-footer">
-        <span class="sf-icon">🔗</span>
-        <a href={entry.data.zdroj} target="_blank" rel="noopener" class="sf-link">
-          Originální zpráva
-        </a>
-        <span class="sf-channel mono">— {sourceHost}</span>
-      </div>
-
-      {(newer || older) && (
-        <nav class="article-nav" aria-label="Navigace mezi články">
-          {newer ? (
-            <a href={`/Shopify_news_magexo/zmena/${newer.id.replace(/\.md$/, '')}/`} class="nav-card prev">
-              <span class="dir">← Novější</span>
-              <span class="nc-title">{newer.data.title}</span>
-              <span class="nc-date mono">{fmtDateCz(newer.data.date)}</span>
-            </a>
-          ) : <span class="nav-card-empty" />}
-          {older ? (
-            <a href={`/Shopify_news_magexo/zmena/${older.id.replace(/\.md$/, '')}/`} class="nav-card next">
-              <span class="dir">Starší →</span>
-              <span class="nc-title">{older.data.title}</span>
-              <span class="nc-date mono">{fmtDateCz(older.data.date)}</span>
-            </a>
-          ) : <span class="nav-card-empty" />}
-        </nav>
-      )}
     </main>
-
-    <aside class="toc-col">
-      <div class="eyebrow">Na této stránce</div>
-      <nav class="toc" id="toc"></nav>
-    </aside>
   </div>
 
   <script>
@@ -283,113 +247,149 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
 </Layout>
 
 <style>
-  .breadcrumb {
-    padding: 12px 32px;
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--border-1);
-    font-size: 12px;
-    font-family: var(--font-mono);
-  }
-  .bc-inner { display: flex; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-  .bc-path { color: var(--fg-3); }
-  .bc-slug { color: var(--fg-1); }
-  .bc-meta { color: var(--fg-3); }
-  .bc-mono { color: var(--fg-2); }
-
-  .detail-grid {
+  .app-grid {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr) 240px;
-    max-width: 1400px;
-    margin: 0 auto;
-    min-height: 600px;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
   }
 
-  .meta-col {
-    border-right: 1px solid var(--border-1);
-    padding: 32px 24px;
+  .detail-main {
+    min-width: 0;
+    position: relative;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    border-bottom: 1px solid var(--border-1);
+    background: var(--bg-2);
+  }
+  .breadcrumb-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 820px;
+    margin: 0;
+    padding: 14px 48px;
     font-size: 13px;
-    font-family: var(--font-sans);
+    overflow: hidden;
   }
-  .meta-section { margin-bottom: 28px; }
-  .eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--fg-4);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-  }
-
-  .status-block {
-    padding: 14px;
-    border-radius: 10px;
-    border: 1px solid var(--urg-high-border);
-    background: var(--urg-high-bg);
-    color: var(--urg-high-fg);
-    font-family: var(--font-mono);
-    margin-bottom: 28px;
-  }
-  .status-block.status-deprecating, .status-block.status-breaking {
-    border-color: var(--urg-critical-border);
-    background: var(--urg-critical-bg);
-    color: var(--urg-critical-fg);
-  }
-  .status-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 6px; }
-  .status-cutoff { font-size: 12px; margin-bottom: 4px; }
-  .status-countdown { font-size: 11px; opacity: 0.8; }
-
-  .meta-list { display: grid; grid-template-columns: 100px 1fr; gap: 6px 12px; margin: 0; font-family: var(--font-mono); font-size: 12px; }
-  .meta-list dt { color: var(--fg-3); font-weight: 500; }
-  .meta-list dd { margin: 0; color: var(--fg-1); text-align: right; }
-  .mono { font-family: var(--font-mono); }
-  .meta-list dd .ok { color: var(--emerald-600); font-weight: 600; }
-  [data-theme="dark"] .meta-list dd .ok { color: var(--emerald-500); }
-  .meta-list dd .warn { color: var(--orange); font-weight: 600; }
-  .tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
-  .back-link {
+  .bc-home {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     color: var(--indigo-600);
-    font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
+    text-decoration: none;
+    flex-shrink: 0;
   }
-  [data-theme="dark"] .back-link { color: var(--indigo-300); }
-
-  .content-col {
-    padding: 32px 40px 64px;
+  .bc-home:hover { color: var(--indigo-700); text-decoration: none; }
+  :global([data-theme="dark"]) .bc-home { color: var(--indigo-300); }
+  .bc-sep { color: var(--fg-4); flex-shrink: 0; }
+  .bc-current {
+    color: var(--fg-2);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     min-width: 0;
   }
-  .content-eyebrow {
+
+  /* Article container — clean reading layout, left-aligned */
+  .article {
+    max-width: 820px;
+    margin: 0;
+    padding: 48px 48px 64px;
+    position: relative;
+  }
+
+  .article-eyebrow {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 16px;
-    font-size: 12px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
+    font-size: 12px;
   }
-  .ce-date, .ce-api { color: var(--fg-3); font-family: var(--font-mono); font-size: 12px; }
-  .ce-sep { color: var(--fg-4); }
+  .article-eyebrow .flag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--fg-4);
+    border: 1px solid var(--border-2);
+    border-radius: 3px;
+    padding: 1px 4px;
+    line-height: 1.3;
+  }
+  .article-eyebrow .bullet { color: var(--fg-4); }
+  .article-eyebrow .date, .article-eyebrow .api-ver { color: var(--fg-3); font-family: var(--font-mono); }
 
-  .content-col h1 {
-    margin: 0;
-    font-size: 38px;
+  .article-title {
+    font-size: clamp(32px, 4.5vw, 48px);
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.03em;
-    line-height: 1.1;
+    line-height: 1.05;
+    margin: 0 0 8px;
     text-wrap: balance;
   }
   .title-en {
     color: var(--fg-3);
     font-style: italic;
-    font-size: 14px;
-    margin: 6px 0 0;
+    font-size: 16px;
+    margin: 0 0 24px;
   }
 
+  /* Meta strip — horizontal pills */
+  .article-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px 3px 6px;
+    background: var(--bg-3);
+    color: var(--fg-2);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .meta-pill.ok { background: var(--cat-uses-bg); color: var(--cat-uses-fg); }
+  .meta-pill.warn { background: var(--cat-deprecation-bg); color: var(--cat-deprecation-fg); }
+
+  /* Status banner */
+  .status-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--urg-high-border);
+    background: var(--urg-high-bg);
+    color: var(--urg-high-fg);
+    margin: 0 0 28px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .status-banner.status-deprecating, .status-banner.status-breaking {
+    border-color: var(--urg-critical-border);
+    background: var(--urg-critical-bg);
+    color: var(--urg-critical-fg);
+  }
+  .status-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+  .status-info { display: flex; gap: 8px; align-items: center; }
+  .status-info strong { font-weight: 700; }
+  .status-countdown { opacity: 0.85; font-size: 12px; }
+
+  /* Hero image */
   .article-hero {
-    margin: 24px 0 0;
-    border-radius: 12px;
+    margin: 24px -16px 32px;
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid var(--border-1);
   }
@@ -397,15 +397,17 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     display: block;
     width: 100%;
     height: auto;
-    max-height: 360px;
+    max-height: 440px;
     object-fit: cover;
   }
 
+  /* TL;DR */
   .tldr {
-    margin: 24px 0;
+    margin: 0 0 24px;
     background: var(--bg-2);
-    border-top: 3px solid var(--indigo-600);
-    border-radius: 0 0 10px 10px;
+    border: 1px solid var(--border-1);
+    border-left: 4px solid var(--indigo-600);
+    border-radius: 4px 10px 10px 4px;
     padding: 14px 18px 16px;
   }
   .tldr-eyebrow {
@@ -414,12 +416,13 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     margin-bottom: 6px;
     font-weight: 600;
   }
-  [data-theme="dark"] .tldr-eyebrow { color: var(--indigo-300); }
+  :global([data-theme="dark"]) .tldr-eyebrow { color: var(--indigo-300); }
   .tldr p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--fg-1); }
 
+  /* Timeline */
   .timeline {
-    margin: 24px 0;
-    padding: 18px 22px;
+    margin: 0 0 24px;
+    padding: 16px 18px;
     background: var(--urg-high-bg);
     border: 1px solid var(--urg-high-border);
     border-left: 3px solid var(--orange);
@@ -431,7 +434,7 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     letter-spacing: 0.08em;
     color: var(--urg-high-fg);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -450,32 +453,34 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
   .timeline .td-date { color: var(--fg-1); font-size: 12px; }
   .timeline .td-label { color: var(--fg-2); }
 
+  /* Prose body */
   .prose {
     margin-top: 32px;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.7;
-    color: var(--fg-2);
-    max-width: 720px;
+    color: var(--fg-1);
   }
   .prose :global(h2) {
-    margin: 36px 0 12px;
-    font-size: 22px;
+    margin: 40px 0 14px;
+    font-size: 24px;
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.3;
     color: var(--fg-1);
     text-wrap: balance;
+    scroll-margin-top: 80px;
   }
   .prose :global(h3) {
-    margin: 24px 0 8px;
-    font-size: 16px;
+    margin: 28px 0 10px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--fg-1);
     font-family: var(--font-sans);
     letter-spacing: -0.015em;
+    scroll-margin-top: 80px;
   }
-  .prose :global(p) { margin: 0 0 14px; text-wrap: pretty; }
+  .prose :global(p) { margin: 0 0 16px; text-wrap: pretty; color: var(--fg-2); }
   .prose :global(strong) { color: var(--fg-1); font-weight: 600; }
   .prose :global(em) { font-style: italic; color: var(--fg-2); }
   .prose :global(a) {
@@ -484,8 +489,8 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     text-underline-offset: 3px;
     text-decoration-color: var(--indigo-300);
   }
-  [data-theme="dark"] .prose :global(a) { color: var(--indigo-300); text-decoration-color: var(--indigo-500); }
-  .prose :global(ul), .prose :global(ol) { margin: 0 0 14px; padding-left: 1.4em; }
+  :global([data-theme="dark"]) .prose :global(a) { color: var(--indigo-300); text-decoration-color: var(--indigo-500); }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 16px; padding-left: 1.4em; color: var(--fg-2); }
   .prose :global(li) { margin-bottom: 6px; }
   .prose :global(code) {
     background: var(--bg-3);
@@ -493,7 +498,7 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     padding: 1px 5px;
     border-radius: 4px;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
   }
   .prose :global(pre) {
     background: var(--bg-3);
@@ -501,7 +506,7 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     border-radius: 8px;
     overflow-x: auto;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
     margin: 16px 0;
   }
   .prose :global(pre code) { background: transparent; border: none; padding: 0; }
@@ -509,7 +514,7 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     border-collapse: collapse;
     width: 100%;
     margin: 16px 0;
-    font-size: 13px;
+    font-size: 14px;
   }
   .prose :global(th), .prose :global(td) {
     border: 1px solid var(--border-1);
@@ -525,8 +530,9 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     font-style: italic;
   }
 
+  /* Integrator detail */
   .integrator-detail {
-    margin: 24px 0;
+    margin: 32px 0;
     padding: 14px 18px;
     border: 1px solid var(--border-1);
     border-radius: 10px;
@@ -543,17 +549,28 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
   }
   .integrator-detail p { margin: 8px 0 0; }
 
-  .related-section { margin: 32px 0; }
-  .related-list { list-style: none; padding: 0; margin: 8px 0 0; }
+  /* Sections */
+  .affected, .related-section { margin: 32px 0; }
+  .affected h3, .related-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-3);
+    margin: 0 0 12px;
+  }
+  .affected ul, .related-list { list-style: none; padding: 0; margin: 0; }
+  .affected li { padding: 6px 0; color: var(--fg-2); }
   .related-list li { padding: 8px 0; border-bottom: 1px solid var(--border-1); }
   .related-list a { color: var(--indigo-600); font-size: 14px; }
-  [data-theme="dark"] .related-list a { color: var(--indigo-300); }
+  :global([data-theme="dark"]) .related-list a { color: var(--indigo-300); }
 
+  /* Source footer */
   .source-footer {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     margin: 32px 0 0;
     background: var(--bg-2);
     border: 1px solid var(--border-1);
@@ -563,10 +580,13 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
   .sf-link {
     color: var(--indigo-600);
     font-weight: 600;
+    text-decoration: none;
   }
-  [data-theme="dark"] .sf-link { color: var(--indigo-300); }
+  .sf-link:hover { text-decoration: underline; }
+  :global([data-theme="dark"]) .sf-link { color: var(--indigo-300); }
   .sf-channel { color: var(--fg-3); font-family: var(--font-mono); font-size: 12px; }
 
+  /* Article nav (prev/next) */
   .article-nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -594,7 +614,7 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
   }
   .nav-card.next { text-align: right; align-items: flex-end; }
   .nav-card .dir { font-size: 11px; font-weight: 700; color: var(--indigo-600); text-transform: uppercase; letter-spacing: 0.06em; }
-  [data-theme="dark"] .nav-card .dir { color: var(--indigo-300); }
+  :global([data-theme="dark"]) .nav-card .dir { color: var(--indigo-300); }
   .nav-card .nc-title {
     font-size: 14px;
     font-weight: 600;
@@ -606,18 +626,35 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .nav-card .nc-date { font-size: 11px; color: var(--fg-3); }
+  .nav-card .nc-date { font-size: 11px; color: var(--fg-3); font-family: var(--font-mono); }
   .nav-card-empty { display: block; }
 
-  .toc-col {
-    border-left: 1px solid var(--border-1);
-    padding: 32px 20px;
-    position: sticky;
-    top: 60px;
-    align-self: start;
-    height: max-content;
+  /* Floating TOC — only on big screens */
+  .toc-floating {
+    display: none;
   }
-  .toc { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+  @media (min-width: 1280px) {
+    .toc-floating {
+      display: block;
+      position: absolute;
+      top: 80px;
+      right: 32px;
+      width: 200px;
+      padding: 16px 12px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .article { margin: 0 280px 0 auto; }
+  }
+  .toc-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fg-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .toc { display: flex; flex-direction: column; gap: 2px; }
   .toc :global(a.toc-link) {
     padding: 4px 10px;
     border-left: 2px solid var(--border-1);
@@ -633,21 +670,18 @@ const breadcrumbSlug = entry.id.replace(/\.md$/, '');
     border-left-color: var(--indigo-600);
     background: var(--indigo-50);
   }
-  [data-theme="dark"] .toc :global(a.toc-link.active) {
+  :global([data-theme="dark"]) .toc :global(a.toc-link.active) {
     color: var(--indigo-200);
     background: rgba(79, 70, 229, 0.14);
   }
 
-  @media (max-width: 1100px) {
-    .detail-grid { grid-template-columns: 240px minmax(0, 1fr); }
-    .toc-col { display: none; }
-  }
-  @media (max-width: 720px) {
-    .breadcrumb { padding: 10px 16px; }
-    .detail-grid { grid-template-columns: 1fr; }
-    .meta-col { border-right: none; border-bottom: 1px solid var(--border-1); padding: 20px 16px; }
-    .content-col { padding: 24px 16px 32px; }
-    .content-col h1 { font-size: 28px; }
+  /* Responsive */
+  @media (max-width: 900px) {
+    .app-grid { grid-template-columns: 1fr; }
+    .breadcrumb-inner { padding: 12px 16px; max-width: 100%; }
+    .article { padding: 24px 16px 48px; max-width: 100%; }
+    .article-title { font-size: 28px; }
+    .article-hero { margin-left: -16px; margin-right: -16px; border-radius: 0; }
     .article-nav { grid-template-columns: 1fr; }
     .nav-card.next { text-align: left; align-items: flex-start; }
   }
