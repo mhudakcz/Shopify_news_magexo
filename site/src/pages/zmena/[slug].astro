@@ -154,6 +154,48 @@ const hasImage = !!entry.data.obrazek;
           <Content />
         </div>
 
+        {entry.data.kontext && (
+          <section class="kontext" aria-label="Doplňující kontext">
+            <header class="kontext-head">
+              <span class="kontext-eyebrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                Doplňující kontext
+              </span>
+              <span class="kontext-badge" title={`Generováno modelem ${entry.data.kontext.model} dne ${entry.data.kontext.generated_at.toISOString().slice(0, 10)}`}>AI</span>
+            </header>
+            <div class="kontext-body">
+              {entry.data.kontext.background
+                .split(/\n{2,}/)
+                .map((para: string) => para.trim())
+                .filter((para: string) => para.length > 0)
+                .map((para: string) => <p>{para}</p>)}
+              {entry.data.kontext.priklad && (
+                <pre class="kontext-priklad"><code>{entry.data.kontext.priklad}</code></pre>
+              )}
+            </div>
+            <footer class="kontext-sources">
+              <span class="ks-label">Zdroje:</span>
+              <ul>
+                {entry.data.kontext.zdroje.map((src: { title: string; url: string }) => {
+                  let host = '';
+                  try { host = new URL(src.url).hostname.replace(/^www\./, ''); } catch {}
+                  return (
+                    <li>
+                      <a href={src.url} target="_blank" rel="noopener">
+                        {src.title}
+                        <span class="ks-host mono">{host}</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </footer>
+          </section>
+        )}
+
         {entry.data.dukaz_integratoru && (
           <details class="integrator-detail" open>
             <summary>Integrátor — detail checku</summary>
@@ -529,6 +571,109 @@ const hasImage = !!entry.data.obrazek;
     color: var(--fg-2);
     font-style: italic;
   }
+
+  /* Kontext (AI-doplněno) */
+  .kontext {
+    margin: 32px 0 28px;
+    padding: 20px 22px 18px;
+    border: 1px solid var(--border-1);
+    border-left: 3px solid var(--indigo-600);
+    border-radius: 10px;
+    background: linear-gradient(180deg, var(--indigo-50) 0%, var(--bg-elev) 60%);
+  }
+  :global([data-theme="dark"]) .kontext {
+    background: linear-gradient(180deg, rgba(79, 70, 229, 0.08) 0%, var(--bg-elev) 60%);
+  }
+  .kontext-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .kontext-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--indigo-700);
+  }
+  :global([data-theme="dark"]) .kontext-eyebrow { color: var(--indigo-300); }
+  .kontext-eyebrow svg { color: currentColor; }
+  .kontext-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    background: var(--indigo-600);
+    color: #fff;
+    border-radius: 4px;
+    cursor: help;
+  }
+  .kontext-body {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--fg-1);
+    letter-spacing: -0.003em;
+  }
+  .kontext-body p { margin: 0 0 12px; text-wrap: pretty; }
+  .kontext-priklad {
+    margin: 10px 0 4px;
+    padding: 12px 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+  .kontext-priklad code { background: none; padding: 0; }
+  .kontext-sources {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-1);
+  }
+  .ks-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 8px;
+  }
+  .kontext-sources ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .kontext-sources a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--fg-1);
+    text-decoration: none;
+    padding: 4px 0;
+  }
+  .kontext-sources a:hover { color: var(--indigo-600); text-decoration: underline; }
+  .ks-host {
+    font-size: 11px;
+    color: var(--fg-3);
+    margin-left: auto;
+  }
+  .kontext-sources svg { color: var(--fg-4); flex-shrink: 0; }
 
   /* Integrator detail */
   .integrator-detail {

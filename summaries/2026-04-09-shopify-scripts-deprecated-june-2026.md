@@ -21,6 +21,26 @@ dukaz_integratoru: "Shopify Scripts byly Ruby skripty pro Shopify Plus checkout 
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Shopify Scripts byly Ruby skripty spouštěné přímo na serverech Shopify, které umožňovaly obchodníkům na plánu Shopify Plus přizpůsobit logiku v checkoutu — zejména automatické slevy, pravidla dopravy a podmínky platebních metod. Skripty se psaly v omezené podmnožině Ruby, nasazovaly se přes Shopify Admin a spouštěly se synchronně v průběhu nákupního procesu zákazníka.
+
+    Shopify Scripts vznikly jako první způsob, jak dostat vlastní obchodní logiku do checkoutu bez nutnosti externího serveru. Jenže Ruby runtime byl uzavřený, obtížně testovatelný a neumožňoval dostatečnou flexibilitu. Shopify proto vyvinul nástupnickou platformu — Shopify Functions — postavenou na WebAssembly (WASM), která podporuje Rust, JavaScript i TypeScript a přináší standardizovaný vstup/výstup přes GraphQL schéma.
+
+    Praktický dopad deprecace je výrazný pro obchodníky na Shopify Plus, kteří mají aktivní Scripts pro slevy (line item, order), úpravu dopravních možností nebo skrývání platebních metod. Migrace na Functions není přímočará: rozdílný jazyk, jiný deployment přes Shopify CLI a přísnější runtime limity (výpočetní čas, velikost WASM modulu) mohou vyžadovat přepis logiky od základu.
+
+    Shopify Functions jsou dostupné i mimo Shopify Plus — jako součást veřejných aplikací z App Store na libovolném tarifu. Vlastní (custom) aplikace s Functions však nadále vyžadují Shopify Plus, stejně jako tomu bylo u Scripts.
+  zdroje:
+    - title: "Shopify Scripts will be deprecated on June 30, 2026"
+      url: "https://shopify.dev/changelog/shopify-scripts-will-be-deprecated-on-june-30-2026"
+    - title: "Shopify Functions – přehled a dokumentace"
+      url: "https://shopify.dev/docs/apps/build/functions"
+    - title: "Prerequisites pro Product Discount Functions"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/prerequisites-product-discount-functions/"
+    - title: "Metaobject access ve Shopify Functions od 2026-04"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/metaobject-access-shopify-functions/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify Scripts (Ruby skripty pro Plus checkout) přestávají běžet 30. 6. 2026; editování končí 15. 4. 2026."
 tagy: [scripts, functions, plus, checkout, deprecation]
 ---

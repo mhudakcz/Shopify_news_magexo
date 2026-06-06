@@ -17,6 +17,24 @@ pouzivame_v_integratoru: mozna
 dukaz_integratoru: "Máme draft order a fulfillment methods. B2B pickup flow vyžaduje konkrétní setup na úrovni location + delivery method, naše integrace mohou číst/zapisovat objednávky včetně pickup option."
 dotcene_klienty: []
 
+kontext:
+  background: |
+    Pickup in Store (vyzvednutí v prodejně) je doručovací metoda, při níž zákazník v checkoutu vybere konkrétní fyzickou lokaci merchantovy sítě a objednávku si tam osobně vyzvedne místo standardního zásilkového doručení. Shopify tuto metodu označuje interně jako local pickup a váže ji na nakonfigurované lokace (locations) obchodu s povoleným vyzvednutím.
+
+    Historicky byla možnost local pickup dostupná výhradně pro DTC (direct-to-consumer) zákazníky. B2B segment v Shopify pracuje s entitami Company a CompanyLocation, které modelují firemní kupující a jejich pobočky — tyto entity mají vlastní checkout flow odlišný od běžného spotřebitelského nákupu. Rozšíření pickup option i na B2B checkout bylo logickým krokem k sjednocení omnichannel zkušenosti pro podnikové zákazníky, kteří si zboží například odvážejí sami ze skladu nebo z pobočky.
+
+    Z praktického hlediska propojuje tato funkce B2B objednávky s offline distribučními uzly merchantovy sítě: velkoobchodní kupující si může při objednávce vybrat konkrétní sklad nebo prodejnu jako místo odběru. Pro fulfillment systémy a ERP integrace to znamená, že objednávka bude mít nastavenou delivery method jako pickup, nikoli shipping — tuto hodnotu je nutné správně zpracovat a předat do downstream systémů.
+
+    Funkce je součástí širší vlny B2B vylepšení v rámci Shopify Editions Winter 2026, kam patří také dynamické platební podmínky, store credit pro B2B nebo pravidla pro schvalování objednávek. Společně posouvají Shopify blíže k plnohodnotnému B2B-first řešení pro komplexní velkoobchodní provoz.
+  zdroje:
+    - title: "Shopify Editions Winter 2026"
+      url: "https://www.shopify.com/editions/winter2026"
+    - title: "Redesign local pickup UX v checkoutu"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/local-pickup-checkout-redesign/"
+    - title: "Rules for Order Review: dynamická pravidla pro schvalování objednávek"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/rules-order-review-b2b/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "B2B zákazníci si mohou v checkoutu zvolit vyzvednutí v prodejně místo doručení."
 tagy: [b2b, fulfillment, pickup, checkout]
 ---

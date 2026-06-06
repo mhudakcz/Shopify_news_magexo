@@ -51,6 +51,18 @@ Subagent vrací JSON strukturu odpovídající kompletnímu frontmatter z `promp
 ## Krok 5 — Zapiš souhrny
 Pro každý výsledek vytvoř `summaries/YYYY-MM-DD-{slug}.md` s frontmatter dle `prompts/summary.md` a body z analýzy.
 
+## Krok 5b — Enrichment kontextu (Sonnet)
+
+Pro každou právě vytvořenou novinku spusť **enrichment subagenta** (`Agent`, `model='sonnet'`, `subagent_type='general-purpose'`), který doplní `kontext:` blok do frontmatter — background paragraf (100-250 slov, 3-4 odstavce oddělené prázdnou řádkou) + citace zdrojů.
+
+Použij stejný prompt template jako `.claude/commands/enrich.md` (sekce Krok 2). Subagent vrátí JSON `{status: 'written'|'skipped'|'failed', file, reason?, word_count?, sources_count?}` a sám si `Edit`-em vloží YAML blok BEFORE řádek `tldr:`.
+
+Pokud nějaký vrátí `failed`, logni, ale neblokuj zbytek pipeline. Skip je OK — některé novinky jsou už komplet (např. dlouhý Editions článek).
+
+Per article cost: ~30k tokens Sonnet (~$0.10). Při typickém běhu 1-20 novinek to je acceptable.
+
+**Tímto krokem se nová novinka dostává na web už s obohaceným kontextem od první chvíle.**
+
 ## Krok 6 — Slack DM (bohatý formát)
 
 Sestav zprávu (Slack mrkdwn):

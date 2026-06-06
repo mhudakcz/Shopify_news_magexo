@@ -18,6 +18,24 @@ dukaz_integratoru: "Pokud používáme Shopify CLI v CI/CD nebo dev workflow, je
 dotcene_klienty: []
 souvisejici: [shopify-cli-force-flag-deprecated, app-deployment-cicd-tokens]
 
+kontext:
+  background: |
+    Shopify CLI je open-source nástroj příkazového řádku, který tvoří páteř vývojářského workflow pro Shopify aplikace a témata. Instaluje se globálně přes npm, yarn, pnpm nebo Homebrew a poskytuje příkazy pro lokální vývoj, testování rozšíření, nasazení do produkce i správu webhooků. Bez CLI nelze efektivně deployovat app extensions ani pracovat se Shopify Functions.
+
+    Před verzí 4.0 Shopify CLI nepoužívalo striktní sémantické verzování — breaking changes se mohly objevit i v minor releases a vývojáři nemohli spolehlivě odhadnout, kdy upgrade naruší jejich pipeline. Verze 4.0 tuto situaci řeší: minor bumpy budou přinášet pouze nové funkce, patch bumpy opravy chyb a hlavní verze budou vyhrazeny pro skutečné breaking changes. Automatické self-upgrady pak zajistí, že vývojáři vždy pracují s aktuální verzí bez manuálního zásahu.
+
+    Odstranění flagu `--force` je přímým důsledkem bezpečnostního zpřísnění: flag nerozlišoval mezi bezpečnými aktualizacemi a nevratným smazáním produkčních rozšíření. Souběžně Shopify zavedl App automation tokeny pro CI/CD — app-scoped přihlašovací tokeny nahrazující starší organization-wide CLI tokeny. Obě změny společně budují předvídatelnější a bezpečnější deployment model pro Shopify aplikace.
+  zdroje:
+    - title: "Shopify Changelog: Shopify CLI 4.0 — SemVer, auto-updates, removing deprecated flags"
+      url: "https://shopify.dev/changelog/shopify-cli-40-semver-auto-updates-removing-deprecated-flags-and-commands"
+    - title: "Shopify Docs: Shopify CLI"
+      url: "https://shopify.dev/docs/api/shopify-cli"
+    - title: "Archiv: Shopify CLI --force flag deprecated"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/shopify-cli-force-flag-deprecated/"
+    - title: "Archiv: App deployment v CI/CD — App automation tokens"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/app-deployment-cicd-tokens/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Shopify CLI 4.0 zavádí semantic versioning, automatické self-upgrades a odstraňuje deprecated flagy (--force u app deploy) a několik příkazů ve prospěch novějších alternativ."
 tagy: [cli, semver, ci-cd, breaking, deprecation]
 ---

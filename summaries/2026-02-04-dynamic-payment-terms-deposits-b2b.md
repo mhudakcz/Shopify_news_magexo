@@ -18,6 +18,24 @@ dukaz_integratoru: "Máme draft order methods. Pokud klient potřebuje custom pa
 dotcene_klienty: []
 souvisejici: [edi-workflows-crstl-sps, erp-systems-integration-b2b]
 
+kontext:
+  background: |
+    Payment terms (platební podmínky) jsou smluvně sjednané lhůty a způsoby úhrady mezi prodejcem a kupujícím. V B2B prostředí jde typicky o schémata jako Net 30 (zaplatit do 30 dnů od vystavení faktury), zálohové platby (deposit) před odesláním zboží nebo splátkové harmonogramy. Shopify reprezentuje tyto podmínky objektem PaymentTerms, který lze připojit k objednávkám i draft orders a obsahuje pole jako paymentTermsType, dueInDays a seznam PaymentSchedule.
+
+    Shopify B2B jako samostatná platforma vzniklo kolem roku 2022 a od té doby prochází rychlým rozvojem. Dosud bylo nastavení payment terms v Shopify relativně statické — merchant mohl přiřadit šablonu podmínek company location, ale bez možnosti automatizovaného výběru podle kontextu objednávky. Winter 2026 Editions tuto mezeru uzavírá a přináší dynamická pravidla řízená logikou Shopify Functions, která jsou výhradně dostupná na Shopify Plus.
+
+    Praktický dopad je největší pro B2B prodejce s různorodou zákaznickou základnou: mohou automaticky přiřadit Net 7 novým odběratelům, Net 30 ověřeným partnerům a vyžadovat 20% zálohu u zakázek nad určitou hodnotu. Vše se propíše do draft orders a navazujících objednávek, které lze dále synchronizovat s ERP systémy. Sousední funkce jako Rules for Order Review nebo nativní ERP integrace (NetSuite, Sage) z téhož vydání tvoří ucelený rámec pro řízení B2B obchodního cyklu.
+  zdroje:
+    - title: "Shopify Editions Winter 2026"
+      url: "https://www.shopify.com/editions/winter2026"
+    - title: "PaymentTerms — Admin GraphQL API"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/objects/PaymentTerms"
+    - title: "ERP Systems Integration for B2B"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/erp-systems-integration-b2b/"
+    - title: "Rules for Order Review B2B"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/rules-order-review-b2b/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify B2B umožňuje přes third-party / custom apps nastavit dynamic payment terms a deposits dle pravidel."
 tagy: [b2b, payment-terms, deposit, draft-order]
 ---

@@ -19,6 +19,27 @@ dukaz_integratoru: "Máme 23+ order methods včetně getOrder, getAllOrders, get
 dotcene_klienty: []
 souvisejici: [draftorderlineitem-grams-removed]
 
+kontext:
+  background: |
+    Typ `LineItem` v Shopify GraphQL Admin API reprezentuje jednu položku v objednávce — konkrétní produkt (variantu) v daném množství, spolu s cenou, slevami a atributy. Každá objednávka se skládá z kolekce těchto položek. Pole `weight` vrací objekt `Weight` obsahující číselnou hodnotu (`value`) a jednotku (`unit`), přičemž jsou podporovány čtyři jednotky: `GRAMS`, `KILOGRAMS`, `POUNDS` a `OUNCES`.
+
+    Historicky byla hmotnost v Shopify API dostupná pouze jako skalární pole `grams` (celé číslo v gramech), a to jak v REST API, tak v původních GraphQL typech. Tento přístup byl nevhodný pro mezinárodní obchody — přepočty mezi metrickými a imperiálními jednotkami museli zajišťovat vývojáři sami v aplikační vrstvě. Shopify proto zavedlo strukturovaný typ `Weight` s explicitní jednotkou, čímž sjednotilo práci s hmotností napříč API.
+
+    V praxi je pole `weight` na `LineItem` klíčové pro výpočty dopravného, picking a packing procesy ve skladu nebo exporty do ERP systémů. Přechod na `weight { value unit }` z `grams` je součástí širšího trendu — deprecace plochých skalárních polí ve prospěch strukturovaných objektů. Souběžně Shopify ve verzi 2026-07 odstraňuje pole `grams` z typu `DraftOrderLineItem`, což signalizuje postupnou konvergenci celého API na jednotný `Weight` objekt.
+
+    Tento krok navazuje na celkové rozšiřování informací dostupných na `LineItem` v API 2026-07 — ve stejné verzi přibývá i pole `priceAfterAllDiscountsBeforeTaxesSet`, které zjednodušuje export finančních dat do účetních systémů.
+  zdroje:
+    - title: "Shopify Changelog: LineItem.weight field now available in public Admin API"
+      url: "https://shopify.dev/changelog/lineitem-weight-field-now-available-in-public-admin-api"
+    - title: "Shopify Admin GraphQL API: WeightUnit enum"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/enums/WeightUnit"
+    - title: "DraftOrderLineItem.grams odstraněno v 2026-07"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/draftorderlineitem-grams-removed/"
+    - title: "LineItem.priceAfterAllDiscountsBeforeTaxesSet v 2026-07"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/lineitem-price-after-discounts-before-taxes/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
+
 tldr: "Od API 2026-07 LineItem v Admin API obsahuje pole weight (s value + unit) místo jen grams."
 tagy: [order, line-item, weight, shipping]
 ---

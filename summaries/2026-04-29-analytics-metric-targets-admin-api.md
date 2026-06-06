@@ -18,6 +18,24 @@ dukaz_integratoru: "interní MCP check a 'target' vrátily 0 metod v shopify-cli
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    GraphQL Admin API je primární programatické rozhraní pro přístup k datům a funkcím Shopify obchodu. Na rozdíl od REST API nabízí typovaný schéma-first přístup, kde klient přesně specifikuje, která pole potřebuje. Přidání analytických operací do tohoto API znamená, že cíle metrik jsou plnohodnotnou součástí datového modelu obchodu — nikoliv jen UI prvkem bez programatického přístupu.
+
+    Shopify Analytics API historicky umožňovalo pouze čtení reportů přes `read_reports` scope. Mutace pro zápis analytických dat jsou novinkou, která rozšiřuje `write_reports` scope o nový účel: správu cílů. Vývojáři tak mohou stavět aplikace, které přenášejí KPI definované v externích BI systémech (Google Looker, Metabase, interní Excel exporty) přímo do Shopify Adminu, kde jsou viditelné celému merchant týmu bez nutnosti přístupu do externího nástroje.
+
+    Klíčový aspekt je symetrie s merchant UI: cíle vytvořené přes API se zobrazují vedle cílů zadaných ručně v administraci, v identickém vizuálním formátu s gauge ukazatelem. Tato symetrie je vzorem, který Shopify opakovaně aplikuje — API a UI jako dvě rovnocenná rozhraní ke stejným datům. Pro vývojáře to znamená, že aplikace mohou enrichovat nativní Shopify prostředí bez nutnosti vlastního dashboardu.
+
+    Z hlediska scopes je nutné požádat o `read_reports` pro čtení a `write_reports` pro vytváření a úpravu cílů. Absence webhook podpory pro změny cílů (k datu vydání) znamená, že synchronizace z externích systémů je jednosměrná nebo vyžaduje polling.
+  zdroje:
+    - title: "Analytics metric targets now available in the GraphQL Admin API — Shopify Dev Changelog"
+      url: "https://shopify.dev/changelog/analytics-metric-targets-now-available-in-the-graphql-admin-api"
+    - title: "Nastavení a tracking cílů v Shopify Analytics (merchant UI)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/set-track-targets-shopify-analytics/"
+    - title: "Kumulativní metriky v čase v Analytics"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/cumulative-metrics-analytics/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Čtyři nové GraphQL operations (analyticsTargets, …Create, …Update, …Delete) pro správu číselných cílů metrik — obrat, conversion rate, AOV — v Shopify Admin. Cíle doprovází vizuální gauge s aktuálním progresem."
 tagy: [analytics, target, kpi, dashboard]
 ---

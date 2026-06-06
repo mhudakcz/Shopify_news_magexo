@@ -18,6 +18,26 @@ dukaz_integratoru: "Migration guides pro UI extensions. Neimplementujeme Checkou
 dotcene_klienty: []
 souvisejici: [deprecation-checkout-metafields]
 
+kontext:
+  background: |
+    Polaris web components jsou nativní UI prvky Shopify design systému určené pro vývoj rozšíření checkoutu a zákaznických účtů. Na rozdíl od Polaris React knihovny pro Shopify Admin jsou tyto komponenty (Button, TextField, Banner, Grid a další) renderovány přímo Shopify runtime v izolovaném sandboxu bez přístupu k DOM checkoutu — vývojáři tak nemohou přepisovat CSS ani obcházet brandový design obchodníka.
+
+    Shopify UI extensions prošly od svého uvedení výraznou architektonickou proměnou. Původní extensions byly postaveny na Reactu a Shopify-proprietárním Remote UI protokolu. Počínaje API verzí 2025-10 se výchozím přístupem stal Preact kombinovaný s Polaris web components a globálním objektem `shopify`, čímž Shopify sjednotil rendering pipeline a snížil bundle size extensions. Migration guides publikované v květnu 2026 přesně pokrývají tento přechod: od React/JavaScript API k Preact a web components.
+
+    Pro vývojáře, kteří udržují živá rozšíření, platí 12měsíční support window Shopify API verzí — Shopify CLI blokuje deploy extensions cílených na API starší než jeden rok. Průvodci migrace tak nejsou volitelné čtení, ale praktická nutnost pro každého, kdo má extensions nasazené v produkci a plánuje jejich další rozvoj nebo upgrade API verze.
+
+    Souběžně se migration guides dotýkají i deprecace checkout metafields (oznámené v dubnu 2026): průvodci obsahují konkrétní instrukce pro přechod na cart a order metafields, které tvoří moderní datovou vrstvu dostupnou v checkout UI extensions přes Storefront API.
+  zdroje:
+    - title: "Shopify Changelog: Polaris web components migration guides for Checkout and Customer Account UI extensions"
+      url: "https://shopify.dev/changelog/polaris-web-components-migration-guides-now-available-for-checkout-and-customer-account-ui-extensions"
+    - title: "Shopify Docs: Checkout UI extensions components"
+      url: "https://shopify.dev/docs/api/checkout-ui-extensions/components"
+    - title: "Archiv: Deprecation checkout metafields v UI extensions"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/deprecation-checkout-metafields/"
+    - title: "Archiv: Polaris reference docs — jen poslední 4 stable verze"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/removing-outdated-polaris-docs/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Nové migration guides pomáhají developerům upgradovat Checkout a Customer Account UI extensions na nejnovější API verzi a Polaris web components. Vč. instrukcí pro migraci z checkout na cart metafields."
 tagy: [polaris, ui-extensions, migration, checkout]
 ---

@@ -19,6 +19,24 @@ dukaz_integratoru: "Máme 12+ metafield methods (metafieldsSet, getMetafieldDefi
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Metafields jsou v Shopify mechanismus pro ukládání vlastních strukturovaných dat k různým objektům — produktům, objednávkám, zákazníkům, ale i košíkům. Každé metafield má vlastníka (vlastník aplikace nebo merchant), namespace, klíč a datový typ. Checkout metafields byly specifický podtyp umožňující čtení a zápis dat přímo v prostředí checkout a customer account UI extensions, tedy v rozšíření napsaných pomocí Shopify checkout extensibility.
+
+    Shopify postupně přechází na jasněji rozdělenou datovou architekturu, kde každá fáze nákupního procesu má svůj vlastní objekt: košík (Cart), objednávka (Order) a zákazník (Customer). Checkout metafields narušovaly toto oddělení, protože existovaly jako přechodný typ vázaný na dočasný checkout objekt. S příchodem API 2026-04 Shopify tuto vrstvu odstraňuje a nahrazuje ji dvěma explicitními alternativami.
+
+    Cart metafields slouží pro ukládání dat během aktivního nákupu — jsou dostupné v checkout UI extensions přes Storefront API a žijí po dobu životnosti košíku. Order metafields naopak přetrvávají po dokončení objednávky a jsou dostupné v customer account UI extensions přes Admin API. Klíčovou novinkou je cart-to-order copying: order metafield definition lze nakonfigurovat tak, aby hodnota z odpovídajícího cart metafield byla automaticky zkopírována v okamžiku vytvoření objednávky z košíku.
+
+    Tato změna vyžaduje od vývojářů přehodnotit, ve které fázi nákupního cyklu potřebují data číst a zapisovat, a zvolit správný objekt — cart nebo order — podle toho, kdy mají být data dostupná.
+  zdroje:
+    - title: "Shopify Changelog: Deprecation of checkout metafields in checkout and customer account UI extensions"
+      url: "https://shopify.dev/changelog/deprecation-of-checkout-metafields-in-checkout-and-customer-account-ui-extensions"
+    - title: "Shopify Docs: Metafields overview"
+      url: "https://shopify.dev/docs/apps/build/custom-data/metafields"
+    - title: "Archiv: Cart/Checkout Validation Functions – billing address a PO number"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/cart-checkout-validation-billing-po/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Checkout metafields v checkout/customer account UI extensions deprecated; migrace na cart a order metafields v API 2026-04."
 tagy: [metafield, checkout, deprecation, cart, order]
 ---

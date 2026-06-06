@@ -19,6 +19,22 @@ pouzivame_v_integratoru: mozna
 dukaz_integratoru: "Pokud naše integrace cachuje Shopify CDN URLs (typicky pro produktové obrázky v ERP/marketplace exportech), je třeba refresh strategy — staré URL mohou ukazovat na neaktuální obsah."
 dotcene_klienty: []
 
+kontext:
+  background: |
+    Shopify CDN (Content Delivery Network) je globální síť distribuovaných serverů, přes kterou Shopify servíruje všechny statické soubory – obrázky produktů, videa, PDF dokumenty i témata. Každý soubor nahraný přes admin nebo API dostane URL ve tvaru `cdn.shopify.com/s/files/...` a může obsahovat verzovací parametr `?v=`, který zajišťuje, že prohlížeče a downstream systémy vidí aktuální obsah namísto zastaralé verze z cache.
+
+    Historicky Shopify při nahrazení nebo smazání souboru provedl tzv. CDN purge – aktivně odstranil starou verzi ze všech uzlů CDN sítě, aby nová verze byla okamžitě dostupná. Toto chování bylo výhodné pro obchodníky, kteří spoléhali na neměnnost URL (tzv. hardcoded URLs), ale zároveň způsobovalo zvýšenou zátěž CDN infrastruktury a nekonzistentní chování napříč poskytovateli. Shopify se rozhodl přizpůsobit obecně přijímanému standardu CDN cache managementu, kde invalidace probíhá přirozeně po vypršení TTL (Time to Live).
+
+    Tato změna ovlivňuje především vývojáře a systémy, které pevně ukládají CDN URL místo toho, aby je dynamicky vyhodnocovaly. Správnou strategií je vždy získávat aktuální URL přes Liquid filtry, GraphQL Admin API nebo REST API těsně před použitím – nikoli je jednou uložit a spoléhat na jejich platnost. Jde o stejný princip, jaký Shopify prosazuje u dalších identifikátorů: přednost stabilních, dynamicky resolvovaných odkazů před pevně zakódovanými hodnotami.
+  zdroje:
+    - title: "Shopify Changelog: Replacing or deleting a Shopify-hosted file no longer purges its CDN URL"
+      url: "https://shopify.dev/changelog/replacing-or-deleting-a-shopify-hosted-file-no-longer-purges-its-cdn-url"
+    - title: "Archiv: Storefront filter URLs používají stable identifiers"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/storefront-filter-urls-stable-identifiers/"
+    - title: "Archiv: Automatické CSS subsetting pro stylesheet tagy"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/automatic-css-subsetting-stylesheet-tags/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "**Action Required:** Od 7. 4. 2026 Shopify nepurguje CDN URL při nahrazení / smazání hostovaného souboru. Pro aktuální URL použij Liquid filters, Media uploader nebo APIs (versioned URLs). _Původně publikováno 7. 4. 2026 (audit doplnění)._"
 tagy: [cdn, files, caching, breaking, urls]
 ---

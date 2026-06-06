@@ -14,6 +14,26 @@ customer_facing: false
 
 pouzivame_v_integratoru: ne
 dukaz_integratoru: "Analytics UI feature."
+kontext:
+  background: |
+    Annotations jsou vizuální značky vkládané přímo do grafů analytických reportů, které zobrazují, kdy nastala konkrétní událost v obchodě. Nejde o samostatný report, ale o vrstvu přidanou do stávajících vizualizací: merchant najedede myší na marker a okamžitě vidí popis události, aniž by musel přepínat do jiné části adminu.
+
+    Shopify Analytics v období 2025–2026 prochází výraznou expanzí zaměřenou na kauzální porozumění datům. Zatímco dřívější grafy ukazovaly, co se dělo s metrikami, chyběl přímý pohled na to, proč k pohybům docházelo. Annotations tuto mezeru uzavírají tím, že korelují obchodní akce — publikaci produktu, instalaci aplikace, nasazení šablony nebo systémové změny definic metrik — s časovou osou výkonnostních ukazatelů.
+
+    Funkce pokrývá tři kategorie událostí: produktové události (publikování a zrušení publikování), změny obchodu (nová šablona, instalace či odinstalace aplikace) a systémové události (zpoždění dat nebo úpravy definic metrik). Produktové anotace jsou řazeny podle revenue impactu, takže merchant vidí nejprve ty události, které měly největší obchodní dopad. Aktivace nevyžaduje žádnou konfiguraci — stačí zvolit možnost „Show annotations" v panelu vizualizace.
+
+    Annotations doplňují souběžně vydané funkce jako výkonnostní Targets, kumulativní metriky a multi-metrické grafy, které společně posouvají analytiku Shopify směrem k samoobslužné business intelligence dostupné přímo v adminu.
+  zdroje:
+    - title: "Annotations bring store event context directly to your analytics – Shopify Changelog"
+      url: "https://changelog.shopify.com/posts/annotations-bring-store-event-context-directly-to-your-analytics"
+    - title: "Data-driven insights v analytics dashboardu"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/data-driven-insights-analytics-dashboard/"
+    - title: "Nastavení a tracking cílů v Shopify Analytics"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/set-track-targets-shopify-analytics/"
+    - title: "Compare multiple metrics na jednom chartu v Analytics"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/compare-multiple-metrics-chart/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Vizuální annotations s color-coded markery zobrazují store events vedle analytics dat. Lze filtrovat podle typu (product publishes, system events) a product annotations jsou řazené podle revenue impactu."
 tagy: [analytics, annotations, events, dashboard]
 ---

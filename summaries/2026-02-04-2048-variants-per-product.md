@@ -18,6 +18,24 @@ dukaz_integratoru: "Máme 30+ product methods, hodně z toho pracuje s variantam
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Varianta produktu (ProductVariant) je v Shopify konkrétní kombinace atributů jednoho produktu — například tričko v barvě modré a velikosti M tvoří jednu variantu. Každá varianta nese vlastní cenu, SKU, čárový kód, stav skladu a nastavení dopravy. Shopify Admin GraphQL API pracuje s variantami jako se samostatným objektem propojeným s nadřazeným produktem.
+
+    Historicky byl tvrdý limit 100 variant na produkt součástí platformy od samého počátku. Pro jednoduché e-shopy byl dostačující, ale obchodníci s komplexními katalogy — módní značky s kombinacemi velikost × barva × délka × střih, průmysloví prodejci nebo B2B distributoři — naráželi na tento strop a museli jeden logický produkt uměle štěpit na desítky záznamů, čímž komplikovali katalog, reporting i API synchronizace.
+
+    Zvýšení limitu na 2048 variant odráží strategii Shopify Winter Editions 2026 zaměřenou na enterprise a B2B segment. Spolu s touto změnou přibyla v API 2026-07 možnost publikovat a skrývat varianty nezávisle per sales channel (Publishable interface), což dohromady tvoří základ pro granulární správu velkých produktových matic.
+
+    Do budoucna lze očekávat, že vyšší limit bude doprovázet i nové doporučené vzory pro frontend — zobrazení 2000+ variant smysluplně vyžaduje filtry a konfigurátory, nikoli ploché dropdowny.
+  zdroje:
+    - title: "Shopify Winter Editions 2026"
+      url: "https://www.shopify.com/editions/winter2026"
+    - title: "ProductVariant — Shopify Admin GraphQL API"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/objects/ProductVariant"
+    - title: "Publish/unpublish variant nezávisle od produktu"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/publish-unpublish-variants-independently/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify zvyšuje limit variant per produkt z 100 na 2048 — výrazná změna pro klienty s velkou produktovou maticí."
 tagy: [product, variant, limit, b2b]
 ---

@@ -22,6 +22,24 @@ dukaz_integratoru: "Týká se Partner Dashboardu pro publikované apps ve Shopif
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Důvody odinstalace aplikace (uninstall reasons) jsou strukturované kategorie zpětné vazby, které Shopify sbírá od merchantů v okamžiku, kdy odinstalují aplikaci z App Store. Merchant musí před dokončením odinstalace vybrat jednu z nabízených možností — proces je povinný. Kategorie pokrývají oblasti jako testování, náklady, problémy s podporou, nekompatibilitu s obchodem nebo dočasné pozastavení provozu.
+
+    Shopify App Store existuje od roku 2009 a analytika odinstalací byla dlouhodobě omezená na hrubá čísla bez kontextu. Vývojáři měli potíže rozlišit, zda aplikaci opouštějí zákazníci kvůli ceně, technickým problémům nebo prostě proto, že ji pouze testovali. Granulárnost nových kategorií přímo reaguje na tuto mezeru — cílem Shopify je poskytnout vývojářům „jasné a použitelné poznatky" o chování merchantů.
+
+    V praxi tato data umožňují vývojářům App Store aplikací lépe prioritizovat vývoj: vysoký podíl odinstalací s důvodem „problémy s integrací" signalizuje technický dluh, zatímco „vysoké náklady" otevírají diskusi o cenovém modelu. Nové kategorie jsou viditelné v sekci App Analytics v Partner Dashboardu a doplňují metriky jako install rate nebo aktivní instalace.
+
+  zdroje:
+    - title: "Shopify Changelog: Update to app uninstall reasons"
+      url: "https://shopify.dev/changelog/update-to-app-uninstall-reasons"
+    - title: "Nové rozhraní pro odesílání aplikací v Partner Dashboardu"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/new-app-submission-experience-partner-dashboard/"
+    - title: "Kontroly kvality aplikací v Partner Dashboardu"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/app-quality-checks-partner-dashboard/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
+
 tldr: "Partner Dashboard má nové, granulárnější důvody odinstalace včetně 'testing' a 'compatibility issues'."
 tagy: [partners, app-store, uninstall, metrics]
 ---

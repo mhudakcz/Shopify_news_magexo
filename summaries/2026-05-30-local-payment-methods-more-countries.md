@@ -17,6 +17,24 @@ dukaz_integratoru: "Shopify Payments config (merchant-side). Naše integrace čt
 dotcene_klienty: []
 souvisejici: [klarna-more-countries]
 
+kontext:
+  background: |
+    Lokální platební metody jsou způsoby platby rozšířené pouze v konkrétních regionech nebo zemích — zpravidla jako digitální peněženky, bankovní převodní systémy nebo mobilní aplikace. Zákazníci jim důvěřují více než mezinárodním kartovým sítím a jejich přítomnost v checkoutu prokazatelně snižuje míru opuštění košíku. Příklady: MobilePay (Skandinávie), TWINT (Švýcarsko), BLIK (Polsko), Przelewy24 (Polsko a okolí).
+
+    Shopify Payments historicky cílil primárně na anglosaské trhy. Podpora lokálních metod v Evropě se rozrůstala postupně — Winter 2026 Editions přinesly např. Klarna do ČR a dalších zemí. Expanze lokálních metod je součástí širší strategie Shopify Markets, která umožňuje jeden store provozovat ve více zemích s lokalizovanými zážitky včetně měny, jazyka a právě platebních metod.
+
+    V praxi obchodník aktivuje metody přes Settings > Payments a Shopify je pak automaticky zobrazuje zákazníkům v oprávněných zemích bez nutnosti třetí strany nebo custom integrace. To je relevantní zejména pro EU e-shopy expandující do Polska, Skandinávie nebo Švýcarska — lokální platební metoda může být rozhodujícím faktorem konverze v těchto trzích.
+
+    Tato změna navazuje na rostoucí tlak evropské regulace (PSD2, open banking) a na fakt, že podíl plateb přes lokální metody v některých zemích překračuje platby kartou. Shopify tím snižuje bariéru vstupu na tyto trhy pro merchants, kteří dříve potřebovali integraci přes specializovanou platební bránu.
+  zdroje:
+    - title: "More local payment methods are now available in additional countries"
+      url: "https://changelog.shopify.com/posts/more-local-payment-methods-are-now-available-in-additional-countries"
+    - title: "Klarna nově dostupná v ČR a 7 dalších zemích"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/klarna-more-countries/"
+    - title: "Více legal entities v jedné zemi přes Shopify Payments + Markets"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/multiple-legal-entities-shopify-payments/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify Payments rozšiřuje local payment methods (MobilePay, TWINT, BLIK, Przelewy24) do dalších evropských zemí — méně friction v checkoutu pro lokální zákazníky."
 tagy: [payments, europe, local, shopify-payments, mobilepay, twint, blik, przelewy24]
 ---

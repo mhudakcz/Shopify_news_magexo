@@ -20,6 +20,24 @@ dukaz_integratoru: "Storefront Cart API. Pokud klient má custom headless storef
 dotcene_klienty: []
 souvisejici: [storefront-cart-discount-fields, product-unavailable-buyer-location-warning]
 
+kontext:
+  background: |
+    `view_key` je deterministický identifikátor cart line odvozený z kombinace variant ID a vlastních atributů (properties). Na rozdíl od interního `id`, který Shopify přiřazuje každé cart line dynamicky, je `view_key` stabilní a předvídatelný — frontend ho může vypočítat lokálně bez nutnosti čekat na serverovou odpověď.
+
+    Storefront API existuje od raných dob Shopify Plus a slouží headless a custom storefront implementacím. Cart mutace (`cartLinesAdd`, `cartLinesUpdate`, `cartLinesRemove`) jsou základem každé custom cart UI. Historicky bylo nutné sledovat `id` každé line — problém nastával při „re-create" scénářích, kdy cart line dostala nové `id` po obnovení nebo přepočtu košíku. `view_key` tento problém řeší tím, že identifikace je deterministicky odvozená ze vstupních dat, nikoli přiřazená serverem.
+
+    Prakticky tato změna nejvíce pomáhá headless storefront projektům (Hydrogen, Next.js Commerce, vlastní React/Vue frontendy), kde frontend drží lokální stav košíku. Při „dedup-update" flow — kdy se neví, zda line stále existuje pod stejným `id` — umožňuje `view_key` spolehlivou aktualizaci bez předchozího GET dotazu na celý košík.
+
+    Změna je čistě aditivní; integrace postavené na `id` / `lineIds` fungují beze změny. `view_key` a `id` jsou vzájemně exkluzivní v rámci jedné mutace, nelze je kombinovat.
+  zdroje:
+    - title: "Shopify Changelog: Cart line mutations accept view_key"
+      url: "https://shopify.dev/changelog/cart-line-mutations-accept-view-key"
+    - title: "Storefront API: cartLinesUpdate mutace"
+      url: "https://shopify.dev/docs/api/storefront/latest/mutations/cartLinesUpdate"
+    - title: "Nová discount pole v Storefront API cart types od 2026-07"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/storefront-cart-discount-fields/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Storefront API 2026-07: `cartLinesUpdate` přijímá `viewKey` (per input) a `cartLinesRemove` přijímá `viewKeys` list. Alternativa k `id` / `lineIds` — mutually exclusive. Backwards compatible."
 tagy: [storefront, cart, view-key, mutations]
 ---

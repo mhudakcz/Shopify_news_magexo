@@ -18,6 +18,24 @@ pouzivame_v_integratoru: mozna
 dukaz_integratoru: "Máme pubsub webhook subscriptions methods. Pokud poslouchám customers/redact webhooky pro GDPR compliance flow, načasování zpracování requestů se mění."
 dotcene_klienty: []
 
+kontext:
+  background: |
+    Webhook `customers/redact` je součástí Shopify compliance API, které umožňuje zákazníkům uplatnit právo na výmaz osobních údajů podle nařízení GDPR a zákona CCPA. Shopify jej odesílá aplikacím ve chvíli, kdy merchant požádá o smazání dat konkrétního zákazníka. Payload obsahuje ID zákazníka, e-mail, telefonní číslo a seznam ID objednávek, které mají být redigovány. Aplikace musí přijetí webhooků potvrdit stavovým kódem 2xx a data smazat do 30 dnů.
+
+    Historicky Shopify tento webhook pozastavoval až na 180 dnů od poslední objednávky zákazníka — záměrem bylo ponechat merchantovi čas na vyřízení případných refundů nebo jiných poobjednávkových operací. Tento přístup však komplikoval compliance plánování, protože čas doručení webhooků nebyl předvídatelný a závisel na aktivitě zákazníka. Požadavky GDPR přitom obecně ukládají povinnost reagovat na žádost o výmaz do jednoho měsíce.
+
+    Nové jednotné 10-denní okno přináší předvídatelnost a zjednodušuje návrh compliance procesů pro vývojáře aplikací i merchanty. Systémy, které záznamy zákazníků uchovávají (CRM, analytické platformy, marketingové nástroje), mohou nově přesněji naplánovat automatizované mazání. Výjimkou zůstávají scénáře s nevydanými dárkovými kartami, kde Shopify zpracování záměrně podrží.
+
+    Tato změna úzce souvisí s dalšími aspekty správy zákaznických dat v Shopify ekosystému, jako je zpracování marketingového souhlasu nebo synchronizace zákaznických profilů přes externí identity providery.
+  zdroje:
+    - title: "Shopify Changelog: Updated handling of customer data erasure requests with recent orders"
+      url: "https://shopify.dev/changelog/updated-handling-of-customer-data-erasure-requests-with-recent-orders"
+    - title: "Shopify Docs: Privacy law compliance – customers/redact webhook"
+      url: "https://shopify.dev/docs/apps/build/privacy-law-compliance"
+    - title: "Změna: Marketing consent na přihlašovací stránce zákazníka"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/marketing-consent-customer-signin/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Customer data erasure požadavky se nově zpracují 10 dnů po odeslání bez ohledu na recency objednávek."
 tagy: [gdpr, compliance, webhook, customers-redact]
 ---

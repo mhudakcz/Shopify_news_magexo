@@ -22,6 +22,25 @@ dukaz_integratoru: "Máme 20+ customer methods v naší integraci (createCustome
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Objekt `CustomerTaxSettings` reprezentuje daňové nastavení konkrétního zákazníka v Shopify. Klíčovým polem je `taxId` — daňové identifikační číslo (DIČ, resp. IČ DPH, VAT ID), které zákazník dobrovolně vyplní při checkoutu. Toto číslo slouží jako doklad registrace k DPH a je nezbytné pro správné vystavování dokladů v přeshraničním obchodě uvnitř i vně EU.
+
+    Shopify rozlišuje daňová nastavení na dvou úrovních: pro firemní lokace v rámci B2B (`CompanyLocation.taxSettings.taxRegistrationId`, dostupné od API 2025-01) a pro individuální zákazníky (`Customer.taxSettings`). Zatímco B2B pole bylo přístupné vývojářům dříve, zákaznické `taxSettings` zůstávalo interní součástí platformy. Zpřístupnění v API 2026-07 sjednocuje přístup k daňovým identifikátorům napříč oběma typy subjektů.
+
+    Praktické využití spočívá zejména v automatizaci B2B procesů: aplikace mohou načíst VAT číslo zákazníka a předat ho do ERP systémů, fakturačních nástrojů nebo účetních synchronizací bez nutnosti manuálního přepisu. Zvláště relevantní je tato funkce pro merchanty prodávající do zemí EU s povinností ověřování DIČ nebo pro cross-border obchod vyžadující daňovou dokumentaci.
+
+    Shopify paralelně rozšiřuje B2B funkcionality i na plány mimo Shopify Plus (od dubna 2026), což zvyšuje počet merchantů, kteří budou tuto funkcionalitu potřebovat. Pole `taxId` je nepovinné — zákazník ho při nákupu nemusí vyplnit — takže aplikace musí počítat s hodnotou `null`.
+  zdroje:
+    - title: "Customer tax settings now available in Admin API — Shopify Changelog"
+      url: "https://shopify.dev/changelog/customer-tax-settings-now-available-in-admin-api"
+    - title: "Shopify zpřístupňuje B2B features všem plánům"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/b2b-for-all-merchants/"
+    - title: "Updated list of tax-inclusive countries pro dynamic pricing"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/tax-inclusive-countries-update/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
+
 tldr: "Od API 2026-07 lze v Admin API číst tax IDs (VAT) zákazníků sebrané při checkoutu."
 tagy: [customer, tax, vat, b2b]
 ---

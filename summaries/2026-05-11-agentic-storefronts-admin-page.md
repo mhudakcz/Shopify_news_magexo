@@ -17,6 +17,23 @@ dukaz_integratoru: "Admin UI dashboard pro Agentic Storefronts. Naše integrace 
 dotcene_klienty: []
 souvisejici: [agentic-commerce-build-commerce-agents, shopify-catalog-for-all]
 
+kontext:
+  background: |
+    Agentic Storefronts je kanál distribuce produktů, který zpřístupňuje zboží merchantů přímo uvnitř konverzačních AI platforem — zákazník tak může objevit a koupit produkt bez návštěvy e-shopu, přímo v chatovacím rozhraní jako ChatGPT, Microsoft Copilot nebo Perplexity. Shopify zajišťuje propojení automaticky skrze svůj Catalog, merchantovi stačí mít data v pořádku.
+
+    Tato funkce je součástí širší strategie Agentic Commerce, kterou Shopify prezentoval v rámci Editions Winter 2026. Technickým základem je Shopify Catalog MCP server (v dubnu 2026 migrovaný na protokol UCP — Unified Commerce Protocol), který AI agentům poskytuje živá produktová data včetně cen, dostupnosti a variant. Cílem je replikovat úlohu klasického vyhledávače, ale v prostředí AI konverzace.
+
+    Z pohledu merchantů jde o nový výkonnostní kanál srovnatelný s organickým vyhledáváním: viditelnost závisí na kvalitě produktových dat (popisy, atributy, obrázky). Nový admin dashboard centralizuje monitoring tohoto kanálu na jednom místě. Doplňkovými nástroji ekosystému jsou soubory `/llms.txt` a `/agents.md`, které merchantům umožňují řídit, jak AI agenti interpretují jejich obchod.
+
+  zdroje:
+    - title: "A new home for Agentic Storefronts in your admin"
+      url: "https://changelog.shopify.com/posts/a-new-home-for-agentic-storefronts-in-your-admin"
+    - title: "Agentic Commerce: stavba AI agentů nad Shopify katalogem"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/agentic-commerce-build-commerce-agents/"
+    - title: "Customizable /llms.txt a /agents.md v theme editoru"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/customize-llms-txt-agents-md/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Agentic Storefronts (přístupnost produktů pro AI kanály jako ChatGPT, Perplexity) má nyní dedikovanou admin stránku — performance tracking, query rankings, doporučení na vylepšení dat."
 tagy: [agentic-commerce, ai, storefront, dashboard, admin]
 ---

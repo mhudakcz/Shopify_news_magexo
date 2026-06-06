@@ -19,6 +19,26 @@ dukaz_integratoru: "Máme 12 metaobject methods. Pokud používáme app-owned me
 dotcene_klienty: []
 souvisejici: [removing-private-publicread-enums-metaobjects]
 
+kontext:
+  background: |
+    Metaobjekty (metaobjects) jsou v Shopify strukturované datové typy, které umožňují ukládat opakovaně použitelná data s více poli — například autorské profily, tabulky velikostí nebo záruční informace. Na rozdíl od metapolí, která rozšiřují existující zdroje, tvoří metaobjekty zcela nové datové entity.
+
+    Shopify rozlišuje dva modely vlastnictví metaobjektů: merchant-owned (s libovolným prefixem, spravované obchodníkem) a app-owned (s vyhrazeným prefixem `$app`, konfigurované v `shopify.app.toml`). App-owned metaobjekty jsou ze své podstaty izolované — jsou viditelné a přístupné pouze jejich vlastnické aplikaci. Historicky však i pro ně Shopify vyžadoval explicitní deklaraci OAuth scopů jako `read_metaobjects` nebo `write_metaobjects` v manifestu aplikace, přestože jiné aplikace k těmto datům přístup nemají.
+
+    Odstranění povinných scopů pro app-owned metaobjekty v API 2026-04 snižuje tření při instalaci aplikace: merchant vidí kratší seznam požadovaných oprávnění, což zvyšuje důvěru a konverzní poměr instalací. Tato změna se dotýká pouze metaobjektů s `$app:` prefixem — merchant-owned metaobjekty nadále vyžadují příslušné scopy.
+
+    Změna je součástí širší evoluce přístupového modelu metaobjektů v Shopify. Souběžně probíhá deprecace starých enum hodnot `PRIVATE` a `PUBLIC_READ` v `MetaobjectAdminAccess` (plánováno pro API 2026-07) a přidání pole `access` do `StandardMetaobjectDefinitionTemplate`, což dohromady tvoří konzistentnější a srozumitelnější systém řízení přístupu k vlastním datovým strukturám.
+  zdroje:
+    - title: "Shopify Changelog: Metaobject scopes not required for app metaobjects"
+      url: "https://shopify.dev/changelog/metaobject-scopes-not-required-for-app-metaobjects"
+    - title: "Shopify Docs: Metaobjects — vlastnictví a access scopes"
+      url: "https://shopify.dev/docs/apps/build/custom-data/metaobjects"
+    - title: "Digest: Odstranění PRIVATE/PUBLIC_READ enumů na metaobject definitions (2026-04-15)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/removing-private-publicread-enums-metaobjects/"
+    - title: "Digest: access pole na StandardMetaobjectDefinitionTemplate (2026-04-01)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/access-field-standardmetaobjectdefinitiontemplate/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "App-owned metaobjects identifikované $app prefixem už nepotřebují access scopes v API 2026-04+."
 tagy: [metaobject, scopes, oauth, simplification]
 ---

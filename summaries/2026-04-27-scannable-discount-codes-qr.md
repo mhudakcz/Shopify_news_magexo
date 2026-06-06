@@ -22,6 +22,26 @@ dukaz_integratoru: "Funkce je v Shopify Admin UI, ne v API. Naše discount metho
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    QR kód pro slevový kód je vizuální reprezentace URL ve tvaru `https://{shop}.myshopify.com/discount/{CODE}`, kde `{CODE}` je textový identifikátor slevy. Zákazník nebo personál kód naskenuje a Shopify automaticky aplikuje příslušnou slevu do košíku. Tento mechanismus nevyžaduje žádné API volání na straně vývojáře aplikace — vše řídí Shopify storefront routing na základě URL.
+
+    Shopify Admin historicky umožňoval sdílení slev přes tzv. shareable links — textové URL generované ručně nebo přes marketing campaigns. Generování QR kódů přímo z Adminu rozšiřuje tento koncept na fyzický (in-store a tiskový) kanál: obchodník může kód umístit na leták, plakát nebo výložní plochu. Funkce vznikla jako doplněk k POS workflow, kde POS aplikace od verze 11.5 umí tyto kódy skenovat a ihned aplikovat při pokladní transakci.
+
+    Klíčovým technickým detailem je dvojité URL encoding speciálních znaků (mezery, `#`, `+`, `%`). Shopify interně kóduje znaky jednou (např. mezera → `%20`), a celý zakódovaný řetězec pak kóduje znovu (např. `%20` → `%2520`). Vývojáři vlastních nástrojů generujících QR kódy slev musejí toto chování replikovat, jinak se kód při skenování nerozpozná správně.
+
+    Funkce tvoří součást širší snahy Shopify propojit online a offline slevové kanály — spolu s POS Smart Grid discount tiles a napojením slev na marketing campaigns s UTM parametry.
+  zdroje:
+    - title: "Shopify Changelog: Scannable discount codes"
+      url: "https://shopify.dev/changelog/scannable-discount-codes"
+    - title: "Shopify Archive: Skenování QR slevových kódů v POS"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/pos-scan-discount-codes/"
+    - title: "Shopify Archive: Smart Grid – dropdown výběr slev"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/pos-smart-grid-discount-tiles/"
+    - title: "Shopify Archive: Tracking slev s marketing campaigns"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/track-discounts-marketing-campaigns/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Adminu lze nyní generovat QR kódy slev — speciální znaky vyžadují dvojité URL encoding."
 tagy: [discount, qr-code, admin-ui, marketing]
 ---

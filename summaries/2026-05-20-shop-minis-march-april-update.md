@@ -18,6 +18,24 @@ dukaz_integratoru: "Shop Minis SDK changes. Neimplementujeme Shop Minis."
 dotcene_klienty: []
 souvisejici: [shop-minis-february-2026-update]
 
+kontext:
+  background: |
+    Shop Minis je framework Shopify pro tvorbu miniaturních aplikací (React Native) spouštěných přímo uvnitř mobilní aplikace Shop. Vývojáři k nim přistupují přes dedikované SDK s hooky, komponentami a CLI — miniaplikace se zobrazují zákazníkům v kontextu prohlížení produktů nebo obchodů, aniž by museli opouštět aplikaci.
+
+    Správa oprávnění v mobilních aplikacích tradičně funguje na principu "vše nebo nic" — uživatel buď udělí všechna požadovaná práva, nebo aplikaci opustí. Shopify postupně zavádí granulárního modelu inspirovaného oprávněními iOS/Android: od únorových consent flows (2026) přes optional consent, až po oddělení Shopify scopes od systémových oprávnění OS (kamera, fotogalerie).
+
+    Intents přidávají nový způsob spouštění Shop Minis: namísto přímého vstupu uživatele se miniaplikace spustí z relevantního kontextu v Shop app — například z detailu produktu s záměrem `try_on` (virtuální zkouška) nebo `view_in` (AR vizualizace). Tato distribuce rozšiřuje dosah miniaplikací bez nutnosti, aby je uživatel aktivně hledal.
+
+    Souběžné změny zahrnují také omezení localStorage (migrace na useAsyncStorage, max 10 klíčů) a nové pole availableForSale na variantách produktů, které zpřesňují práci s dostupností zboží.
+  zdroje:
+    - title: "Shop Minis March/April 2026 Update — Shopify Changelog"
+      url: "https://shopify.dev/changelog/shop-minis-march-april-2026-update"
+    - title: "Shop Minis únor 2026 update — Shopify Changelog"
+      url: "https://shopify.dev/changelog/shop-minis-february-2026-update"
+    - title: "Shop Minis únor 2026 update (archiv)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/shop-minis-february-2026-update/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shop Minis podporují optional consent (uživatel může odmítnout scope a pokračovat). Nové hooks useCheckScopesConsent / useRequestScopesConsent / useCheckPermissions pro runtime permission checks. Intents pro contextual distribuci."
 tagy: [shop-minis, mobile, consent, permissions]
 ---

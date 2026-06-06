@@ -20,6 +20,24 @@ dukaz_integratoru: "Máme 30+ product methods včetně variant operations (appen
 dotcene_klienty: []
 souvisejici: [2048-variants-per-product]
 
+kontext:
+  background: |
+    Publishable je GraphQL interface v Shopify Admin API, který definuje sadu polí a mutací pro ovládání viditelnosti zdroje napříč distribučními kanály. Původně ho implementovaly pouze typy Product a Collection — každý takový zdroj lze publikovat nebo skrýt na konkrétní prodejní kanál (online obchod, Shop aplikace, marketplace) prostřednictvím mutací publishablePublish a publishableUnpublish. Interface zahrnuje pole jako resourcePublicationsV2, publishedOnPublication a availablePublicationsCount.
+
+    Shopify postupně rozšiřuje model publikování směrem k větší granularitě. Zatímco dříve bylo publikování vždy záležitostí celého produktu, rostoucí poptávka po multi-channel distribucích — zejména s nárůstem B2B a marketplace kanálů — ukázala potřebu jemnějšího řízení na úrovni jednotlivých SKU. Souběžně Shopify zvýšil limit variant na 2 048 per produkt, čímž otevřel prostor pro rozsáhlé produktové matice, kde plošné publikování celého produktu přestává být praktické.
+
+    Rozšíření Publishable interface na ProductVariant umožňuje merchantům cíleně řídit dostupnost konkrétních SKU per kanál bez nutnosti duplikovat produkty nebo měnit jejich celkový stav. To má přímý dopad na produktové feedy, synchronizaci s ERP systémy a výkon na sales channel aplikacích, které musí nově respektovat stav publikace na úrovni variant. Opt-out model (varianty jsou výchozně publikovány spolu s produktem) zajišťuje zpětnou kompatibilitu.
+  zdroje:
+    - title: "Shopify Changelog: Publish and unpublish product variants independently from product"
+      url: "https://shopify.dev/changelog/publish-and-unpublish-product-variants-independently-from-product"
+    - title: "Shopify Admin GraphQL: Publishable interface"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/interfaces/Publishable"
+    - title: "Archiv: Limit variant per produkt zvýšen z 100 na 2048"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/2048-variants-per-product/"
+    - title: "Archiv: Multi-channel support pro sales channel apps"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/multi-channel-sales-channel-apps/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Od API 2026-07 je ProductVariant typu Publishable — varianty lze publikovat/skrýt per channel nezávisle na úrovni produktu. Užitečné pro klienty s velkou produktovou maticí, kteří chtějí granulární kontrolu."
 tagy: [product, variant, publish, channel, breaking-friendly]
 ---

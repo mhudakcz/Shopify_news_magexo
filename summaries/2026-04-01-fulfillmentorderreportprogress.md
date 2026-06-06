@@ -19,6 +19,34 @@ dukaz_integratoru: "Máme 6 fulfillment methods (createFulfillment, getFulfillme
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    FulfillmentOrder je základní entita Shopify fulfillment pipeline — reprezentuje skupinu položek objednávky, která má být zpracována jednou konkrétní fulfillment službou nebo skladem. Každý FulfillmentOrder prochází stavovým automatem (OPEN → IN_PROGRESS → atd.) a slouží jako rozhraní mezi merchantem a subjektem zajišťujícím fyzické vychystání a odeslání zboží.
+
+    Shopify rozlišuje dva typy správy fulfillment orderů: objednávky spravované merchantem a objednávky přidělené registrované fulfillment službě (typicky 3PL nebo WMS). Před zavedením dedikované mutace neměly 3PL systémy standardizovaný způsob, jak průběžně informovat merchantův obchod o stavu práce — vývojáři se uchylovali ke kombinaci fulfillment eventů, metafieldů nebo vlastních tagů. Shopify fulfillment service API existuje dlouhodobě, ale granulární progress reporting na úrovni FulfillmentOrder byl dosud chybějícím článkem.
+
+    Nová mutace vyžaduje scope `write_assigned_fulfillment_orders` nebo `write_merchant_managed_fulfillment_orders` spolu s oprávněním `fulfill_and_ship_orders`, takže je dostupná pouze aplikacím s explicitně registrovanou fulfillment službou. Výsledkem volání je přechod orderu do stavu IN_PROGRESS s volitelnou textovou poznámkou (max. 256 znaků), přičemž Shopify automaticky odešle merchant webhook `fulfillment_orders/progress_reported`. Tento přístup standardizuje audit trail a zlepšuje viditelnost logistického procesu pro merchant i zákazníka.
+  priklad: |
+    mutation {
+      fulfillmentOrderReportProgress(
+        id: "gid://shopify/FulfillmentOrder/123"
+        progressReport: { reasonNotes: "Picking started" }
+      ) {
+        fulfillmentOrder { id status }
+        userErrors { field message }
+      }
+    }
+  zdroje:
+    - title: "Shopify Changelog: fulfillmentOrderReportProgress GraphQL mutation"
+      url: "https://shopify.dev/changelog/report-fulfillment-order-progress-with-new-fulfillmentorderreportprogress-graphql-mutation"
+    - title: "Shopify Admin GraphQL: fulfillmentOrderReportProgress mutation"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/mutations/fulfillmentOrderReportProgress"
+    - title: "Shopify News Archive: shipping-line-fulfillmentorderlineitem"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/shipping-line-fulfillmentorderlineitem/"
+    - title: "Shopify News Archive: mark-fulfillments-delivered-without-tracking"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/mark-fulfillments-delivered-without-tracking/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "API 2026-04: 3PL nově reportuje progress fulfillment orderů přes fulfillmentOrderReportProgress (s webhook + status notes)."
 tagy: [fulfillment, 3pl, webhook, logistics]
 ---

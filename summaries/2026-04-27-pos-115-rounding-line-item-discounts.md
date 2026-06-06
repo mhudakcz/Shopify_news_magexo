@@ -22,6 +22,26 @@ dukaz_integratoru: "interní MCP check našel orderEditAddLineItemDiscount v na�
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    Fixní sleva na řádek (line item discount) je sleva vyjádřená pevnou peněžní částkou aplikovaná na celou položku v košíku bez ohledu na počet kusů. V Shopify POS ji může nastavit personál ručně nebo prostřednictvím předkonfigurovaných dlaždic ve Smart Gridu. Rozhraní Cart API pro POS extensions ji přijímá přes metody `setLineItemDiscount` nebo `bulkSetLineItemDiscounts` s typem `FixedAmount`.
+
+    Historicky Shopify POS počítal pevnou slevu jako jeden celek aplikovaný na hodnotu celého řádku. Přechod na výpočet per kus — kdy se celková částka nejprve vydělí počtem kusů a výsledek se zaokrouhlí pro každou jednotku zvlášť — přibližuje POS chování tomu, jak slevy zpracovává Admin a online checkout Shopify. Motivací je konzistentnost výpočtů napříč kanály, zejména pro reporting a daňové základy.
+
+    Praktický dopad se projevuje při agregaci slev v reportech: při větším objemu transakcí se mohou kumulovat drobné rozdíly způsobené zaokrouhlením na úrovni jednotek. Účetní sesouhlasení nebo integrace exportující položkové slevy musí s touto odchylkou počítat. Změna nijak neovlivňuje procentuální slevy ani discount kódy aplikované na celou objednávku.
+
+    Shopify plánuje v budoucích API verzích (po 2026-04) vyžadovat předávání slev přímo jako částky per kus, nikoli za celý řádek. Vývojáři POS extensions by měli sledovat vývoj Cart API, aby včas adaptovali svůj kód.
+  zdroje:
+    - title: "Shopify Changelog: Minor rounding change for custom line item discounts in POS 11.5"
+      url: "https://shopify.dev/changelog/minor-rounding-change-for-custom-line-item-discounts-in-pos-115"
+    - title: "Archiv: Rychlejší zadávání slev v POS"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/faster-discount-entry-pos/"
+    - title: "Archiv: Smart Grid – dropdown výběr slev místo manual entry"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/pos-smart-grid-discount-tiles/"
+    - title: "Archiv: Skenování QR slevových kódů v POS"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/pos-scan-discount-codes/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "POS 11.5 aplikuje fixní slevy per kus místo na celý řádek — možný rozdíl ±1 cent v zaokrouhlení."
 tagy: [pos, discount, line-item, rounding]
 ---

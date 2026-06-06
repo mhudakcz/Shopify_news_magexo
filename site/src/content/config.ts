@@ -36,6 +36,23 @@ const summaries = defineCollection({
     tagy: z.array(z.string()).default([]),
     zdroj_kanal: z.enum(['dev-changelog', 'merchant-changelog', 'editions', 'product-news', 'blog']).default('dev-changelog'),
     obrazek: z.string().url().nullable().optional(),
+
+    // AI-doplněný kontext (volitelný — generováno přes /enrich)
+    kontext: z
+      .object({
+        background: z.string(),                // 100-250 slov: co to je, proč to existuje, širší rámec
+        priklad: z.string().optional(),        // volitelný code snippet / use case
+        zdroje: z.array(                       // všechny zdroje, ze kterých kontext čerpá
+          z.object({
+            title: z.string(),
+            url: z.string().url(),
+          })
+        ).min(1),
+        generated_at: z.coerce.date(),
+        model: z.string().default('claude-sonnet-4-5'),
+      })
+      .nullable()
+      .optional(),
   }),
 });
 

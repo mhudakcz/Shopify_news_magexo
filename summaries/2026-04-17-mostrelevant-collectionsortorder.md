@@ -18,6 +18,20 @@ pouzivame_v_integratoru: mozna
 dukaz_integratoru: "Máme product/collection methods v shopify-client. MOST_RELEVANT je nový enum value pro řazení produktů v kolekci — využití závisí, jestli klient potřebuje relevantní řazení mimo manuálně nastavené."
 dotcene_klienty: []
 
+kontext:
+  background: |
+    Enum `CollectionSortOrder` existuje v Shopify GraphQL Admin API jako výčtový typ, který určuje pořadí produktů v kolekcích — používá se například v mutaci `collectionUpdate` při poli `sortOrder`. Před verzí 2026-07 nabízel osm hodnot: `ALPHA_ASC` a `ALPHA_DESC` (abecední řazení), `BEST_SELLING` (prodejnost), `CREATED` a `CREATED_DESC` (datum přidání produktu), `MANUAL` (manuální pořadí nastavené merchantem), `PRICE_ASC` a `PRICE_DESC` (cena).
+
+    Hodnota `MOST_RELEVANT` je devátou, nově přidanou možností a je součástí širšího trendu Shopify směrem k relevančnímu řazení obsahu řízeného daty. Podobný princip relevance-rankingu Shopify dlouhodobě využívá ve vyhledávání na Storefront API (Predictive Search, Search & Discovery app) a v doporučeních produktů.
+
+    Přidání `MOST_RELEVANT` na úrovni Admin API umožňuje toto chování programaticky nastavit jako výchozí sort order kolekce — tedy bez manuálního zásahu merchantem. Konkrétní algoritmus relevance Shopify nezveřejňuje, ale obecně kombinuje signály jako prodejnost, datum přidání produktu a další interní metriky.
+  zdroje:
+    - title: "Shopify Changelog: Added MOST_RELEVANT value for CollectionSortOrder"
+      url: "https://shopify.dev/changelog/added-mostrelevant-value-for-collectionsortorder"
+    - title: "Shopify Docs: CollectionSortOrder enum (2026-07)"
+      url: "https://shopify.dev/docs/api/admin-graphql/2026-07/enums/CollectionSortOrder"
+  generated_at: 2026-06-05T15:00:00Z
+  model: claude-sonnet-4-5
 tldr: "Nový enum MOST_RELEVANT pro řazení produktů v kolekcích od API 2026-07."
 tagy: [collection, sort, product]
 ---

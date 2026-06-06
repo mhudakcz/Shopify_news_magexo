@@ -18,6 +18,26 @@ dukaz_integratoru: "Naše B2B integrace často propojují Shopify s ERP klientů
 dotcene_klienty: []
 souvisejici: []
 
+kontext:
+  background: |
+    ERP (Enterprise Resource Planning) systémy jsou podnikové platformy, které integrují klíčové firemní procesy — účetnictví, sklady, výrobu, nákup a prodej — do jednoho systému. V B2B obchodě slouží jako autoritativní zdroj dat o zákaznících, objednávkách a platebních podmínkách. Mezi nejrozšířenější ERP patří NetSuite (Oracle), Sage, Acumatica a specializované platformy pro obchod jako BrightPearl nebo Fulfil.
+
+    Shopify historicky vyžadoval pro propojení s ERP custom middleware nebo třetí strany jako Celigo či Boomi. V rámci Shopify B2B — funkcionality dostupné původně výhradně na Plus plánu — se správa firem probíhá přes objekty Company, CompanyLocation a CompanyContact v Admin GraphQL API. Platební podmínky (Payment Terms) jsou vázány na lokace a určují splatnosti i způsoby úhrady. Udržovat tato data konzistentní se zdrojem pravdy v ERP bylo doposud netriviální.
+
+    Nativní integrace představené v Renaissance edition (Winter 2026) eliminují potřebu vlastního synchronizačního kódu pro standardní datové toky. Jsou realizovány přes integrační partnery (Patchworks, Kensium a dalších) a pokrývají entities companies, orders a payment terms. To zrychluje nasazení B2B projektů a snižuje provozní náklady u klientů, kteří žádný custom middleware nepotřebují.
+
+    Souběžně Shopify rozšířil B2B funkce na plány Basic, Grow a Advanced — nativní ERP integrace tedy potenciálně osloví výrazně širší okruh obchodníků, než bylo dříve možné v rámci Plus exkluzivity.
+  zdroje:
+    - title: "Shopify Editions Winter 2026"
+      url: "https://www.shopify.com/editions/winter2026"
+    - title: "Shopify B2B Apps and API Overview"
+      url: "https://shopify.dev/docs/apps/b2b"
+    - title: "EDI workflows: Crstl a SPS Commerce (archiv)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/edi-workflows-crstl-sps/"
+    - title: "Shopify B2B pro všechny plány (archiv)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/b2b-for-all-merchants/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify B2B nativně syncuje companies, orders, payment terms s NetSuite, BrightPearl, Fulfil, Sage, Acumatica."
 tagy: [b2b, erp, netsuite, sage, integration]
 ---

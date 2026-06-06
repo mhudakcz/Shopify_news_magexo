@@ -19,6 +19,24 @@ dukaz_integratoru: "Máme storefront discount methods minimálně, primárně pr
 dotcene_klienty: []
 souvisejici: [add-tags-to-discounts]
 
+kontext:
+  background: |
+    Storefront API v Shopify je GraphQL rozhraní určené pro headless a vlastní frontend aplikace — umožňuje číst produkty, spravovat košík a řídit pokladní tok bez nutnosti použití standardního Shopify tématu. Klíčovým objektem je typ `Cart`, který reprezentuje aktivní nákupní košík zákazníka včetně řádkových položek, doručovacích skupin a aplikovaných slev.
+
+    Historicky pracoval `cart.discountAllocations` s alokovanými částkami — tedy kolik ze slevy bylo přiřazeno konkrétnímu řádku. Tento přístup ztěžoval zobrazení původní nakonfigurované hodnoty slevy (např. „10 % na celou objednávku") odděleně od výsledné částky. Shopify proto v API verzi 2026-07 přechází na dvouvrstvý model: `discountApplications` nese metadata o každé slevě (typ, hodnota), zatímco `sourceDiscountApplication` na úrovni řádkové alokace ukazuje zpět na konkrétní slevu, z níž alokace pochází.
+
+    V praxi se tato změna týká zejména vývojářů Hydrogen storefront a dalších headless implementací, kteří renderují vlastní „discount breakdown" v košíku — například zobrazení čáry přeškrtnuté ceny nebo rozúčtování slev. Stávající dotazy využívající `cart.discountAllocations` bude nutné před 2026-07 přepsat, jinak selžou. Změna navazuje na širší trend Shopify unifikovat datový model slev napříč Admin i Storefront API.
+
+    Souběžně Shopify v API 2026-04 přidalo podporu více product discounts na jednu cart line (umožňující stacking pro komplexní promo akce), čímž se nový strukturovaný model `discountApplications` stává ještě důležitějším pro správné zobrazení všech aplikovaných slev.
+  zdroje:
+    - title: "Shopify Changelog: New discount fields in the Storefront cart GraphQL API"
+      url: "https://shopify.dev/changelog/new-discount-fields-in-the-storefront-cart-graphql-api"
+    - title: "Shopify Archive: Více product discounts na jeden cart line"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/multiple-product-discounts-cart-line/"
+    - title: "Shopify Archive: Tagy na slevách v Admin API od 2026-04"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/add-tags-to-discounts/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Storefront API 2026-07 deprecuje cart.discountAllocations; nahrazují discountApplications a sourceDiscountApplication."
 tagy: [storefront, cart, discount, deprecation]
 ---

@@ -19,6 +19,36 @@ dukaz_integratoru: "Máme inventory methods. Argument includeInactive umožňuje
 dotcene_klienty: []
 souvisejici: [isactive-field-inventorylevel]
 
+kontext:
+  background: |
+    InventoryLevel je objekt v Shopify Admin GraphQL API, který propojuje konkrétní skladovou položku (InventoryItem) s konkrétní lokací (Location) a sleduje množství zásob v různých stavech — dostupné, fyzické, příchozí nebo objednané. Každá kombinace položky a lokace tvoří jeden InventoryLevel. Pole `isActive` pak určuje, zda daná lokace aktivně sleduje a spravuje zásoby daného produktu.
+
+    Shopify zavedl koncept aktivních a neaktivních inventory levels zejména s rozvojem multi-location inventory, kdy merchant může mít desítky provozoven nebo skladů. Lokace lze prostřednictvím mutace `inventoryDeactivate` dočasně nebo trvale vypnout — záznamy o zásobách zůstávají zachovány pro historické účely, ale do dostupnosti se nezapočítávají. Do API verze 2026-04 nebylo možné tyto neaktivní záznamy přes dotazy přímo získat.
+
+    Nový argument `includeInactive: Boolean` na polích `inventoryLevels` a `inventoryLevel` dává vývojářům možnost explicitně zahrnout neaktivní záznamy do výsledků dotazu. Výchozí hodnota `false` zajišťuje plnou zpětnou kompatibilitu — stávající queries fungují beze změny. Hodnota `true` je vhodná pro auditní a analytické scénáře: přehled uzavřených skladů, reconciliation inventury nebo zobrazení historického stavu zásob. Tato změna úzce navazuje na přidání pole `isActive` na typ InventoryLevel ve stejné verzi API.
+  priklad: |
+    query {
+      inventoryItem(id: "gid://shopify/InventoryItem/123") {
+        inventoryLevels(first: 10, includeInactive: true) {
+          edges {
+            node {
+              location { name }
+              isActive
+              quantities(names: ["available"]) { name quantity }
+            }
+          }
+        }
+      }
+    }
+  zdroje:
+    - title: "Add includeInactive argument to inventoryLevels and inventoryLevel fields — Shopify Changelog"
+      url: "https://shopify.dev/changelog/add-includeinactive-argument-to-inventorylevels-and-inventorylevel-fields"
+    - title: "InventoryLevel — Admin GraphQL API"
+      url: "https://shopify.dev/docs/api/admin-graphql/latest/objects/InventoryLevel"
+    - title: "isActive pole na InventoryLevel v 2026-04"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/isactive-field-inventorylevel/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "API 2026-04: argument includeInactive umožňuje query inactive inventory levels."
 tagy: [inventory, inventory-level, query]
 ---

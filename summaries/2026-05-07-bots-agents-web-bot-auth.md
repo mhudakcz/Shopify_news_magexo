@@ -20,6 +20,23 @@ dukaz_integratoru: "Storefront API rate limity. Pokud naše integrace v custom f
 dotcene_klienty: []
 souvisejici: [agentic-commerce-build-commerce-agents]
 
+kontext:
+  background: |
+    Web Bot Auth je otevřený webový standard pro digitální identifikaci automatizovaných klientů — botů, crawlerů a AI agentů — při přístupu k HTTP zdrojům. Technicky stojí na HTTP Message Signatures (RFC 9421), kde operátor podepíše každý request asymetrickým klíčem, čímž prokáže svou totožnost serveru bez nutnosti sdílet tajné tokeny. Výsledkem je ověřitelná, nefalsifikovatelná identita volajícího.
+
+    Shopify Storefront API je veřejně přístupné a historicky bylo terčem nadměrného provozu od neidentifikovaných botů a scraperů. Web Bot Auth řeší tento problém zavedením tří úrovní důvěryhodnosti: nepodepsané requesty dostávají nejpřísnější rate limity, podepsané requesty Web Bot Auth mají limity vyšší a obchodníci, kteří se zaregistrují u Shopify přes kontaktní formulář, mohou získat nejvyšší tier. Shopify Admin navíc umožňuje obchodníkům generovat hotové Web Bot Auth podpisy přímo pro jejich agenty.
+
+    Změna se týká především agentic commerce use cases — AI asistentů a shopping agentů, kteří volají Storefront API jménem zákazníka nebo operátora. Bez správně implementovaného podpisu hrozí vyšší výskyt chyb HTTP 429 a degradovaný výkon. Standard Web Bot Auth přímo doplňuje ostatní Shopify AI infrastrukturu, jako jsou soubory `/llms.txt` a `/agents.md` pro řízení AI crawlerů či Catalog MCP server pro strukturovaný přístup k produktovému katalogu.
+
+  zdroje:
+    - title: "Shopify Changelog: Bots and agents should identify themselves via Web Bot Auth"
+      url: "https://shopify.dev/changelog/bots-and-agents-should-identify-themselves-via-web-bot-auth"
+    - title: "Agentic Commerce: stavba AI agentů nad Shopify katalogem"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/agentic-commerce-build-commerce-agents/"
+    - title: "Customizable /llms.txt, /llms-full.txt a /agents.md v theme editoru"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/customize-llms-txt-agents-md/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shopify zavádí přísnější rate limity pro boty a AI agenty na Storefront API. Operátoři by měli podepisovat requesty přes Web Bot Auth pro vyšší rate limit. Action Required pro custom AI integrace."
 tagy: [storefront, rate-limit, bot, ai-agent, web-bot-auth, security]
 ---

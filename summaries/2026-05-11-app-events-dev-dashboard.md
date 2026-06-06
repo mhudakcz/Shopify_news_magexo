@@ -18,6 +18,38 @@ dukaz_integratoru: "App Events API umožňuje custom event tracking pro naše cu
 dotcene_klienty: []
 souvisejici: [shopify-app-pricing-usage-subscriptions]
 
+kontext:
+  background: |
+    App Events API je REST rozhraní Shopify, které umožňuje vývojářům aplikací odesílat vlastní pojmenované události na centrální endpoint `https://api.shopify.com/app/unstable/events`. Každý požadavek přenáší jeden event identifikovaný polem `event_handle` spolu s identifikátorem obchodu, časovým razítkem a unikátním klíčem idempotence. Shopify ukládá přijatá data po dobu 30 dní a zpřístupňuje je v Dev Dashboard Logs.
+
+    Dev Dashboard byl zaveden jako sjednocený nástroj pro vývojáře Shopify aplikací, kde lze sledovat webhooky, volání Admin API a výkon embedded apps. App Events jej rozšiřuje o vlastní aplikační telemetrii — namísto budování samostatné analytické infrastruktury vývojáři přesměrují data přímo do prostředí, které merchant i vývojář již zná. Autentizace probíhá přes OAuth client credentials flow; tokeny jsou platné 60 minut a API je limitováno na 500 požadavků za sekundu na aplikaci.
+
+    Klíčové propojení existuje se systémem Shopify App Pricing (dříve Managed Pricing), kde lze každý `event_handle` namapovat na billing metr nakonfigurovaný v Partner Dashboardu. Tím lze implementovat usage-based fakturaci nativně v ekosystému Shopify bez vlastní platební infrastruktury. Events s hodnotou v poli `attributes.value` se přenášejí do billing pipeline; chyby účtování jsou viditelné výhradně v Dev Dashboard Logs, nikoliv v samotné API odpovědi, která vždy vrací `202 Accepted`.
+
+    Kombinace App Events a App Pricing otevírá cestu k modelům „pay per use" pro Shopify aplikace — vývojáři tak mohou transparentně sledovat i účtovat operace jako zpracování objednávek, synchronizace dat nebo odesílání notifikací přímo přes platformu.
+  priklad: |
+    POST https://api.shopify.com/app/unstable/events
+    Authorization: Bearer <jwt_token>
+    Content-Type: application/json
+
+    {
+      "shop_id": "gid://shopify/Shop/1234567890",
+      "event_handle": "order_processed",
+      "timestamp": "2026-05-11T10:00:00Z",
+      "idempotency_key": "unique-key-abc123",
+      "attributes": { "value": 1 }
+    }
+  zdroje:
+    - title: "App Events: See app usage and performance data in your Dev Dashboard"
+      url: "https://shopify.dev/changelog/app-events-see-app-usage-and-performance-data-in-your-dev-dashboard"
+    - title: "Shopify Docs: App Events API"
+      url: "https://shopify.dev/docs/apps/build/app-events"
+    - title: "Shopify App Pricing: usage + subscriptions billing kombinace"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/shopify-app-pricing-usage-subscriptions/"
+    - title: "Admin Web Vitals monitoring přesunut do Dev Dashboard"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/admin-web-vitals-dev-dashboard/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "App Events API umožňuje posílat události do Shopify single endpointu. Data se zobrazí v Dev Dashboard Logs vedle webhooks a API calls. Events lze převést na usage-based billing přes Shopify App Pricing."
 tagy: [app-events, dev-dashboard, billing, usage, monitoring]
 ---

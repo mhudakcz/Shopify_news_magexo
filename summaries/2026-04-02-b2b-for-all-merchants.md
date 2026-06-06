@@ -18,6 +18,24 @@ dukaz_integratoru: "Naše B2B integrace dosud cílily primárně na Shopify Plus
 dotcene_klienty: []
 souvisejici: [erp-systems-integration-b2b, edi-workflows-crstl-sps]
 
+kontext:
+  background: |
+    Shopify B2B je sada nativních nástrojů pro velkoobchodní prodej přímo v rámci platformy. Zahrnuje firemní profily (Companies) s přiřazenými kontakty a rolemi, individuální katalogy produktů s vlastními cenami a objemovými slevami, platební podmínky umožňující odložené platby (net terms), uložené platební karty a správu nákupních objednávek. Jde o plnohodnotnou alternativu k tradičním B2B řešením postaveným na oddělených systémech.
+
+    Shopify B2B bylo původně spuštěno jako součást Shopify Plus a po dobu několika let se vyvíjelo výhradně pro merchants s velkým objemem a složitými požadavky. Přístup k těmto funkcím byl podmíněn předplatným Plus plánu, který je výrazně dražší než standardní plány. Velkoobchodní prodej na nižších plánech byl řešen výhradně třetími aplikacemi (jako Wholesale Hero nebo Wholesale Club), což znamenalo fragmentaci dat a vyšší složitost provozu.
+
+    Zpřístupnění B2B na plánech Basic, Grow a Advanced otevírá velkoobchodní prodej stovkám tisíc merchantů, kteří dříve neměli přístup k nativnímu řešení. Klíčová je přitom integrace s dalšími core funkcemi platformy — Shopify Flow umožňuje automatizaci B2B workflow, Markets pokrývá mezinárodní B2B prodej a Shopify Payments zajišťuje zpracování plateb. Dle dat Shopify průměrný uživatel nativního B2B zaznamenává nárůst sebeobslužných objednávek o 33 % v průběhu šesti měsíců.
+
+    Rozšíření B2B mimo Plus plán signalizuje strategický posun Shopify — platforma se snaží stát univerzálním řešením pro merchants všech velikostí a obchodních modelů, nikoliv jen pro DTC segment.
+  zdroje:
+    - title: "Shopify brings native B2B features to millions more merchants"
+      url: "https://www.shopify.com/news/b2b-for-all"
+    - title: "Nativní B2B integrace s ERP systémy (Winter 2026)"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/erp-systems-integration-b2b/"
+    - title: "Dynamické payment terms a deposits pro B2B"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/dynamic-payment-terms-deposits-b2b/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-5
 tldr: "Shopify rozšiřuje nativní B2B features na Basic, Grow a Advanced plány — bez příplatku, integrované přímo do core."
 tagy: [b2b, plus, plan, expansion]
 ---

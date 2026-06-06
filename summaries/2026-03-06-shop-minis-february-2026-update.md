@@ -16,6 +16,24 @@ pouzivame_v_integratoru: ne
 dukaz_integratoru: "Shop Minis jsou aplikace běžící v Shop app (mobile). Neděláme Shop Minis."
 dotcene_klienty: []
 
+kontext:
+  background: |
+    Shop Minis je vývojová platforma Shopify umožňující vytvářet miniaturní aplikace spouštěné přímo v rámci officiální mobilní aplikace Shop (dříve Arrive). Jedná se o sandboxované React Native komponenty s přístupem k Shopify API, které se zobrazují zákazníkům při procházení obchodů a produktů.
+
+    Platforma vznikla jako součást širší strategie Shopify přetvořit Shop app z pouhého trackeru zásilek na plnohodnotný nákupní kanál. Shop Minis vývojářům poskytují nativní SDK s komponentami, hooky a CLI nástrojem — vývoj probíhá podobně jako u Shopify checkout extensions, ale pro mobilní kontext.
+
+    Únorový update 2026 rozšiřuje možnosti tvorby nakupovatelného obsahu (UGC tagging přes hook useCreateImageContent), zjednodušuje správu souhlasů a přidává SafeArea komponentu potřebnou pro správné vykreslování na zařízeních s výřezy displeje (notch). Tyto změny navazují na souběžnou podporu CSS proměnné --shopify-safe-area-inset-bottom pro embedded apps obecně.
+
+    Následující update z března/dubna 2026 dále rozšiřuje model souhlasů o volitelné (optional) consent scopy a runtime permissions, což naznačuje postupný posun k granulárním oprávněním podobným mobilním operačním systémům.
+  zdroje:
+    - title: "Shop Minis February 2026 Update — Shopify Changelog"
+      url: "https://shopify.dev/changelog/shop-minis-february-2026-update"
+    - title: "Shop Minis březen/duben 2026 update"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/shop-minis-march-april-update/"
+    - title: "Nová CSS proměnná --shopify-safe-area-inset-bottom pro mobilní embedded apps"
+      url: "https://mhudakcz.github.io/Shopify_news_magexo/zmena/css-variable-mobile-safe-area/"
+  generated_at: 2026-06-05T16:38:26Z
+  model: claude-sonnet-4-6
 tldr: "Shop Minis přidává product tagging pro UGC, SafeArea component a nové CLI enable/disable příkazy."
 tagy: [shop-minis, ugc, mobile]
 ---

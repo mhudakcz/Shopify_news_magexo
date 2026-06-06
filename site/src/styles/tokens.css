@@ -2,13 +2,14 @@
    Ported from design_handoff_shopify_news/source_design/kit.css
    Light theme = default; dark overrides via [data-theme="dark"] on <html>. */
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap");
 
 :root {
   /* —— Type families —— */
   --font-sans: "Montserrat", -apple-system, "Segoe UI", system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", "Montserrat", -apple-system, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
 
   /* —— Type scale —— */
   --fs-eyebrow: 11px;
