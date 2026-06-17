@@ -5,6 +5,7 @@ title_en: "Search, filter, and saved views for Orders, Products, and more"
 slug: search-filter-saved-views-orders-products
 zdroj: https://changelog.shopify.com/posts/search-filter-and-saved-views-for-orders-products-and-more
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

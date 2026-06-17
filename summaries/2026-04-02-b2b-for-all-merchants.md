@@ -5,6 +5,7 @@ title_en: "Shopify brings native B2B features to millions more merchants"
 slug: b2b-for-all-merchants
 zdroj: https://www.shopify.com/news/b2b-for-all
 zdroj_kanal: product-news
+editions_release: spring-2026
 shrnuto_dne: 2026-04-29
 
 kategorie: [nova-prilezitost, integrace]

@@ -35,6 +35,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Partner Dashboard nabízí requirement-level tracking, přímý feedback od reviewerů a AI self-review nástroje pro submission."
 tagy: [partners, app-store, submission]
+editions_release: spring-2026
 ---
 
 ## Co se mění

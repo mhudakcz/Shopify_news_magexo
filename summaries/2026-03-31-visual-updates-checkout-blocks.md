@@ -5,6 +5,7 @@ title_en: "Visual updates to Checkout Blocks app"
 slug: visual-updates-checkout-blocks
 zdroj: https://changelog.shopify.com/posts/visual-updates-to-checkout-blocks-app
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

@@ -33,6 +33,7 @@ kontext:
 tldr: "POS v11.8 (POS Pro) umožňuje personálu přiřadit pickup order k libovolné pickup-enabled lokaci ve stejné zemi — přímo z košíku, s live přehledem zásob na každé lokaci."
 tagy: [pos, pickup, location, fulfillment]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

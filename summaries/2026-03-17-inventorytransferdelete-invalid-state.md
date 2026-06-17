@@ -41,6 +41,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-07: inventoryTransferDelete vrací INVALID_STATE pokud běží product import na zahrnutých produktech."
 tagy: [inventory, transfer, error-handling]
+editions_release: spring-2026
 ---
 
 ## Co se mění

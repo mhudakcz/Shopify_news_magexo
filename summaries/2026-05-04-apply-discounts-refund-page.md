@@ -5,6 +5,7 @@ title_en: "Apply discounts to items on the refund page"
 slug: apply-discounts-refund-page
 zdroj: https://changelog.shopify.com/posts/apply-discounts-to-items-on-the-refund-page
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

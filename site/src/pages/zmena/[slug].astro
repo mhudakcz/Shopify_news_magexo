@@ -34,6 +34,17 @@ const { entry, all, counts } = Astro.props;
 const { Content } = await render(entry);
 const { cat, emoji } = deriveCat(entry.data);
 
+// Editions hub má speciální vizuální template
+const isEditionsHub = (entry.data.kategorie || []).includes('editions-hub');
+
+// Cross-reference: pokud je tohle hub, najdi všechny články ze stejného editions_release
+const editionsReleaseRefs = isEditionsHub && entry.data.editions_release
+  ? all.filter((a: any) =>
+      a.id !== entry.id &&
+      a.data.editions_release === entry.data.editions_release
+    ).sort((a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  : [];
+
 const sortedByDate = [...all].sort(
   (a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
@@ -92,34 +103,68 @@ const hasImage = !!entry.data.obrazek;
         </div>
       </nav>
 
-      <article class="article">
-        <div class="article-eyebrow">
-          <CategoryIcon cat={cat} emoji={emoji} size={32} />
-          <SourcePill src={entry.data.zdroj_kanal} />
-          <span class="flag">{entry.data.title_en ? 'GB' : 'CZ'}</span>
-          <span class="bullet">·</span>
-          <span class="date mono">{entry.data.date.toISOString().slice(0, 10)}</span>
-          {entry.data.api_verze && entry.data.api_verze.length > 0 && (
-            <>
+      <article class={`article ${isEditionsHub ? 'is-editions-hub' : ''}`}>
+        {isEditionsHub ? (
+          <>
+            <div class="ed-hub-hero">
+              <div class="ed-hub-hero-bg" aria-hidden="true"></div>
+              <div class="ed-hub-hero-inner">
+                <div class="ed-hub-eyebrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+                  SHOPIFY EDITIONS · {entry.data.editions_release?.toUpperCase().replace('-', ' ')}
+                </div>
+                <h1 class="ed-hub-title">{entry.data.title}</h1>
+                <p class="ed-hub-tldr">{entry.data.tldr}</p>
+                <div class="ed-hub-meta">
+                  <span class="ed-hub-meta-item">
+                    <strong>{entry.data.date.toLocaleDateString('cs-CZ')}</strong>
+                    <span>release</span>
+                  </span>
+                  {editionsReleaseRefs.length > 0 && (
+                    <span class="ed-hub-meta-item">
+                      <strong>{editionsReleaseRefs.length}</strong>
+                      <span>položek v archivu</span>
+                    </span>
+                  )}
+                  <a class="ed-hub-meta-item ed-hub-source" href={entry.data.zdroj} target="_blank" rel="noopener">
+                    <strong>↗</strong>
+                    <span>Originál na shopify.com</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="article-eyebrow">
+              <CategoryIcon cat={cat} emoji={emoji} size={32} />
+              <SourcePill src={entry.data.zdroj_kanal} />
+              <span class="flag">{entry.data.title_en ? 'GB' : 'CZ'}</span>
               <span class="bullet">·</span>
-              <span class="api-ver mono">API {entry.data.api_verze[0]}</span>
-            </>
-          )}
-        </div>
+              <span class="date mono">{entry.data.date.toISOString().slice(0, 10)}</span>
+              {entry.data.api_verze && entry.data.api_verze.length > 0 && (
+                <>
+                  <span class="bullet">·</span>
+                  <span class="api-ver mono">API {entry.data.api_verze[0]}</span>
+                </>
+              )}
+            </div>
 
-        <h1 class="grad-text article-title">{entry.data.title}</h1>
-        {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
+            <h1 class="grad-text article-title">{entry.data.title}</h1>
+            {entry.data.title_en && <p class="title-en">{entry.data.title_en}</p>}
 
-        {hasImage && (
-          <figure class="article-hero">
-            <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
-          </figure>
+            {hasImage && (
+              <figure class="article-hero">
+                <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
+              </figure>
+            )}
+
+            <div class="tldr">
+              <div class="tldr-eyebrow mono">$ TL;DR</div>
+              <p>{entry.data.tldr}</p>
+            </div>
+          </>
         )}
-
-        <div class="tldr">
-          <div class="tldr-eyebrow mono">$ TL;DR</div>
-          <p>{entry.data.tldr}</p>
-        </div>
 
         {hasTimeline && (
           <aside class="timeline">
@@ -153,6 +198,25 @@ const hasImage = !!entry.data.obrazek;
         <div class="prose" id="article-body">
           <Content />
         </div>
+
+        {isEditionsHub && editionsReleaseRefs.length > 0 && (
+          <section class="ed-refs" aria-label="Z této Edition už máme v archivu">
+            <header class="ed-refs-head">
+              <span class="ed-refs-eyebrow">📚 Z této Edition už máme v archivu</span>
+              <span class="ed-refs-count">{editionsReleaseRefs.length} článků</span>
+            </header>
+            <ul class="ed-refs-list">
+              {editionsReleaseRefs.map((ref: any) => (
+                <li>
+                  <a href={`/Shopify_news_magexo/zmena/${ref.id.replace(/\.md$/, '')}/`}>
+                    <span class="er-date mono">{ref.data.date.toISOString().slice(0, 10)}</span>
+                    <span class="er-title">{ref.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {entry.data.kontext && (
           <section class="kontext" aria-label="Doplňující kontext">
@@ -343,6 +407,181 @@ const hasImage = !!entry.data.obrazek;
     padding: 48px 48px 64px;
     position: relative;
   }
+
+  /* Editions Hub — bohatší hero pro editions-hub kategorii */
+  .article.is-editions-hub {
+    max-width: 920px;
+    padding: 0 48px 64px;
+  }
+  .ed-hub-hero {
+    position: relative;
+    margin: 0 -48px 40px;
+    padding: 56px 48px 48px;
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff;
+  }
+  .ed-hub-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 15% 30%, rgba(236, 72, 153, 0.55), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(34, 211, 238, 0.45), transparent 55%),
+      linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+  }
+  .ed-hub-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.18) 1.5px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.12) 1px, transparent 1.5px);
+    background-size: 80px 80px, 60px 60px;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
+  .ed-hub-hero-inner {
+    max-width: 760px;
+  }
+  .ed-hub-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    margin-bottom: 22px;
+  }
+  .ed-hub-title {
+    margin: 0 0 18px;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    text-wrap: balance;
+    color: #fff;
+  }
+  .ed-hub-tldr {
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    text-wrap: pretty;
+  }
+  .ed-hub-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .ed-hub-meta-item {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    line-height: 1.2;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.15s;
+  }
+  .ed-hub-meta-item strong {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .ed-hub-meta-item span {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.78);
+    margin-top: 2px;
+  }
+  .ed-hub-meta-item.ed-hub-source:hover {
+    background: rgba(255, 255, 255, 0.24);
+    text-decoration: none;
+  }
+
+  /* Editions cross-reference list */
+  .ed-refs {
+    margin: 40px 0 28px;
+    padding: 22px 24px;
+    background: var(--bg-2);
+    border-radius: 12px;
+    border: 1px solid var(--border-1);
+  }
+  .ed-refs-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-1);
+  }
+  .ed-refs-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg-1);
+  }
+  .ed-refs-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--fg-3);
+    background: var(--bg-elev);
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-1);
+  }
+  .ed-refs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+  }
+  .ed-refs-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--fg-1);
+    font-size: 13px;
+    line-height: 1.4;
+    transition: background 0.15s;
+  }
+  .ed-refs-list a:hover {
+    background: var(--bg-elev);
+    text-decoration: none;
+  }
+  .er-date {
+    font-size: 11px;
+    color: var(--fg-3);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .er-title {
+    flex: 1;
+    min-width: 0;
+  }
+  .ed-refs-list a:hover .er-title { color: var(--indigo-700); }
+  :global([data-theme="dark"]) .ed-refs-list a:hover .er-title { color: var(--indigo-300); }
 
   .article-eyebrow {
     display: flex;

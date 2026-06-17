@@ -32,6 +32,7 @@ kontext:
 tldr: "Katalogový editor v Admin nyní podporuje batch workflow: merchant může upravit libovolný počet produktů, zkontrolovat všechny změny najednou a uložit nebo zahodit je jediným krokem. Snižuje riziko neúplných aktualizací rozsáhlých B2B nebo Markets katalogů."
 tagy: [catalog, publishing, b2b]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

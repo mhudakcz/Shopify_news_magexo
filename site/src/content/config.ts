@@ -37,6 +37,10 @@ const summaries = defineCollection({
     zdroj_kanal: z.enum(['dev-changelog', 'merchant-changelog', 'editions', 'product-news', 'blog']).default('dev-changelog'),
     obrazek: z.string().url().nullable().optional(),
 
+    // Editions hub & cross-reference: které pololetní Editions release toto pokrývá
+    // Hub article (kategorie obsahuje 'editions-hub') definuje release; ostatní články ho odkazují.
+    editions_release: z.string().optional(),  // např. "spring-2026", "winter-2026"
+
     // AI-doplněný kontext (volitelný — generováno přes /enrich)
     kontext: z
       .object({

@@ -5,6 +5,7 @@ title_en: "Improved visual hierarchy for line items in orders and returns"
 slug: line-items-visual-hierarchy
 zdroj: https://changelog.shopify.com/posts/improved-visual-hierarchy-for-line-items-in-orders-and-returns
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

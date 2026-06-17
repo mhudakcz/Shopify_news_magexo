@@ -5,6 +5,7 @@ title_en: "Redesigned theme editor navigation"
 slug: redesigned-theme-editor-navigation
 zdroj: https://changelog.shopify.com/posts/redesigned-theme-editor-navigation
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

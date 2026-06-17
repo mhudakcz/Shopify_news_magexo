@@ -5,6 +5,7 @@ title_en: "Unified branding customization across checkout and customer accounts"
 slug: unified-branding-checkout-customer-accounts
 zdroj: https://changelog.shopify.com/posts/draft-unified-branding-customization-across-checkout-and-customer-accounts
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [nova-prilezitost]

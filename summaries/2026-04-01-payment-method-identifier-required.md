@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-07 vyžaduje identifier pole pro Stripe/Authorize.net/Braintree v customerPaymentMethodRemoteCreate."
 tagy: [payment, breaking, stripe, braintree]
+editions_release: spring-2026
 ---
 
 ## Co se mění

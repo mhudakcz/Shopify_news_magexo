@@ -35,6 +35,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Shopify AI Toolkit nabízí dokumentaci, API schémata a validaci pro stavbu AI aplikací nad Shopify."
 tagy: [ai, toolkit, mcp, dev-tools]
+editions_release: spring-2026
 ---
 
 ## Co se mění

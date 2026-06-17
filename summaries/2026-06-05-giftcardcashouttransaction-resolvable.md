@@ -37,6 +37,7 @@ kontext:
 tldr: "API 2026-07 přidává GiftCardCashOutTransaction jako nový subtype GiftCardTransaction, který odlišuje POS cash-out výběry od běžného čerpání karty. Dotazuje se pomocí __typename."
 tagy: [gift-card, transaction, admin]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

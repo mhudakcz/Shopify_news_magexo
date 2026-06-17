@@ -5,6 +5,7 @@ title_en: "Capital Launches in France"
 slug: capital-launches-france
 zdroj: https://changelog.shopify.com/posts/capital-launches-in-france
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

@@ -5,6 +5,7 @@ title_en: "Updates to setting up shipping options"
 slug: shipping-options-setup-updates
 zdroj: https://changelog.shopify.com/posts/updates-to-setting-up-shipping-options
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

@@ -5,6 +5,7 @@ title_en: "Print packing slips for inventory transfers"
 slug: print-packing-slips-inventory-transfers
 zdroj: https://changelog.shopify.com/posts/print-packing-slips-for-inventory-transfers
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-prilezitost]

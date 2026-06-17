@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Requirements 4.4.4 a 4.4.5 vyžadují jasné, unikátní app listing obrázky bez pozadí a duplikátů."
 tagy: [app-store, listings, marketing]
+editions_release: spring-2026
 ---
 
 ## Co se mění

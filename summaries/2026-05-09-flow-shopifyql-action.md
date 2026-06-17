@@ -5,6 +5,7 @@ title_en: "Flow: New action to get analytics data using ShopifyQL"
 slug: flow-shopifyql-action
 zdroj: https://changelog.shopify.com/posts/flow-new-action-to-get-analytics-data-using-shopifyql
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-api, nova-prilezitost]

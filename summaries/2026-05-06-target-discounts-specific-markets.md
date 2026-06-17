@@ -5,6 +5,7 @@ title_en: "Target discounts to specific markets"
 slug: target-discounts-specific-markets
 zdroj: https://shopify.dev/changelog/target-discounts-to-specific-markets
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-07
 
 kategorie: [nova-api, nova-prilezitost]

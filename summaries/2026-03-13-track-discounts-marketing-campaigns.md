@@ -5,6 +5,7 @@ title_en: "Track discounts with marketing campaigns"
 slug: track-discounts-marketing-campaigns
 zdroj: https://changelog.shopify.com/posts/track-discount-promotions-with-marketing-campaigns
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

@@ -42,6 +42,7 @@ kontext:
 
 tldr: "Od API 2026-07 LineItem v Admin API obsahuje pole weight (s value + unit) místo jen grams."
 tagy: [order, line-item, weight, shipping]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -5,6 +5,7 @@ title_en: "View cumulative metrics over time in Analytics"
 slug: cumulative-metrics-analytics
 zdroj: https://changelog.shopify.com/posts/view-cumulative-metrics-over-time-in-analytics
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-21
 
 kategorie: [nova-prilezitost]

@@ -35,6 +35,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Nové development shops mají automaticky přístup k checkout UI extensions (Plus) a customer account extensions (všechny plány)."
 tagy: [development-shop, ui-extensions, checkout, customer-accounts]
+editions_release: spring-2026
 ---
 
 ## Co se mění

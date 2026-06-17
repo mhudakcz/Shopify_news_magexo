@@ -5,6 +5,7 @@ title_en: "Returns metrics renamed to reversals"
 slug: returns-metrics-renamed-reversals
 zdroj: https://changelog.shopify.com/posts/returns-metrics-renamed-to-reversals
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [breaking-change, fyi]

@@ -5,6 +5,7 @@ title_en: "Pickup in store can now transfer from multiple locations"
 slug: pickup-multiple-locations-transfer
 zdroj: https://changelog.shopify.com/posts/in-store-pickup-can-now-transfer-from-multiple-locations
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

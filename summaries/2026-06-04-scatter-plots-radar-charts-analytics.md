@@ -31,6 +31,7 @@ kontext:
 tldr: "Shopify Analytics přidalo scatter plots a radar charts do visualization pickeru v custom reports — merchantové teď mohou vizualizovat vztahy mezi dvěma metrikami (scatter) nebo porovnávat více metrik najednou (radar) přímo v administraci bez exportu dat."
 tagy: [analytics, chart, scatter, radar, report]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

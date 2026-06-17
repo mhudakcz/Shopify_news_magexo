@@ -5,6 +5,7 @@ title_en: "Flow: New triggers for inventory transfer completed and inventory tra
 slug: flow-triggers-inventory-transfer
 zdroj: https://changelog.shopify.com/posts/flow-new-triggers-for-inventory-transfers-completed-and-inventory-transfer-ready-to-ship
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api, nova-prilezitost, integrace]

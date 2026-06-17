@@ -5,6 +5,7 @@ title_en: "Collect Credit remittances through Shopify Payments in Texas"
 slug: credit-remittances-shopify-payments-texas
 zdroj: https://changelog.shopify.com/posts/collect-credit-remittances-through-shopify-payments-in-texas
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

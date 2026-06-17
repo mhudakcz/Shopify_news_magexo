@@ -39,6 +39,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "POS extensions s flag runs_offline=true zůstanou funkční i při výpadku sítě."
 tagy: [pos, ui-extensions, offline]
+editions_release: spring-2026
 ---
 
 ## Co se mění

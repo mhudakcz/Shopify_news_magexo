@@ -55,6 +55,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Od API 2026-04 lze taggovat slevy v Admin API pro lepší organizaci a filtrování."
 tagy: [discount, tags, organization]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -5,6 +5,7 @@ title_en: "Easier Smart Grid setup for discount tiles"
 slug: pos-smart-grid-discount-tiles
 zdroj: https://changelog.shopify.com/posts/easier-smart-grid-setup-for-discount-tiles
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

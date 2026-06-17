@@ -5,6 +5,7 @@ title_en: "Agentic Commerce: Build Commerce Agents"
 slug: agentic-commerce-build-commerce-agents
 zdroj: https://www.shopify.com/editions/winter2026
 zdroj_kanal: editions
+editions_release: spring-2026
 shrnuto_dne: 2026-04-29
 
 kategorie: [nova-prilezitost, nova-api, integrace]

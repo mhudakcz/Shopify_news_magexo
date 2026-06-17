@@ -5,6 +5,7 @@ title_en: "Local payment methods are now available in more countries"
 slug: local-payment-methods-more-countries
 zdroj: https://changelog.shopify.com/posts/more-local-payment-methods-are-now-available-in-additional-countries
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [nova-prilezitost]

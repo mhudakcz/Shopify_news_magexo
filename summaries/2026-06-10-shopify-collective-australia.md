@@ -33,6 +33,7 @@ kontext:
 tldr: "Shopify Collective — nativní supplier-retailer marketplace uvnitř Shopify — je od 10. 6. 2026 dostupný v Austrálii. Australští obchodníci mohou rozšiřovat produktový katalog bez skladu; podmínkou je Shopify Payments a shodná měna obou partnerů."
 tagy: [collective, australia, supplier, marketplace, dropshipping]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -34,6 +34,7 @@ kontext:
 tldr: "Shopify Payments rozšiřuje multi-currency payouts: US merchanté mohou nově přijímat výplaty v CAD, EUR, AUD a GBP; merchanté v Singapuru a Hongkongu nově v EUR, GBP a JPY — bez konverzních poplatků."
 tagy: [payout, payments, multi-currency, markets, shopify-payments]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

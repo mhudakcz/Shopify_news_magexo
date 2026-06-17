@@ -5,6 +5,7 @@ title_en: "Flow: New actions to get data about workflow runs, abandoned checkout
 slug: flow-new-actions-get-data
 zdroj: https://changelog.shopify.com/posts/flow-new-actions-to-get-data-about-workflow-runs-abandoned-checkouts-inventory-items-catalogs-and-pages
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api, nova-prilezitost]

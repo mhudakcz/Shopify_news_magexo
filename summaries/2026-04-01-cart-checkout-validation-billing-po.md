@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Cart/Checkout Validation Functions umí nyní cílit chyby na billing address a PO number."
 tagy: [validation, functions, checkout, billing, b2b]
+editions_release: spring-2026
 ---
 
 ## Co se mění

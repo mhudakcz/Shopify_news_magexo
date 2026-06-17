@@ -5,6 +5,7 @@ title_en: "See which apps use Extensions and Functions to power your checkout, o
 slug: see-which-apps-use-extensions-functions
 zdroj: https://changelog.shopify.com/posts/see-which-apps-use-extensions-and-functions-to-power-your-checkout-online-store-and-more
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

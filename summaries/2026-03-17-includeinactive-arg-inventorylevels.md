@@ -51,6 +51,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "API 2026-04: argument includeInactive umožňuje query inactive inventory levels."
 tagy: [inventory, inventory-level, query]
+editions_release: spring-2026
 ---
 
 ## Co se mění

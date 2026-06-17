@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Pole pre_tax_price je odstraněno z REST Admin API order line items — používat GraphQL Admin API."
 tagy: [order, rest-api, deprecation, breaking, tax]
+editions_release: spring-2026
 ---
 
 ## Co se mění

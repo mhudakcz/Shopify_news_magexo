@@ -5,6 +5,7 @@ title_en: "Annotations bring store event context directly to your analytics"
 slug: annotations-analytics-events
 zdroj: https://changelog.shopify.com/posts/annotations-bring-store-event-context-directly-to-your-analytics
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-07
 
 kategorie: [nova-prilezitost]

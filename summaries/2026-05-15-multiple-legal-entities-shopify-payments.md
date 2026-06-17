@@ -5,6 +5,7 @@ title_en: "Sell from multiple legal entities in the same country using Shopify P
 slug: multiple-legal-entities-shopify-payments
 zdroj: https://changelog.shopify.com/posts/sell-from-multiple-legal-entities-in-the-same-country-using-shopify-payments
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [nova-prilezitost, integrace]

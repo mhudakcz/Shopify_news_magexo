@@ -5,6 +5,7 @@ title_en: "Sign in with Shop now works on more lead capture forms"
 slug: sign-in-shop-lead-forms
 zdroj: https://changelog.shopify.com/posts/shopify-forms-update-with-sign-in-with-shop
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

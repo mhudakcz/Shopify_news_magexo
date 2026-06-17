@@ -5,6 +5,7 @@ title_en: "Shop Minis March April 2026 update"
 slug: shop-minis-march-april-update
 zdroj: https://shopify.dev/changelog/shop-minis-march-april-2026-update
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-21
 
 kategorie: [nova-api, fyi]

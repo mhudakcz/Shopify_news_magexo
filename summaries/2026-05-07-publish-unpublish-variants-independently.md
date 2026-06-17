@@ -5,6 +5,7 @@ title_en: "Publish and unpublish product variants independently from product"
 slug: publish-unpublish-variants-independently
 zdroj: https://shopify.dev/changelog/publish-and-unpublish-product-variants-independently-from-product
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-api, nova-prilezitost]

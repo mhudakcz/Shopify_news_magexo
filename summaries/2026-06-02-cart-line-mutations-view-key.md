@@ -5,6 +5,7 @@ title_en: "Identify cart lines by view_key in cartLinesUpdate and cartLinesRemov
 slug: cart-line-mutations-view-key
 zdroj: https://shopify.dev/changelog/cart-line-mutations-accept-view-key
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [nova-api]

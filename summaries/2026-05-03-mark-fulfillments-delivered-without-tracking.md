@@ -5,6 +5,7 @@ title_en: "Mark fulfillments without tracking as delivered"
 slug: mark-fulfillments-delivered-without-tracking
 zdroj: https://changelog.shopify.com/posts/mark-fulfillments-without-tracking-as-delivered
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

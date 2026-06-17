@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Sales channel apps mohou nyní mít více kanálů per shop s oddělenými specifikacemi."
 tagy: [sales-channel, marketplace, multi-channel]
+editions_release: spring-2026
 ---
 
 ## Co se mění

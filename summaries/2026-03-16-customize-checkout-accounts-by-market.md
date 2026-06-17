@@ -5,6 +5,7 @@ title_en: "Customize checkout and customer accounts by market"
 slug: customize-checkout-accounts-by-market
 zdroj: https://changelog.shopify.com/posts/customize-checkout-and-customer-accounts-by-market
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

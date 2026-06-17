@@ -5,6 +5,7 @@ title_en: "Flow: New actions to get data about markets and articles"
 slug: flow-actions-markets-articles
 zdroj: https://changelog.shopify.com/posts/flow-new-actions-to-get-data-about-markets-and-articles
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api]

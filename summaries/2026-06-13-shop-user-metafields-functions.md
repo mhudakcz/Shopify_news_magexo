@@ -36,6 +36,7 @@ kontext:
 tldr: "Od API 2026-07 mohou Shopify Functions číst metafields přiřazené k Shop User (cross-merchant buyer identity) — umožňuje personalizovaný checkout na základě buyer-specifických dat (loyalty tier, B2B status, custom limity)."
 tagy: [function, metafield, checkout, customer, customization]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

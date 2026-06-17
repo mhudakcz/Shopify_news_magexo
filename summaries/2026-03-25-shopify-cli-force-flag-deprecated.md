@@ -39,6 +39,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Shopify CLI --force flag bude odstraněn v květnu 2026; nahradit za --allow-updates nebo --allow-deletes pro CI/CD."
 tagy: [cli, deployment, ci-cd, deprecation]
+editions_release: spring-2026
 ---
 
 ## Co se mění

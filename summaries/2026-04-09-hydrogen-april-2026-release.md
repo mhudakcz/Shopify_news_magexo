@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Hydrogen 2026.4: Storefront API proxy je povinné, backend consent mode default."
 tagy: [hydrogen, storefront, consent, frontend]
+editions_release: spring-2026
 ---
 
 ## Co se mění

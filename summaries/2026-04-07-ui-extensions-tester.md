@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Oficiální testing library pro UI extensions s type-safe mocky a izolovaným renderingem."
 tagy: [testing, ui-extensions, dev-tools]
+editions_release: spring-2026
 ---
 
 ## Co se mění

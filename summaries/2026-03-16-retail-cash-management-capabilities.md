@@ -52,6 +52,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-04 zavádí CashDrawer resource a Admin GraphQL APIs pro custom cash management workflow v retail."
 tagy: [pos, cash-drawer, retail]
+editions_release: spring-2026
 ---
 
 ## Co se mění

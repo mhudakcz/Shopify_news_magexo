@@ -5,6 +5,7 @@ title_en: "Create pickup orders in Shopify POS"
 slug: create-pickup-orders-pos
 zdroj: https://changelog.shopify.com/posts/create-pickup-orders-in-shopify-pos
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

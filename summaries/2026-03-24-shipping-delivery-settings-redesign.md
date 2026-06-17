@@ -5,6 +5,7 @@ title_en: "Shipping and delivery settings are now easier to scan"
 slug: shipping-delivery-settings-redesign
 zdroj: https://changelog.shopify.com/posts/shipping-and-delivery-settings-are-now-easier-to-scan
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

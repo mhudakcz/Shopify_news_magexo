@@ -5,6 +5,7 @@ title_en: "Track app activity and permissions from Settings"
 slug: track-app-activity-permissions
 zdroj: https://changelog.shopify.com/posts/track-app-activity-and-permissions-from-settings
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

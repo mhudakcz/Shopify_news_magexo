@@ -41,6 +41,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-04 umožňuje vytvořit subscription contract i bez paymentMethodId (volitelné)."
 tagy: [subscription, contract, payment]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -46,6 +46,7 @@ kontext:
 tldr: "Shopify přejmenoval dokumentační parametr pro tiché SSO při headless checkoutu z logged_in=true na sso=silent; stávající URL fungují beze změny."
 tagy: [sso, checkout, customer-account, hydrogen, headless]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

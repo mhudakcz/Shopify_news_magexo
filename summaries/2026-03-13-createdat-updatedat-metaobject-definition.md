@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-04: MetaobjectDefinition má pole createdAt a updatedAt timestamps."
 tagy: [metaobject, definition, timestamps, audit]
+editions_release: spring-2026
 ---
 
 ## Co se mění

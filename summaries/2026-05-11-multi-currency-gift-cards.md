@@ -5,6 +5,7 @@ title_en: "Sell gift cards in your customers' local currency"
 slug: multi-currency-gift-cards
 zdroj: https://changelog.shopify.com/posts/sell-gift-cards-in-your-customers-local-currency
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-prilezitost, integrace]

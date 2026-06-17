@@ -35,6 +35,7 @@ kontext:
 tldr: "Shopify AI Toolkit nyní automatizuje migraci Checkout a Customer Account UI extensions na Polaris web components. Extensions na API verzi 2025-07 nebo starší nebudou po 1. října 2026 moci přijímat aktualizace přes Shopify CLI."
 tagy: [polaris, ai-toolkit, migration, extension, checkout, deadline]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

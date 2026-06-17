@@ -53,6 +53,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "API 2026-04 přidává isActive boolean na InventoryLevel pro rozlišení aktivních a deaktivovaných úrovní."
 tagy: [inventory, inventory-level, status]
+editions_release: spring-2026
 ---
 
 ## Co se mění

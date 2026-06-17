@@ -5,6 +5,7 @@ title_en: "App quality checks now managed in Partner Dashboard"
 slug: app-quality-checks-partner-dashboard
 zdroj: https://shopify.dev/changelog/app-quality-checks-now-managed-in-partner-dashboard
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [fyi]

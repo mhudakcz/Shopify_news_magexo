@@ -5,6 +5,7 @@ title_en: "The Balance mobile app has a new look"
 slug: balance-app-new-look
 zdroj: https://changelog.shopify.com/posts/enhanced-balance-app-design
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [fyi]

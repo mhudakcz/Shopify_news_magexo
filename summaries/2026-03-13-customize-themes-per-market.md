@@ -5,6 +5,7 @@ title_en: "Customize settings and app embeds per Market for Themes"
 slug: customize-themes-per-market
 zdroj: https://changelog.shopify.com/posts/customize-settings-and-app-embeds-per-market-for-themes
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

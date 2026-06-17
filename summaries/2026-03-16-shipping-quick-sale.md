@@ -5,6 +5,7 @@ title_en: "Shipping in quick sale"
 slug: shipping-quick-sale
 zdroj: https://changelog.shopify.com/posts/shipping-in-quick-sale
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

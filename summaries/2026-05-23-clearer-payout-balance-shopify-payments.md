@@ -5,6 +5,7 @@ title_en: "Clearer payout balance and reserve information in Shopify Payments"
 slug: clearer-payout-balance-shopify-payments
 zdroj: https://changelog.shopify.com/posts/clearer-payout-balance-and-reserve-information-in-shopify-payments
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-26
 
 kategorie: [fyi]

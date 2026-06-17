@@ -5,6 +5,7 @@ title_en: "Checkout Blocks: Order value limits available on all plans"
 slug: checkout-blocks-order-value-limits-all-plans
 zdroj: https://changelog.shopify.com/posts/checkout-blocks-order-value-limits-available-on-all-plans
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

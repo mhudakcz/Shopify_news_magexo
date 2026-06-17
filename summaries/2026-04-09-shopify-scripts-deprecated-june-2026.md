@@ -43,6 +43,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Shopify Scripts (Ruby skripty pro Plus checkout) přestávají běžet 30. 6. 2026; editování končí 15. 4. 2026."
 tagy: [scripts, functions, plus, checkout, deprecation]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -5,6 +5,7 @@ title_en: "Simpler inventory transfers"
 slug: simpler-inventory-transfers
 zdroj: https://changelog.shopify.com/posts/simpler-inventory-transfers
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-prilezitost]

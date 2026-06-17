@@ -5,6 +5,7 @@ title_en: "2048 Variants Per Product"
 slug: 2048-variants-per-product
 zdroj: https://www.shopify.com/editions/winter2026
 zdroj_kanal: editions
+editions_release: spring-2026
 shrnuto_dne: 2026-04-29
 
 kategorie: [nova-api, nova-prilezitost]

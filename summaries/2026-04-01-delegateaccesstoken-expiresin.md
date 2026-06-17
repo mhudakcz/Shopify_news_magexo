@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Mutace delegateAccessTokenCreate nově vrací expiresIn (sekundy do expirace)."
 tagy: [auth, token, oauth, security]
+editions_release: spring-2026
 ---
 
 ## Co se mění

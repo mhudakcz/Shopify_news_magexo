@@ -5,6 +5,7 @@ title_en: "Customers can set and manage default addresses in checkout"
 slug: customers-default-addresses-checkout
 zdroj: https://changelog.shopify.com/posts/customers-can-now-set-and-manage-default-addresses-in-checkout
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

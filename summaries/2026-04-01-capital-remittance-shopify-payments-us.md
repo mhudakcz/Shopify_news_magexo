@@ -5,6 +5,7 @@ title_en: "Capital Remittance via Shopify Payments Expands to all states of the 
 slug: capital-remittance-shopify-payments-us
 zdroj: https://changelog.shopify.com/posts/capital-remittance-via-shopify-payments-expands-to-all-states-of-the-us
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [fyi]

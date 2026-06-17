@@ -44,6 +44,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Adminu lze nyní generovat QR kódy slev — speciální znaky vyžadují dvojité URL encoding."
 tagy: [discount, qr-code, admin-ui, marketing]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -5,6 +5,7 @@ title_en: "Dynamic Payment Terms and Deposits"
 slug: dynamic-payment-terms-deposits-b2b
 zdroj: https://www.shopify.com/editions/winter2026
 zdroj_kanal: editions
+editions_release: spring-2026
 shrnuto_dne: 2026-04-29
 
 kategorie: [nova-prilezitost, integrace]

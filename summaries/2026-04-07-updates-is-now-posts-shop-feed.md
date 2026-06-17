@@ -5,6 +5,7 @@ title_en: "Updates is now Posts — publish shoppable content to the Shop feed"
 slug: updates-is-now-posts-shop-feed
 zdroj: https://changelog.shopify.com/posts/updates-is-now-posts-publish-shoppable-content-to-the-shop-feed
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

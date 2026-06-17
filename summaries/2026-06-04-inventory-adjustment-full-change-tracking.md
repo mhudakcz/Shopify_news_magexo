@@ -5,6 +5,7 @@ title_en: "Inventory adjustment workflow now with full change tracking"
 slug: inventory-adjustment-full-change-tracking
 zdroj: https://changelog.shopify.com/posts/inventory-adjustment-workflow-now-with-full-change-tracking
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [nova-prilezitost]

@@ -48,6 +48,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-04 přidává barcode pole a inventoryShipmentSetBarcode mutaci pro inventory shipments."
 tagy: [inventory, barcode, shipment, warehouse]
+editions_release: spring-2026
 ---
 
 ## Co se mění

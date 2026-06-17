@@ -33,6 +33,7 @@ kontext:
 tldr: "Rollouts nyní umožňují naplánovat spuštění, postupně nasazovat a A/B testovat nejen themes, ale i checkout a customer account konfigurace — s automatickým kopírováním aktuálního stavu pro nezávislé úpravy obou variant."
 tagy: [theme, checkout, rollout, customer-account, ab-test]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

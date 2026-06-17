@@ -5,6 +5,7 @@ title_en: "Schedule and test storefront changes with Rollouts"
 slug: rollouts-storefront-changes
 zdroj: https://changelog.shopify.com/posts/schedule-and-test-storefront-changes-with-rollouts
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

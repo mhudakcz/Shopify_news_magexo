@@ -33,6 +33,7 @@ kontext:
 tldr: "Shopify Collective suppliéři nyní vidí tři shipping metriky (carrier tracking coverage, on-time fulfillment, on-time delivery) přímo v aplikaci a mohou získat Verified Tracking badge zobrazovaný na jejich profilu v Discovery — čímž se zvyšuje jejich viditelnost pro nové retailery."
 tagy: [collective, supplier, shipping, tracking, badge]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

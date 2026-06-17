@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Mobilní TitleBar primary action se nyní renderuje jako ikona; bez specifikace defaultní plus icon."
 tagy: [app-bridge, mobile, titlebar, ui]
+editions_release: spring-2026
 ---
 
 ## Co se mění

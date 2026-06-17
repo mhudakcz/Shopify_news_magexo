@@ -5,6 +5,7 @@ title_en: "Faster discount entry in POS"
 slug: faster-discount-entry-pos
 zdroj: https://changelog.shopify.com/posts/faster-discount-entry-in-pos
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

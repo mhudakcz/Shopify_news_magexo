@@ -5,6 +5,7 @@ title_en: "Benchmark Comparisons in Analytics will be removed on May 19th"
 slug: benchmark-comparisons-analytics-removed
 zdroj: https://changelog.shopify.com/posts/benchmark-comparisons-in-analytics-will-be-removed-on-may-19th
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [deprecation]

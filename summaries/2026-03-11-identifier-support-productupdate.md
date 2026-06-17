@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Mutace productUpdate od 2026-04 přijímá identifier (id, handle, customId) — méně round-tripů."
 tagy: [product, update, dx, lookup]
+editions_release: spring-2026
 ---
 
 ## Co se mění

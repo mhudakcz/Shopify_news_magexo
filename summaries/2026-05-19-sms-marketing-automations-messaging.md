@@ -5,6 +5,7 @@ title_en: "Create SMS marketing automations in Shopify Messaging"
 slug: sms-marketing-automations-messaging
 zdroj: https://changelog.shopify.com/posts/create-sms-marketing-automations-in-shopify-messaging
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-21
 
 kategorie: [nova-prilezitost]

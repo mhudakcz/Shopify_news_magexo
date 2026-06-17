@@ -5,6 +5,7 @@ title_en: "Customize your product detail pages on Shop with blocks"
 slug: customize-shop-product-pages-blocks
 zdroj: https://changelog.shopify.com/posts/customize-your-product-detail-pages-on-shop-with-blocks
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

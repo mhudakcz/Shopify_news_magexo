@@ -5,6 +5,7 @@ title_en: "Product bundles and their components now represented on draft order s
 slug: product-bundles-draft-order-customer-account
 zdroj: https://changelog.shopify.com/posts/product-bundles-and-their-components-now-represented-on-draft-order-status-page-in-customer-accounts
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

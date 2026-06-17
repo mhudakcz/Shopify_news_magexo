@@ -5,6 +5,7 @@ title_en: "Updates to Italy's Sardinian province definitions"
 slug: italy-sardinian-provinces-update
 zdroj: https://changelog.shopify.com/posts/italy-s-sardinian-province-definitions-updated
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [fyi]

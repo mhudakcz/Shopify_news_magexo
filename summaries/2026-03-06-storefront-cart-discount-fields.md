@@ -39,6 +39,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Storefront API 2026-07 deprecuje cart.discountAllocations; nahrazují discountApplications a sourceDiscountApplication."
 tagy: [storefront, cart, discount, deprecation]
+editions_release: spring-2026
 ---
 
 ## Co se mění

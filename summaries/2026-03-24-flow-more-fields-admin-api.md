@@ -5,6 +5,7 @@ title_en: "Flow: More fields from Shopify Admin API are available"
 slug: flow-more-fields-admin-api
 zdroj: https://changelog.shopify.com/posts/flow-more-of-shopify-s-admin-api-is-now-a-native-action
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-api, nova-prilezitost]

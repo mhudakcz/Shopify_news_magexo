@@ -34,6 +34,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Nový enum MOST_RELEVANT pro řazení produktů v kolekcích od API 2026-07."
 tagy: [collection, sort, product]
+editions_release: spring-2026
 ---
 
 ## Co se mění

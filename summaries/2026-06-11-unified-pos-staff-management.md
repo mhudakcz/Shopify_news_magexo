@@ -48,6 +48,7 @@ kontext:
 tldr: "Shopify sjednotil správu POS a admin uživatelů do Settings > Users — organization-level role, suspend sezónních zaměstnanců, více rolí najednou a čtyři nové high-trust POS role. Stávající přístupy byly migrovány automaticky."
 tagy: [pos, staff, permissions, rbac, retail]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

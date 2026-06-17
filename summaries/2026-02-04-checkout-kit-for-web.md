@@ -5,6 +5,7 @@ title_en: "Checkout Kit for Web"
 slug: checkout-kit-for-web
 zdroj: https://www.shopify.com/editions/winter2026
 zdroj_kanal: editions
+editions_release: spring-2026
 shrnuto_dne: 2026-04-29
 
 kategorie: [nova-api, nova-prilezitost]

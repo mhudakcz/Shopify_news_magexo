@@ -42,6 +42,7 @@ kontext:
 
 tldr: "Partner Dashboard má nové, granulárnější důvody odinstalace včetně 'testing' a 'compatibility issues'."
 tagy: [partners, app-store, uninstall, metrics]
+editions_release: spring-2026
 ---
 
 ## Co se mění

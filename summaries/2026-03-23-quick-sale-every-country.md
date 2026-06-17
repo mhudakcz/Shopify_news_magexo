@@ -5,6 +5,7 @@ title_en: "Quick sale is now available in every country"
 slug: quick-sale-every-country
 zdroj: https://changelog.shopify.com/posts/quick-sale-is-now-available-in-every-country
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

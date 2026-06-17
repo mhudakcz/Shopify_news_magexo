@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "API 2026-04 umožňuje všem Shopify Functions číst app-owned metaobjects (přes handle nebo ID)."
 tagy: [metaobject, functions, integration]
+editions_release: spring-2026
 ---
 
 ## Co se mění

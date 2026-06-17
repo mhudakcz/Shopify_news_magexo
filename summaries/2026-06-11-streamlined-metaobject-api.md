@@ -35,6 +35,7 @@ kontext:
 tldr: "Admin GraphQL API 2026-07 přidává `values` property na metaobjects, která umožňuje číst i zapisovat data jako přímý JSON objekt bez manuální serializace/deserializace — zjednodušuje CRUD operace a snižuje boilerplate kód."
 tagy: [metaobject, admin, json, simplification]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

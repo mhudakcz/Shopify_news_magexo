@@ -5,6 +5,7 @@ title_en: "Marketing automations are moving on March 24"
 slug: marketing-automations-moving
 zdroj: https://changelog.shopify.com/posts/marketing-automations-are-moving-on-march-24
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [breaking-change]

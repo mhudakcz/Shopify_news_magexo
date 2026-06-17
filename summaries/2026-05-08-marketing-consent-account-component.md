@@ -5,6 +5,7 @@ title_en: "Collect marketing consent on the account component"
 slug: marketing-consent-account-component
 zdroj: https://changelog.shopify.com/posts/collect-marketing-consent-on-the-account-component
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-prilezitost]

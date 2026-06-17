@@ -5,6 +5,7 @@ title_en: "A refreshed sign-in page for customer accounts, now customizable in t
 slug: refreshed-signin-page-customer-accounts
 zdroj: https://changelog.shopify.com/posts/draft-a-refreshed-sign-in-page-for-customer-accounts-now-customizable-in-the-editor
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-26
 
 kategorie: [nova-prilezitost]

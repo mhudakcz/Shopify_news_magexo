@@ -5,6 +5,7 @@ title_en: "New Cash Management Foundations for Shopify POS"
 slug: cash-management-foundations-pos
 zdroj: https://changelog.shopify.com/posts/new-cash-management-foundations-for-shopify-pos
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

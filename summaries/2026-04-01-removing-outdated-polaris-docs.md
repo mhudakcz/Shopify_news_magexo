@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Polaris reference docs publikovány jen pro poslední 4 stable verze (12-month support policy)."
 tagy: [polaris, docs, ui]
+editions_release: spring-2026
 ---
 
 ## Co se mění

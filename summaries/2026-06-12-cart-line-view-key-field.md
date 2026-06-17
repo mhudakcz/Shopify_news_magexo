@@ -34,6 +34,7 @@ kontext:
 tldr: "Storefront API 2026-07: `CartLine` type nyní vrací pole `viewKey`, které odpovídá `view_key` odeslanému v `cartLinesUpdate` / `cartLinesRemove`. Dokončuje read-after-write cyklus — headless cart implementace mohou spolehlivě párovat response line s mutation inputem bez extra GET dotazu."
 tagy: [cart, view-key, storefront, headless]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

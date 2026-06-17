@@ -5,6 +5,7 @@ title_en: "Updated list of tax inclusive countries when dynamic tax-inclusive pr
 slug: tax-inclusive-countries-update
 zdroj: https://changelog.shopify.com/posts/updated-list-of-tax-inclusive-countries-when-dynamic-tax-inclusive-pricing-is-used
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

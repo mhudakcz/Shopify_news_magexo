@@ -37,6 +37,7 @@ kontext:
 tldr: "Partner API 2026-07 přináší mutation appSubscriptionCancel, která umožňuje partnerům programaticky rušit app subscriptions vlastních public apps — s okamžitým nebo odloženým účinkem, prorated kreditem a přeskočením usage charges."
 tagy: [partner-api, app, subscription, billing, mutation]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

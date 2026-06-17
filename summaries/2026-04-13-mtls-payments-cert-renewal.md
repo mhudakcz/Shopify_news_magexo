@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Shopify obnovuje mTLS certifikát pro Payments Apps 15. 6. 2026; vlastní validační logika v platebních appech musí být aktualizovaná."
 tagy: [payments, mtls, security, certificate]
+editions_release: spring-2026
 ---
 
 ## Co se mění

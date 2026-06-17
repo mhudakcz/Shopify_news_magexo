@@ -5,6 +5,7 @@ title_en: "Storefront filter URLs now use stable identifiers instead of text val
 slug: storefront-filter-urls-stable-identifiers
 zdroj: https://changelog.shopify.com/posts/storefront-filter-urls-now-use-stable-identifiers-instead-of-text-values
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

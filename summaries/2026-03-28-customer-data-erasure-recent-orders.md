@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Customer data erasure požadavky se nově zpracují 10 dnů po odeslání bez ohledu na recency objednávek."
 tagy: [gdpr, compliance, webhook, customers-redact]
+editions_release: spring-2026
 ---
 
 ## Co se mění

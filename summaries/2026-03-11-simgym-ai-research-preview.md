@@ -5,6 +5,7 @@ title_en: "Shopify SimGym is now available in AI Research Preview for all eligib
 slug: simgym-ai-research-preview
 zdroj: https://changelog.shopify.com/posts/shopify-simgym-is-now-available-in-ai-research-preview-for-all-eligible-merchants
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

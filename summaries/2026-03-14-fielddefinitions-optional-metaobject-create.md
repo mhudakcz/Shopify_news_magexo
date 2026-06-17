@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Od dubna 2026 je fieldDefinitions argument volitelný v metaobjectDefinitionCreate."
 tagy: [metaobject, definition, dx]
+editions_release: spring-2026
 ---
 
 ## Co se mění

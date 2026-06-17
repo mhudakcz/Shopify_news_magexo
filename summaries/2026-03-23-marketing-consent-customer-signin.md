@@ -5,6 +5,7 @@ title_en: "Collect marketing consent on the customer sign-in page"
 slug: marketing-consent-customer-signin
 zdroj: https://changelog.shopify.com/posts/collect-marketing-consent-on-the-customer-sign-in-page
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Public apps vytvořené po 1. 4. 2026 musí používat expirující offline access tokens (s refresh)."
 tagy: [auth, oauth, security, public-app]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -40,6 +40,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Discount functions umí nově prerekvizity pro Buy X, Get Y slevy v product candidates."
 tagy: [discount, functions, buy-x-get-y]
+editions_release: spring-2026
 ---
 
 ## Co se mění

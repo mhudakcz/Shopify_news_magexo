@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Admin intents lze použít pro směrování merchanta na Settings pages (store config, locations)."
 tagy: [app-bridge, intents, settings]
+editions_release: spring-2026
 ---
 
 ## Co se mění

@@ -38,6 +38,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Mutace inventorySetScheduledChanges je v API 2026-07 odstraněna — bez přímé náhrady."
 tagy: [inventory, scheduled, deprecation, breaking]
+editions_release: spring-2026
 ---
 
 ## Co se mění

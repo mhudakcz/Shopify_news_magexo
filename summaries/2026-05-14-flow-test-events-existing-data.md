@@ -5,6 +5,7 @@ title_en: "Flow: Make test events for your workflows with existing shop data"
 slug: flow-test-events-existing-data
 zdroj: https://changelog.shopify.com/posts/flow-sidekick-generates-test-cases-for-your-workflows
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [nova-prilezitost]

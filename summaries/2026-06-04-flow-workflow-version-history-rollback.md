@@ -5,6 +5,7 @@ title_en: "Flow: View who edited, activated, or deactivated a workflow version"
 slug: flow-workflow-version-history-rollback
 zdroj: https://changelog.shopify.com/posts/flow-see-exactly-what-changed-in-any-workflow-and-roll-it-back
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-06-04
 
 kategorie: [nova-prilezitost]

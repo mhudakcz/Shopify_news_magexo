@@ -39,6 +39,7 @@ kontext:
   model: claude-sonnet-4-5
 tldr: "Pole grams na DraftOrderLineItem je v API 2026-07 odstraněno — nutné migrovat na weight."
 tagy: [draft-order, line-item, weight, breaking]
+editions_release: spring-2026
 ---
 
 ## Co se mění

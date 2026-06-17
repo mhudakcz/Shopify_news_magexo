@@ -5,6 +5,7 @@ title_en: "Address Autocomplete and Validation Improvements for US, AU, CA, NL, 
 slug: address-autocomplete-validation-improvements
 zdroj: https://changelog.shopify.com/posts/address-autocomplete-and-validation-improvements-for-us-au-ca-nl-fr
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

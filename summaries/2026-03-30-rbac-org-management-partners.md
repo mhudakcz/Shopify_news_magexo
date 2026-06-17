@@ -36,6 +36,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Partner organizace nově používají RBAC se system + custom rolemi pro unified store management."
 tagy: [partners, rbac, organization, management]
+editions_release: spring-2026
 ---
 
 ## Co se mění

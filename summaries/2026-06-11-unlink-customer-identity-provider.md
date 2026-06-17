@@ -34,6 +34,7 @@ kontext:
 tldr: "Shopify Plus merchanté mohou nyní odpojit zákazníka od OIDC identity providera přímo v Admin bez nutnosti kontaktovat Support — řeší chyby přihlášení způsobené nesprávným propojením subject ID."
 tagy: [oidc, identity-provider, plus, customer, authentication]
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

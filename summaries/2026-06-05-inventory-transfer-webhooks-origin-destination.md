@@ -47,6 +47,7 @@ kontext:
 tldr: "Od API verze 2026-07 obsahují všechny inventory transfer webhooky pole origin.id a destination.id s Global ID lokací — odpadá nutnost dodatečného API volání pro identifikaci skladu. Zároveň byla upřesněna dokumentace mutací inventoryTransferSetItems a inventoryTransferRemoveItems."
 tagy: [inventory, transfer, webhook, location, admin]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění

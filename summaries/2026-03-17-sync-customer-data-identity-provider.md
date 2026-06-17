@@ -5,6 +5,7 @@ title_en: "Automatically sync customer data from your identity provider"
 slug: sync-customer-data-identity-provider
 zdroj: https://changelog.shopify.com/posts/enrich-customer-records-with-data-from-external-identity-providers
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost, integrace]

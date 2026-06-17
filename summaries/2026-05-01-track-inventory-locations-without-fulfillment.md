@@ -5,6 +5,7 @@ title_en: "Track inventory that isn't for sale or fulfillment"
 slug: track-inventory-locations-without-fulfillment
 zdroj: https://changelog.shopify.com/posts/manage-inventory-at-locations-without-activating-them-for-fulfillment
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

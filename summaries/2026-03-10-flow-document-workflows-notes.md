@@ -5,6 +5,7 @@ title_en: "Flow: Document workflows with notes"
 slug: flow-document-workflows-notes
 zdroj: https://changelog.shopify.com/posts/flow-document-any-workflow-with-notes-that-stay-with-it
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-05
 
 kategorie: [nova-prilezitost]

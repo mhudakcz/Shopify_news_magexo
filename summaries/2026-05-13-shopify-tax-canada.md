@@ -5,6 +5,7 @@ title_en: "Shopify Tax has expanded to Canada"
 slug: shopify-tax-canada
 zdroj: https://changelog.shopify.com/posts/shopify-tax-has-expanded-to-canada
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-19
 
 kategorie: [nova-prilezitost]

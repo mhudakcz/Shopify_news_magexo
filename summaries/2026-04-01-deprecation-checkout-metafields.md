@@ -39,6 +39,7 @@ kontext:
   model: claude-sonnet-4-6
 tldr: "Checkout metafields v checkout/customer account UI extensions deprecated; migrace na cart a order metafields v API 2026-04."
 tagy: [metafield, checkout, deprecation, cart, order]
+editions_release: spring-2026
 ---
 
 ## Co se mění

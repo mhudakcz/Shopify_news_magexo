@@ -5,6 +5,7 @@ title_en: "A new home for Agentic Storefronts in your admin"
 slug: agentic-storefronts-admin-page
 zdroj: https://changelog.shopify.com/posts/a-new-home-for-agentic-storefronts-in-your-admin
 zdroj_kanal: merchant-changelog
+editions_release: spring-2026
 shrnuto_dne: 2026-05-12
 
 kategorie: [nova-prilezitost]

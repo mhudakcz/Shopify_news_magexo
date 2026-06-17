@@ -32,6 +32,7 @@ kontext:
 tldr: "Admin API 2026-07 umožňuje vydat gift card v konkrétní lokální měně a nakonfigurovat, jak se karta chová při uplatnění v jiné měně (NONE / MARKET_FX / SPOT_FX). Nová mutace giftCardProductSet nahrazuje starší přístup; pole initialValue je deprecated ve prospěch initialAmount."
 tagy: [gift-card, multi-currency, admin, markets]
 zdroj_kanal: dev-changelog
+editions_release: spring-2026
 ---
 
 ## Co se mění
