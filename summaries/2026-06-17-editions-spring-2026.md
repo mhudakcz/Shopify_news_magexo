@@ -113,13 +113,6 @@ Pokud Magexo má vlastní Shopify apps nebo extensions:
 - 📊 [Streamlined Metaobject API](/Shopify_news_magexo/zmena/streamlined-metaobject-api/) — méně boilerplate při CRUD práci s metaobjects.
 - 🔔 [Next Generation Events](/Shopify_news_magexo/zmena/next-generation-events-field-level-webhooks/) — field-level webhooks pro přesnější integrace s méně traffic.
 
-### 💌 Akční tip: 2 emailové vlny
-
-Navrhuju rozdělit outreach na dvě vlny:
-
-1. **B2B vlna** — [B2B for all](/Shopify_news_magexo/zmena/b2b-for-all-merchants/) + [Self-serve cancellation](/Shopify_news_magexo/zmena/self-serve-order-cancellation-requests/) + [WhatsApp marketing](/Shopify_news_magexo/zmena/whatsapp-marketing-channel-shopify/) → **okamžitý ROI**, easy yes.
-2. **AI vlna** — [Agentic Commerce](/Shopify_news_magexo/zmena/universal-commerce-protocol-ucp/) + [Campaign Autopilot](/Shopify_news_magexo/zmena/campaign-autopilot-ai-marketing/) + [Sidekick](/Shopify_news_magexo/zmena/editions-spring-2026-sidekick/) → **strategická konverzace**, pozice „Magexo nám pomáhá s tím, co teprve přijde".
-
 ---
 
 ## TL;DR pro spěchajícího PM-a
