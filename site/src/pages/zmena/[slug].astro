@@ -38,12 +38,21 @@ const { cat, emoji } = deriveCat(entry.data);
 const isEditionsHub = (entry.data.kategorie || []).includes('editions-hub');
 
 // Cross-reference: pokud je tohle hub, najdi všechny články ze stejného editions_release
-const editionsReleaseRefs = isEditionsHub && entry.data.editions_release
+// Rozděl na theme overviews (kategorie: editions-theme) a běžné položky
+const editionsReleaseAll = isEditionsHub && entry.data.editions_release
   ? all.filter((a: any) =>
       a.id !== entry.id &&
       a.data.editions_release === entry.data.editions_release
-    ).sort((a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    )
   : [];
+
+const editionsThemeOverviews = editionsReleaseAll
+  .filter((a: any) => (a.data.kategorie || []).includes('editions-theme'))
+  .sort((a: any, b: any) => (a.data.title || '').localeCompare(b.data.title || ''));
+
+const editionsReleaseRefs = editionsReleaseAll
+  .filter((a: any) => !(a.data.kategorie || []).includes('editions-theme'))
+  .sort((a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const sortedByDate = [...all].sort(
   (a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -198,6 +207,29 @@ const hasImage = !!entry.data.obrazek;
         <div class="prose" id="article-body">
           <Content />
         </div>
+
+        {isEditionsHub && editionsThemeOverviews.length > 0 && (
+          <section class="ed-themes" aria-label="Theme overviews">
+            <header class="ed-themes-head">
+              <span class="ed-themes-eyebrow">📂 Theme overviews — detailní rozbor po tématech</span>
+              <span class="ed-themes-count">{editionsThemeOverviews.length} témat</span>
+            </header>
+            <ul class="ed-themes-grid">
+              {editionsThemeOverviews.map((t: any) => {
+                const themeName = (t.data.title || '').replace(/^Editions [^:]+:\s*/, '');
+                return (
+                  <li>
+                    <a href={`/Shopify_news_magexo/zmena/${t.id.replace(/\.md$/, '')}/`}>
+                      <span class="et-title">{themeName}</span>
+                      <span class="et-tldr">{t.data.tldr}</span>
+                      <span class="et-cta">Otevřít →</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
 
         {isEditionsHub && editionsReleaseRefs.length > 0 && (
           <section class="ed-refs" aria-label="Z této Edition už máme v archivu">
@@ -511,6 +543,105 @@ const hasImage = !!entry.data.obrazek;
     background: rgba(255, 255, 255, 0.24);
     text-decoration: none;
   }
+
+  /* Editions theme overviews grid */
+  .ed-themes {
+    margin: 40px 0 28px;
+    padding: 26px 26px 22px;
+    background: linear-gradient(180deg, var(--indigo-50) 0%, var(--bg-elev) 60%);
+    border-radius: 14px;
+    border: 1px solid var(--indigo-200);
+  }
+  :global([data-theme="dark"]) .ed-themes {
+    background: linear-gradient(180deg, rgba(79, 70, 229, 0.08) 0%, var(--bg-elev) 60%);
+    border-color: rgba(79, 70, 229, 0.35);
+  }
+  .ed-themes-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--indigo-200);
+  }
+  :global([data-theme="dark"]) .ed-themes-head {
+    border-bottom-color: rgba(79, 70, 229, 0.35);
+  }
+  .ed-themes-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--indigo-700);
+  }
+  :global([data-theme="dark"]) .ed-themes-eyebrow { color: var(--indigo-300); }
+  .ed-themes-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--fg-3);
+    background: var(--bg-elev);
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-1);
+  }
+  .ed-themes-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .ed-themes-grid a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 18px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-1);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--fg-1);
+    transition: all 0.15s;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .ed-themes-grid a:hover {
+    border-color: var(--indigo-600);
+    box-shadow: 0 4px 14px -4px rgba(79, 70, 229, 0.3);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+  .et-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--fg-1);
+  }
+  .ed-themes-grid a:hover .et-title { color: var(--indigo-700); }
+  :global([data-theme="dark"]) .ed-themes-grid a:hover .et-title { color: var(--indigo-300); }
+  .et-tldr {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--fg-2);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .et-cta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--indigo-600);
+    margin-top: auto;
+  }
+  :global([data-theme="dark"]) .et-cta { color: var(--indigo-300); }
 
   /* Editions cross-reference list */
   .ed-refs {
