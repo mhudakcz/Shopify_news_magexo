@@ -42,7 +42,7 @@ kontext:
   model: claude-opus-4-7
 ---
 
-> 💡 **Tip pro orientaci:** všechny zvýrazněné názvy v tomto článku jsou klikací — vedou na detailní rozbory jednotlivých témat nebo položek. Pod článkem najdeš taky grid 10 témat a auto-generovaný seznam 180+ propojených archivních článků.
+> 💡 **Tip pro orientaci:** zvýrazněné položky s odkazem (modře) vedou na detailní rozbor v archivu. Bez odkazu = Shopify ji v Editions oznámilo, ale nemá samostatný changelog článek (žije buď v theme overview pod tématem, nebo přímo ve zdrojové dokumentaci). Pod článkem najdeš grid 10 témat a auto-generovaný seznam 180+ propojených archivních článků.
 
 ## TL;DR pro spěchajícího PM-a
 
@@ -100,7 +100,7 @@ Klíčové:
 
 Hvězda: **[POS v11 rebuild](/Shopify_news_magexo/zmena/pos-v11-rebuild-deep-dive/)**.
 - **Fastest-ever POS** — over 1 minute saved per transaction (always-present cart)
-- **Faster search** — inline suggestions, reduced latency
+- **[Faster search](/Shopify_news_magexo/zmena/pos-find-products-inline-search/)** — inline suggestions, reduced latency
 - **[Returns + exchanges + new sales v jednom košíku](/Shopify_news_magexo/zmena/pos-returns-exchanges-cart/)**
 - **[Multi-entity selling](/Shopify_news_magexo/zmena/multiple-legal-entities-shopify-payments/)** napříč retail lokacemi (různé právní subjekty z jednoho store)
 - **[Tap to Pay pro multi-entity](/Shopify_news_magexo/zmena/tap-to-pay-multi-entity/)**
@@ -124,7 +124,7 @@ Další:
 - **Marketing data v analytics** — spend/ROAS/impressions vedle sales
 - **[Discount links přiřazené ke kampaním](/Shopify_news_magexo/zmena/track-discounts-marketing-campaigns/)** pro attribution
 - **Fixed bundles na Google Shopping + Meta**
-- **[WhatsApp consent management](/Shopify_news_magexo/zmena/marketing-consent-customer-signin/)** v customer profilech
+- **WhatsApp consent management** v customer profilech *(samostatný článek zatím není — viz Editions zdroj)*
 
 ### ⚙️ [Operations (47 položek — největší téma)](/Shopify_news_magexo/zmena/editions-spring-2026-operations/)
 *Admin, analytics, inventory, shipping, international*
@@ -138,7 +138,7 @@ Hodně různého. Highlights:
 **Analytics:**
 - **[Daily insights](/Shopify_news_magexo/zmena/daily-insights-analytics-ai/)** — Shopify analyzuje data a vypichuje trendy
 - **[Scatter plots, radar, bubble, sunburst](/Shopify_news_magexo/zmena/scatter-plots-radar-charts-analytics/)** — nové typy grafů
-- **Metric targets** — set + visual tracking
+- **[Metric targets](/Shopify_news_magexo/zmena/analytics-metric-targets-admin-api/)** — set + visual tracking
 - **[Annotations](/Shopify_news_magexo/zmena/annotations-analytics-events/)** — visual markery pro vysvětlení změn metrik
 - **Filtering by metafields** — custom data v reportingu
 
@@ -171,7 +171,7 @@ Hodně různého. Highlights:
 
 - **[Shop Pay anywhere](/Shopify_news_magexo/zmena/shop-pay-anywhere-off-platform/)** — i mimo Shopify storefronts (off-platform brands)
 - **[Managed payment methods](/Shopify_news_magexo/zmena/managed-payment-methods-ml-ordering/)** — Shopify Payments dynamicky řadí metody pro konverzi
-- **Ship + pickup v jednom checkoutu**
+- **[Ship + pickup v jednom checkoutu](/Shopify_news_magexo/zmena/ship-and-pickup-one-order-preview/)**
 - **[Shop Pay v UAE, Mexico (MSI installments), víc local methods](/Shopify_news_magexo/zmena/local-payment-methods-more-countries/)**
 - **[USDC cashback](/Shopify_news_magexo/zmena/usdc-payments-base-cashback/)** pro platby na Base
 - **[Multi-currency payouts](/Shopify_news_magexo/zmena/multi-currency-payout-expansion/)** US/HK/SG (víc měn)
