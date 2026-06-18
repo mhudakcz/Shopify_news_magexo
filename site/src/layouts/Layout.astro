@@ -41,6 +41,19 @@ const isDetail = variant === 'detail';
         }
       })();
     </script>
+
+    {/* Google Analytics 4 — pouze v produkčním buildu (lokální `npm run dev` netrackuje) */}
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5L4C7R2R00"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5L4C7R2R00');
+        </script>
+      </>
+    )}
   </head>
   <body>
     {!noHeader && (
