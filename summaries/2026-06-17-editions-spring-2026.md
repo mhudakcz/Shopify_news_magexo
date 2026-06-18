@@ -149,6 +149,9 @@ Hodně různého. Highlights:
 - **[Shipment-level barcode](/Shopify_news_magexo/zmena/barcode-inventory-shipments/)** (GS1-128)
 - **[Inventory adjustment workflows](/Shopify_news_magexo/zmena/inventory-adjustment-full-change-tracking/)** s full audit trail
 
+**Orders / Customer service:**
+- **[Self-serve order cancellation](/Shopify_news_magexo/zmena/self-serve-order-cancellation-requests/)** — zákazníci mohou rušit nedoručené/nezaplacené objednávky přímo z customer account (rozšíření self-serve returns systému)
+
 **Shipping/International:**
 - **[Managed Markets v UK + Kanadě](/Shopify_news_magexo/zmena/managed-markets-uk-canada-launch/)**
 - **FedEx One Rate** (US), **DHL Kleinpaket** (DE)

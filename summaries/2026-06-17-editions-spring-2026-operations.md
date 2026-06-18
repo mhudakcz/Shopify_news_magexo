@@ -59,8 +59,9 @@ Flow dostává funkce, které z něj dělají plnohodnotný automatizační nás
 - **Metafieldy v kontextu Shopify Flow** — workflow může číst hodnoty metafieldů jako podmínkový vstup pro rozhodovací větve.
 - **Více připnutých metafieldů** — admin umožňuje připnout více metafieldů do přehledů na kartě produktu nebo zákazníka pro rychlý přístup bez otevírání sekce metafieldů.
 
-### Orders, Returns & Permissions (7 položek)
+### Orders, Returns & Permissions (8 položek)
 
+- **[Self-serve order cancellation](/Shopify_news_magexo/zmena/self-serve-order-cancellation-requests/)** — zákazníci mohou v customer account přímo požádat o zrušení objednávky, která ještě nebyla odeslána nebo zaplacena. Rozšíření self-serve returns systému. Snižuje support tickets.
 - **Slevy na stránce refundu** — obchodník může aplikovat slevu přímo při zpracovávání vrácení, bez nutnosti přecházet do nastavení slev. Usnadňuje nabízení retention discountu jako alternativy k vrácení.
 - **Konzistentní výpočty při vrácení a upsellech** — unifikace logiky výpočtu u returnů i upsell nabídek eliminuje rozdíly, které dříve způsobovaly zmatky v cenách.
 - **Viditelnost aktivity aplikací** — admin zobrazuje co a kdy která nainstalovaná aplikace udělala (změny objednávky, záznamy, API volání). Pomáhá při debugování nebo auditu.
