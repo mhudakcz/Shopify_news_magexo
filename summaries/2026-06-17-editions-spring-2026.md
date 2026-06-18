@@ -44,6 +44,84 @@ kontext:
 
 > 💡 **Tip pro orientaci:** zvýrazněné položky s odkazem (modře) vedou na detailní rozbor v archivu. Bez odkazu = Shopify ji v Editions oznámilo, ale nemá samostatný changelog článek (žije buď v theme overview pod tématem, nebo přímo ve zdrojové dokumentaci). Pod článkem najdeš grid 10 témat a auto-generovaný seznam 180+ propojených archivních článků.
 
+## 💎 Top pecky pro klienty — co proaktivně řešit
+
+Z 187 položek vybráno 5 s **největším client value pro CZ/EU trh** — ne marketing buzzwords, ale věci na které stojí za to klienta proaktivně oslovit.
+
+### 🥇 #1: B2B teď pro všechny plány — instant client win
+
+**Co:** [B2B for all merchants](/Shopify_news_magexo/zmena/b2b-for-all-merchants/) — Company profiles + volume pricing + 3 B2B katalogy nyní bez extra ceny (dříve Plus-only nebo extra fee).
+
+**Pro koho:** kterýkoli klient co kdy zmínil „nějaký velkoobchod, ale to je drahé". Plus paying klienti by měli vědět o uplifted limits.
+
+**Akce:** audit B2B klientů, navrhnout zapnutí, ušetřit jim náklad nebo setup. Plus pro Magexo potenciálně nová integrační práce (ERP → B2B catalog management, custom pricing rules).
+
+### 🥈 #2: Self-serve order cancellation — drop support tiketů
+
+**Co:** [Self-serve order cancellation](/Shopify_news_magexo/zmena/self-serve-order-cancellation-requests/) — zákazník zruší nedoručenou nebo nezaplacenou objednávku přímo z customer accountu, bez kontaktu na support.
+
+**Pro koho:** klienti s vysokým objemem objednávek = měřitelný drop support tiketů.
+
+**Akce:** jeden mail typu *„Settings > Customer accounts, jeden klik, máte to."* Easy win, easy zápis na seznam delivered value.
+
+### 🥉 #3: Agentic Commerce / Catalog API — strategická konverzace
+
+**Co:** [Universal Commerce Protocol](/Shopify_news_magexo/zmena/universal-commerce-protocol-ucp/) + [Catalog API](/Shopify_news_magexo/zmena/shopify-catalog-api-deep-dive/) + [Sponsored products](/Shopify_news_magexo/zmena/sponsored-products-catalog-api/) — Shopify produkty se zobrazí v ChatGPT, Copilot, Perplexity nákupních flow.
+
+**Pro koho:** brand prodávající commodity-like věci (oblečení, doplňky, kosmetika) má nový akviziční kanál. Plus všichni, kteří chtějí být napřed se strategickým tématem.
+
+**Akce:** strategická konverzace na úrovni „kde bude e-commerce za 2 roky" — pro repeat business a advisory pozici hodně cenné. Pro Magexo nová integrační niche (Catalog API customizace, structured product data optimization, AI-channel reporting).
+
+### 🏅 #4: WhatsApp marketing kanál — relevantní pro EU/CZ
+
+**Co:** [WhatsApp marketing channel](/Shopify_news_magexo/zmena/whatsapp-marketing-channel-shopify/) v Shopify Messaging — native, bez třetí strany (žádný Twilio middleware).
+
+**Pro koho:** B2C klienti — WhatsApp je v ČR, SK, Polsku mainstream. Klienti co dnes řeší marketing přes SMS nebo email (s padajícími deliverability) mají nový kanál s ~98 % open rate.
+
+**Akce:** u každého B2C klienta zvážit pilot kampaň.
+
+### 🏅 #5: Campaign Autopilot — pro klienty s vlastním marketingem
+
+**Co:** [Campaign Autopilot](/Shopify_news_magexo/zmena/campaign-autopilot-ai-marketing/) — AI-řízené kampaně napříč ChatGPT, Microsoft Monetize, Pinterest, Meta, Google. Sama optimalizuje budget a creative.
+
+**Pro koho:** klienti co platí marketing agenturu několik tisíc měsíčně za to, co umí Shopify nyní automaticky. Pro menší klienty bez marketingového know-how vstup do paid acquisition.
+
+**Akce:** ukázat jako alternativu k existujícímu paid setupu, nebo jako vstup pro klienty co paid marketing dosud neřešili.
+
+### 🛒 Pro retail klienty navíc
+
+Pokud klient provozuje POS:
+
+- [POS v11 rebuild](/Shopify_news_magexo/zmena/pos-v11-rebuild-deep-dive/) — over 1 min saved per transaction. Pro klienta s 200 transakcemi denně = 3+ hodiny ušetřené práce denně.
+- [Tap to Pay multi-entity](/Shopify_news_magexo/zmena/tap-to-pay-multi-entity/) — pokud někdo provozuje víc značek nebo právních subjektů z jednoho store.
+- [Cash management](/Shopify_news_magexo/zmena/retail-cash-management-capabilities/) — drawer tracking, audit trail pro compliance.
+
+### ⚠️ Vědomě skipuju (zní to dobře, ale low signal pro CZ klienta)
+
+- **USDC payments / cashback** — zajímavé technologicky, ale málokterý CZ klient platí v krypto.
+- **FedEx One Rate, DHL Kleinpaket DE** — US/DE only, pro CZ marginální.
+- **Shopify Tax Canada, Capital France** — irelevantní pro CZ klienty.
+- **Multi-currency payouts US/HK/SG** — irelevantní pro CZ-based merchanty.
+- **Shop Pay anywhere off-platform** — zajímavé strategicky, ale aktuálně bez immediate use case pro typického klienta.
+
+### 🛠️ Pro nás (Magexo dev tým)
+
+Pokud Magexo má vlastní Shopify apps nebo extensions:
+
+- ⏰ [Polaris migration deadline 1. 10. 2026](/Shopify_news_magexo/zmena/shopify-ai-toolkit-polaris-migration/) — must-do, hard deadline.
+- 🤖 [Shopify AI Toolkit](/Shopify_news_magexo/zmena/shopify-ai-toolkit-commerce-skills/) — řízení Shopify z Claude Code / Cursor pro vývojářskou produktivitu.
+- 📊 [Streamlined Metaobject API](/Shopify_news_magexo/zmena/streamlined-metaobject-api/) — méně boilerplate při CRUD práci s metaobjects.
+- 🔔 [Next Generation Events](/Shopify_news_magexo/zmena/next-generation-events-field-level-webhooks/) — field-level webhooks pro přesnější integrace s méně traffic.
+
+### 💌 Akční tip: 2 emailové vlny
+
+Navrhuju rozdělit outreach na dvě vlny:
+
+1. **B2B vlna** — [B2B for all](/Shopify_news_magexo/zmena/b2b-for-all-merchants/) + [Self-serve cancellation](/Shopify_news_magexo/zmena/self-serve-order-cancellation-requests/) + [WhatsApp marketing](/Shopify_news_magexo/zmena/whatsapp-marketing-channel-shopify/) → **okamžitý ROI**, easy yes.
+2. **AI vlna** — [Agentic Commerce](/Shopify_news_magexo/zmena/universal-commerce-protocol-ucp/) + [Campaign Autopilot](/Shopify_news_magexo/zmena/campaign-autopilot-ai-marketing/) + [Sidekick](/Shopify_news_magexo/zmena/editions-spring-2026-sidekick/) → **strategická konverzace**, pozice „Magexo nám pomáhá s tím, co teprve přijde".
+
+---
+
 ## TL;DR pro spěchajícího PM-a
 
 Pokud máš 30 sekund, čti tohle:
