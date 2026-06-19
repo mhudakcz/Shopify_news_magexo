@@ -11,6 +11,7 @@ const { entry } = Astro.props;
 const { cat, emoji } = deriveCat(entry.data);
 const href = `/Shopify_news_magexo/zmena/${entry.id.replace(/\.md$/, '')}/`;
 const hasImage = !!entry.data.obrazek;
+const isEditionsTheme = (entry.data.kategorie || []).includes('editions-theme');
 
 const sourceMeta = entry.data.zdroj_kanal === 'blog' ? { label: 'Shopify CZ Blog', flag: 'CZ' }
   : entry.data.zdroj_kanal === 'editions' ? { label: 'Shopify Editions', flag: 'GB' }
@@ -21,7 +22,7 @@ const sourceMeta = entry.data.zdroj_kanal === 'blog' ? { label: 'Shopify CZ Blog
 const tagy = (entry.data.tagy || []).slice(0, 2);
 ---
 <a
-  class="card"
+  class={`card ${isEditionsTheme ? 'card-editions-theme' : ''}`}
   href={href}
   data-kategorie={(entry.data.kategorie || []).join(',')}
   data-uses={entry.data.pouzivame_v_integratoru === 'ano' ? '1' : '0'}
@@ -31,6 +32,12 @@ const tagy = (entry.data.tagy || []).slice(0, 2);
   data-cat={cat}
 >
   <div class={`card-hero ${hasImage ? 'has-image' : 'no-image'} hero-${cat}`}>
+    {isEditionsTheme && (
+      <div class="theme-ribbon" aria-label="Editions téma">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        EDITIONS THÉMA
+      </div>
+    )}
     {hasImage ? (
       <img src={entry.data.obrazek} alt={entry.data.title} loading="lazy" />
     ) : (
@@ -85,6 +92,38 @@ const tagy = (entry.data.tagy || []).slice(0, 2);
   }
   .card:hover .card-title { color: var(--indigo-700); }
   :global([data-theme="dark"]) .card:hover .card-title { color: var(--indigo-300); }
+
+  /* Editions theme overview cards — distinct visual treatment */
+  .card-editions-theme {
+    border-color: var(--indigo-300);
+    box-shadow: 0 1px 2px rgba(79, 70, 229, 0.08), 0 0 0 1px rgba(79, 70, 229, 0.15);
+  }
+  .card-editions-theme:hover {
+    border-color: var(--indigo-500);
+    box-shadow: 0 4px 14px -4px rgba(79, 70, 229, 0.35);
+  }
+  :global([data-theme="dark"]) .card-editions-theme {
+    border-color: rgba(129, 140, 248, 0.45);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(129, 140, 248, 0.2);
+  }
+  .theme-ribbon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, var(--indigo-600), var(--violet-600));
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.4);
+    z-index: 1;
+  }
 
   /* Hero */
   .card-hero {
