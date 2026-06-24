@@ -14,7 +14,7 @@ dukaz_integratoru: "Článek popisuje vizuální estetiku brandů — netýká s
 dotcene_klienty: []
 souvisejici: ["blog-branding-design", "blog-velikost-loga", "blog-pismo-pro-logo"]
 tldr: "Shopify identifikuje pět grafických trendů pro 2026: Chicken Scratch, Strukturovaný Scrapbook, Minimální Maximalismus, Hypercolor a Podivný Historismus — každý z nich reaguje na saturaci AI-generovaného obsahu a nabízí e-shopům způsob, jak vizuálně vyčnívat."
-tagy: [design, trends, branding, graphic-design, 2026]
+tagy: [design, trends, branding, graphic-design, "2026"]
 zdroj_kanal: blog
 kontext:
   background: |
