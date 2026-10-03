@@ -85,6 +85,11 @@ const editionsHubDate = editionsHub ? new Date(editionsHub.data.date) : null;
         <div class="topbar-search">
           <SearchInput placeholder={'Hledat — např. „checkout extension" nebo „2026-07"…'} />
         </div>
+        <label class="blog-toggle" title="Skrýt všechny články z CZ blogu (uloží se do prohlížeče)">
+          <input type="checkbox" id="hide-blog-toggle" />
+          <span class="blog-toggle-label">Skrýt blog články</span>
+          <span class="blog-toggle-count" id="blog-toggle-count">{counts.blog}</span>
+        </label>
       </div>
 
       <section class="hero-compact">
@@ -186,6 +191,35 @@ const editionsHubDate = editionsHub ? new Date(editionsHub.data.date) : null;
     const navItems = document.querySelectorAll<HTMLButtonElement>('.nav-item');
     const cards = document.querySelectorAll<HTMLAnchorElement>('.card');
     const weeks = document.querySelectorAll<HTMLElement>('.week-block');
+    const hideBlogToggle = document.getElementById('hide-blog-toggle') as HTMLInputElement | null;
+
+    // Blog hide toggle — persist v localStorage
+    const BLOG_HIDE_KEY = 'shopify-news-hide-blog';
+    function applyBlogHide(hide: boolean) {
+      document.body.classList.toggle('blog-hidden', hide);
+      // Re-evaluate week visibility (blog-only weeks mohly zmizet)
+      weeks.forEach((w) => {
+        const visible = [...w.querySelectorAll('.card')].some((c) => {
+          const el = c as HTMLElement;
+          const hiddenByFilter = el.style.display === 'none';
+          const hiddenByBlog = hide && el.dataset.kanal === 'blog';
+          return !hiddenByFilter && !hiddenByBlog;
+        });
+        w.style.display = visible ? '' : 'none';
+      });
+    }
+    if (hideBlogToggle) {
+      try {
+        const saved = localStorage.getItem(BLOG_HIDE_KEY) === '1';
+        hideBlogToggle.checked = saved;
+        applyBlogHide(saved);
+      } catch {}
+      hideBlogToggle.addEventListener('change', () => {
+        const hide = hideBlogToggle.checked;
+        try { localStorage.setItem(BLOG_HIDE_KEY, hide ? '1' : '0'); } catch {}
+        applyBlogHide(hide);
+      });
+    }
 
     // Apply filter from URL param ?filter=X on load (so detail-page nav links work)
     const urlFilter = new URLSearchParams(window.location.search).get('filter');
@@ -217,14 +251,22 @@ const editionsHubDate = editionsHub ? new Date(editionsHub.data.date) : null;
         });
 
         weeks.forEach((w) => {
-          const visible = [...w.querySelectorAll('.card')].some(
-            (c) => (c as HTMLElement).style.display !== 'none'
-          );
+          const hideBlog = document.body.classList.contains('blog-hidden');
+          const visible = [...w.querySelectorAll('.card')].some((c) => {
+            const el = c as HTMLElement;
+            if (el.style.display === 'none') return false;
+            if (hideBlog && el.dataset.kanal === 'blog') return false;
+            return true;
+          });
           w.style.display = visible ? '' : 'none';
         });
       });
     });
   </script>
+
+  <style is:global>
+    body.blog-hidden .card-blog { display: none !important; }
+  </style>
 </Layout>
 
 <style>
@@ -248,8 +290,61 @@ const editionsHubDate = editionsHub ? new Date(editionsHub.data.date) : null;
     position: sticky;
     top: 0;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
-  .topbar-search { max-width: 540px; }
+  .topbar-search { flex: 1; max-width: 540px; }
+
+  /* Blog hide toggle — pravá strana topbaru */
+  .blog-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border: 1px solid var(--border-1);
+    border-radius: 8px;
+    background: var(--bg-elev);
+    cursor: pointer;
+    font-size: 12.5px;
+    color: var(--fg-2);
+    user-select: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .blog-toggle:hover {
+    border-color: var(--border-2);
+    color: var(--fg-1);
+  }
+  .blog-toggle input[type="checkbox"] {
+    margin: 0;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    accent-color: var(--indigo-600);
+  }
+  .blog-toggle-count {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--fg-3);
+    background: var(--bg-2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .blog-toggle input:checked ~ .blog-toggle-label {
+    color: var(--indigo-700);
+    font-weight: 500;
+  }
+  :global([data-theme="dark"]) .blog-toggle input:checked ~ .blog-toggle-label {
+    color: var(--indigo-300);
+  }
+  @media (max-width: 720px) {
+    .topbar { flex-direction: column; align-items: stretch; gap: 10px; }
+    .topbar-search { max-width: none; }
+    .blog-toggle { align-self: flex-end; }
+  }
 
   /* Hero compact */
   .hero-compact {

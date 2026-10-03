@@ -23,7 +23,7 @@ const sourceMeta = entry.data.zdroj_kanal === 'blog' ? { label: 'Shopify CZ Blog
 const tagy = (entry.data.tagy || []).slice(0, 2);
 ---
 <a
-  class={`card ${isEditionsContent ? 'card-editions' : ''} ${isEditionsTheme ? 'card-editions-theme' : ''}`}
+  class={`card ${isEditionsContent ? 'card-editions' : ''} ${isEditionsTheme ? 'card-editions-theme' : ''} ${entry.data.zdroj_kanal === 'blog' ? 'card-blog' : ''}`}
   href={href}
   data-kategorie={(entry.data.kategorie || []).join(',')}
   data-uses={entry.data.pouzivame_v_integratoru === 'ano' ? '1' : '0'}
@@ -93,6 +93,40 @@ const tagy = (entry.data.tagy || []).slice(0, 2);
   }
   .card:hover .card-title { color: var(--indigo-700); }
   :global([data-theme="dark"]) .card:hover .card-title { color: var(--indigo-300); }
+
+  /* Blog karty — vizuálně potlačené (menší vizuální váha vedle dev/merchant novinek).
+     Chceme je mít stále viditelné pro ty, kdo o ně stojí, ale aby "neukradly show". */
+  .card-blog {
+    opacity: 0.72;
+    box-shadow: none;
+    background: var(--bg-2);
+  }
+  .card-blog:hover {
+    opacity: 1;
+    box-shadow: var(--shadow-xs);
+  }
+  .card-blog .card-hero {
+    aspect-ratio: 32 / 9;
+  }
+  .card-blog .card-hero.no-image .hero-emoji {
+    font-size: 32px;
+    opacity: 0.55;
+  }
+  .card-blog .card-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    -webkit-line-clamp: 2;
+  }
+  .card-blog .card-tldr {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+    color: var(--fg-3);
+  }
+  .card-blog .card-body {
+    padding: 12px 14px 14px;
+    gap: 7px;
+  }
 
   /* Editions release cards — gradient border v barvách banneru
      Aplikuje se na VŠECHNY články s editions_release (hub, themes, standalones, cross-ref) */
