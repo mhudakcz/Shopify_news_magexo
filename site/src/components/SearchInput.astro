@@ -57,6 +57,9 @@ const { placeholder = 'Hledat v novinkách…', large = false } = Astro.props;
   }
   #search { margin-top: 8px; }
   #search:empty { display: none; }
+  /* Pagefind UI má vlastní input + magnifying glass — my ho ovládáme přes trigger výše,
+     takže Pagefind form schováme, zobrazuje se jen results list. */
+  #search :global(.pagefind-ui__form) { display: none; }
 </style>
 
 <script>

@@ -55,9 +55,17 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
 const { page, stats, counts, editionsHub } = Astro.props;
 
-// Hub se zobrazuje jako pinned banner — vyjmeme ho z běžného grid na stránce 1
+// Editions hub má teasovací banner jen když je čerstvý (≤ 60 dní od publikace).
+// Starší edition zůstává normálně v archive gridu (dohledatelná skrz Editions kanál),
+// nový Spring/Winter atd. edition hub automaticky převezme banner až vyjde.
+const EDITIONS_FRESH_DAYS = 60;
+const editionsHubFresh = editionsHub
+  ? (Date.now() - new Date(editionsHub.data.date).getTime()) / 86_400_000 <= EDITIONS_FRESH_DAYS
+  : false;
+
+// Hub vyjmeme z běžného grid na stránce 1 jen když je zobrazen jako pinned banner.
 const hubId = editionsHub ? editionsHub.id : null;
-const pageItems = page.currentPage === 1 && hubId
+const pageItems = page.currentPage === 1 && hubId && editionsHubFresh
   ? page.data.filter((i: any) => i.id !== hubId)
   : page.data;
 
@@ -111,7 +119,7 @@ const editionsHubDate = editionsHub ? new Date(editionsHub.data.date) : null;
         )}
       </section>
 
-      {page.currentPage === 1 && editionsHub && (
+      {page.currentPage === 1 && editionsHub && editionsHubFresh && (
         <section class="editions-pinned" aria-label="Aktivní Shopify Editions">
           <a href={`/Shopify_news_magexo/zmena/${editionsHubSlug}/`} class="editions-banner">
             <div class="ep-spark" aria-hidden="true">
